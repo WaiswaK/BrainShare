@@ -1,0 +1,196 @@
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\bin\x86\Release\App.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\bin\x86\Release\Views\CreateAccountPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\bin\x86\Release\Views\LibraryPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\bin\x86\Release\Views\LoginPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\bin\x86\Release\Views\PlayPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\bin\x86\Release\Views\PDFViewPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\bin\x86\Release\Views\StudentPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\bin\x86\Release\Views\SubjectPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\bin\x86\Release\Views\AssignmentPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\bin\x86\Release\Views\AssignmentsPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\bin\x86\Release\Views\TopicPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\bin\x86\Release\Views\TopicsPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\bin\x86\Release\Views\VideosPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\bin\x86\Release\BrainShare.xr.xml
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\bin\x86\Release\BrainShare.exe
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\bin\x86\Release\BrainShare.pdb
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\bin\x86\Release\resources.pri
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\bin\x86\Release\AppxManifest.xml
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\bin\x86\Release\BrainShare.build.appxrecipe
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\App.g.i.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\App.g.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\CreateAccountPage.g.i.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\CreateAccountPage.g.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\LibraryPage.g.i.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\LibraryPage.g.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\LoginPage.g.i.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\LoginPage.g.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\PlayPage.g.i.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\PlayPage.g.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\PDFViewPage.g.i.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\PDFViewPage.g.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\StudentPage.g.i.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\StudentPage.g.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\SubjectPage.g.i.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\SubjectPage.g.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\AssignmentPage.g.i.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\AssignmentPage.g.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\AssignmentsPage.g.i.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\AssignmentsPage.g.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\TopicPage.g.i.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\TopicPage.g.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\TopicsPage.g.i.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\TopicsPage.g.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\VideosPage.g.i.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\VideosPage.g.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\XamlTypeInfo.g.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\App.xaml
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\CreateAccountPage.xaml
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\LibraryPage.xaml
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\PlayPage.xaml
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\PDFViewPage.xaml
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\StudentPage.xaml
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\SubjectPage.xaml
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\AssignmentPage.xaml
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\AssignmentsPage.xaml
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\TopicPage.xaml
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\TopicsPage.xaml
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\VideosPage.xaml
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\App.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\CreateAccountPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\LibraryPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\PlayPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\PDFViewPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\StudentPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\SubjectPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\AssignmentPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\AssignmentsPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\TopicPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\TopicsPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\VideosPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\XamlSaveStateFile.xml
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\LoginPage.xaml
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\LoginPage.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\BrainShare.exe
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\BrainShare.pdb
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\BrainShare.csproj.GenerateResource.Cache
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\priconfig.xml
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\priconfig.xml.intermediate
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\layout.resfiles
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\layout.resfiles.intermediate
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\resources.resfiles
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\resources.resfiles.intermediate
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\pri.resfiles
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\pri.resfiles.intermediate
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\qualifiers.txt
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\qualifiers.txt.intermediate
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\MultipleQualifiersPerDimensionFound.txt
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\ProjectArchitectures.txt
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\bin\x86\Release\Views\LibraryCategoryBooks.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\bin\x86\Release\Views\LibraryBookReader.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\LibraryCategoryBooks.g.i.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\LibraryCategoryBooks.g.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\LibraryBookReader.g.i.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\LibraryBookReader.g.cs
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\LibraryBookReader.xaml
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\LibraryBookReader.xbf
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\LibraryCategoryBooks.xaml
+C:\BrainshareToday\BrainShare 5.0.0.2\BrainShare\obj\x86\Release\Views\LibraryCategoryBooks.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Release\App.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Release\Views\CreateAccountPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Release\Views\LibraryCategoryBooks.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Release\Views\LibraryPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Release\Views\LoginPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Release\Views\LibraryBookReader.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Release\Views\PlayPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Release\Views\PDFViewPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Release\Views\StudentPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Release\Views\SubjectPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Release\Views\AssignmentPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Release\Views\AssignmentsPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Release\Views\TopicPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Release\Views\TopicsPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Release\Views\VideosPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Release\BrainShare.xr.xml
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Release\BrainShare.exe
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Release\BrainShare.pdb
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Release\resources.pri
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Release\AppxManifest.xml
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Release\BrainShare.build.appxrecipe
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\App.g.i.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\App.g.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\CreateAccountPage.g.i.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\CreateAccountPage.g.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\LibraryCategoryBooks.g.i.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\LibraryCategoryBooks.g.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\LibraryPage.g.i.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\LibraryPage.g.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\LoginPage.g.i.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\LoginPage.g.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\LibraryBookReader.g.i.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\LibraryBookReader.g.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\PlayPage.g.i.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\PlayPage.g.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\PDFViewPage.g.i.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\PDFViewPage.g.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\StudentPage.g.i.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\StudentPage.g.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\SubjectPage.g.i.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\SubjectPage.g.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\AssignmentPage.g.i.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\AssignmentPage.g.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\AssignmentsPage.g.i.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\AssignmentsPage.g.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\TopicPage.g.i.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\TopicPage.g.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\TopicsPage.g.i.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\TopicsPage.g.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\VideosPage.g.i.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\VideosPage.g.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\XamlTypeInfo.g.cs
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\App.xaml
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\CreateAccountPage.xaml
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\LibraryCategoryBooks.xaml
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\LibraryPage.xaml
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\LoginPage.xaml
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\LibraryBookReader.xaml
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\PlayPage.xaml
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\PDFViewPage.xaml
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\StudentPage.xaml
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\SubjectPage.xaml
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\AssignmentPage.xaml
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\AssignmentsPage.xaml
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\TopicPage.xaml
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\TopicsPage.xaml
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\VideosPage.xaml
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\App.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\CreateAccountPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\LibraryCategoryBooks.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\LibraryPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\LoginPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\LibraryBookReader.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\PlayPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\PDFViewPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\StudentPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\SubjectPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\AssignmentPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\AssignmentsPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\TopicPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\TopicsPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\Views\VideosPage.xbf
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\XamlSaveStateFile.xml
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\BrainShare.exe
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\BrainShare.pdb
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\BrainShare.csproj.GenerateResource.Cache
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\priconfig.xml
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\priconfig.xml.intermediate
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\layout.resfiles
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\layout.resfiles.intermediate
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\resources.resfiles
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\resources.resfiles.intermediate
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\pri.resfiles
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\pri.resfiles.intermediate
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\qualifiers.txt
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\qualifiers.txt.intermediate
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\MultipleQualifiersPerDimensionFound.txt
+D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Release\ProjectArchitectures.txt

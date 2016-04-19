@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>K-LAPTOP</Machine>
+    <WindowsUser>Kenneth</WindowsUser>
+    <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
+    <SolutionConfiguration>Debug|x64</SolutionConfiguration>
+    <PackageArchitecture>x64</PackageArchitecture>
+    <PackageIdentityName>cab8b6e8-e552-42d3-994e-089c2f7ffbfa</PackageIdentityName>
+    <IntermediateOutputPath>C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\obj\x64\Debug\</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\bin\x64\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\bin\x64\Debug\BrainShare.exe">
+      <PackagePath>BrainShare.exe</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\SQLite.WinRT81\3.8.6\Redist\Debug\x64\sqlite3.dll">
+      <PackagePath>sqlite3.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\Assets\bg.jpg">
+      <PackagePath>Assets\bg.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\Assets\bg4.jpg">
+      <PackagePath>Assets\bg4.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\Assets\blank.JPG">
+      <PackagePath>Assets\blank.JPG</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\Assets\Course\course.jpg">
+      <PackagePath>Assets\Course\course.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\Assets\Course\topic.jpg">
+      <PackagePath>Assets\Course\topic.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\Assets\cover.jpg">
+      <PackagePath>Assets\cover.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\Assets\icons\assignment.jpg">
+      <PackagePath>Assets\icons\assignment.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\Assets\icons\Files.jpg">
+      <PackagePath>Assets\icons\Files.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\Assets\icons\notes.jpg">
+      <PackagePath>Assets\icons\notes.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\Assets\icons\video-library.jpg">
+      <PackagePath>Assets\icons\video-library.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\Assets\icons\pdf.gif">
+      <PackagePath>Assets\icons\pdf.gif</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\Assets\icons\Video.png">
+      <PackagePath>Assets\icons\Video.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\Assets\Logo.png">
+      <PackagePath>Assets\Logo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\Assets\Logo.scale-100.png">
+      <PackagePath>Assets\Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\Assets\SmallLogo.scale-100.png">
+      <PackagePath>Assets\SmallLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\Assets\SplashScreen.scale-100.png">
+      <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\Assets\StoreLogo.scale-100.png">
+      <PackagePath>Assets\StoreLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\bin\x64\Debug\App.xbf">
+      <PackagePath>App.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\bin\x64\Debug\Views\LibraryPage.xbf">
+      <PackagePath>Views\LibraryPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\bin\x64\Debug\Views\LoginPage.xbf">
+      <PackagePath>Views\LoginPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\bin\x64\Debug\Views\PlayPage.xbf">
+      <PackagePath>Views\PlayPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\bin\x64\Debug\Views\PDFViewPage.xbf">
+      <PackagePath>Views\PDFViewPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\bin\x64\Debug\Views\StudentPage.xbf">
+      <PackagePath>Views\StudentPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\bin\x64\Debug\Views\SubjectPage.xbf">
+      <PackagePath>Views\SubjectPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\bin\x64\Debug\Views\AssignmentPage.xbf">
+      <PackagePath>Views\AssignmentPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\bin\x64\Debug\Views\AssignmentsPage.xbf">
+      <PackagePath>Views\AssignmentsPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\bin\x64\Debug\Views\TopicPage.xbf">
+      <PackagePath>Views\TopicPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\bin\x64\Debug\Views\TopicsPage.xbf">
+      <PackagePath>Views\TopicsPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\bin\x64\Debug\Views\VideosPage.xbf">
+      <PackagePath>Views\VideosPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\bin\x64\Debug\BrainShare.xr.xml">
+      <PackagePath>BrainShare.xr.xml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\Documents\Visual Studio 2013\Projects\BrainShare\BrainShare\bin\x64\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.VCLibs\12.0\">
+      <Name>Microsoft.VCLibs.120.00.Debug</Name>
+      <Version>12.0.21005.1</Version>
+      <Architecture>ARM</Architecture>
+      <FrameworkIdentity>Name = Microsoft.VCLibs.120.00.Debug, MinVersion = 12.0.21005.1</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.VCLibs\12.0\.\AppX\Debug\ARM\Microsoft.VCLibs.ARM.Debug.12.00.appx</AppxLocation>
+      <MoreInfo></MoreInfo>
+    </ResolvedSDKReference>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.VCLibs\12.0\">
+      <Name>Microsoft.VCLibs.120.00.Debug</Name>
+      <Version>12.0.21005.1</Version>
+      <Architecture>x64</Architecture>
+      <FrameworkIdentity>Name = Microsoft.VCLibs.120.00.Debug, MinVersion = 12.0.21005.1</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.VCLibs\12.0\.\AppX\Debug\x64\Microsoft.VCLibs.x64.Debug.12.00.appx</AppxLocation>
+      <MoreInfo></MoreInfo>
+    </ResolvedSDKReference>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.VCLibs\12.0\">
+      <Name>Microsoft.VCLibs.120.00.Debug</Name>
+      <Version>12.0.21005.1</Version>
+      <Architecture>x86</Architecture>
+      <FrameworkIdentity>Name = Microsoft.VCLibs.120.00.Debug, MinVersion = 12.0.21005.1</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.VCLibs\12.0\.\AppX\Debug\x86\Microsoft.VCLibs.x86.Debug.12.00.appx</AppxLocation>
+      <MoreInfo></MoreInfo>
+    </ResolvedSDKReference>
+  </ItemGroup>
+</Project>
