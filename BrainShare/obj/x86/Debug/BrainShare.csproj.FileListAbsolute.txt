@@ -643,6 +643,27 @@ D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\De
 D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\qualifiers.txt.intermediate
 D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\MultipleQualifiersPerDimensionFound.txt
 D:\My Documents\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\ProjectArchitectures.txt
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\App.xbf
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\CreateAccountPage.xbf
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\LibraryCategoryBooks.xbf
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\LibraryPage.xbf
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\LoginPage.xbf
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\LibraryBookReader.xbf
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\PlayPage.xbf
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\PDFViewPage.xbf
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\StudentPage.xbf
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\SubjectPage.xbf
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\AssignmentPage.xbf
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\AssignmentsPage.xbf
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\TopicPage.xbf
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\TopicsPage.xbf
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\VideosPage.xbf
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\BrainShare.xr.xml
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\BrainShare.exe
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\BrainShare.pdb
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\resources.pri
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\AppxManifest.xml
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\BrainShare.build.appxrecipe
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\App.g.i.cs
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\App.g.cs
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\CreateAccountPage.g.i.cs
@@ -705,27 +726,6 @@ D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\View
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\TopicsPage.xbf
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\VideosPage.xbf
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\XamlSaveStateFile.xml
-D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\App.xbf
-D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\CreateAccountPage.xbf
-D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\LibraryCategoryBooks.xbf
-D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\LibraryPage.xbf
-D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\LoginPage.xbf
-D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\LibraryBookReader.xbf
-D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\PlayPage.xbf
-D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\PDFViewPage.xbf
-D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\StudentPage.xbf
-D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\SubjectPage.xbf
-D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\AssignmentPage.xbf
-D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\AssignmentsPage.xbf
-D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\TopicPage.xbf
-D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\TopicsPage.xbf
-D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\VideosPage.xbf
-D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\BrainShare.xr.xml
-D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\BrainShare.exe
-D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\BrainShare.pdb
-D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\resources.pri
-D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\AppxManifest.xml
-D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\BrainShare.build.appxrecipe
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\BrainShare.exe
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\BrainShare.pdb
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\BrainShare.csproj.GenerateResource.Cache

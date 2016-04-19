@@ -76,49 +76,7 @@ Style ="{StaticResource HeaderTextBlockStyle }"
                     AllowDrop="True"
                         >
 
-                            <GridView.ItemTemplate>
-
-                            <!--                    
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-
-                                            <RowDefinition Height ="300" />
-
-                                        </Grid.RowDefinitions>
-
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width ="170" />
-                                            <ColumnDefinition Width ="200" />
-                                            <ColumnDefinition Width ="10" />
-
-                                        </Grid.ColumnDefinitions>
-
-                                        <Image Source="ms-appx:///Assets/icons/class_notes.png" Stretch="Fill"
-                                    Grid.Row ="0" Grid.Column ="0"  HorizontalAlignment="Center" VerticalAlignment ="Center">
-                                        </Image >
-
-
-
-                                        <StackPanel Grid.Row ="0" Grid.Column="1" VerticalAlignment="Center">
-                                        <TextBlock Text ="{Binding book_title }" Margin="5,0,0,0" TextWrapping="WrapWholeWords" FontSize="16"
-
-Foreground ="Black"></TextBlock >
-                                            
-                                       
-
-                                        </StackPanel>
-
-                                    </Grid>
-
-                                </DataTemplate>
-
-                          -->
-
-
-
-
-
+                        <GridView.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
                                     <Grid.RowDefinitions>
@@ -134,7 +92,7 @@ Foreground ="Black"></TextBlock >
 
                                     </Grid.ColumnDefinitions>
 
-                                    <Image Source ="ms-appx:///Assets/ebooks.png" Stretch="Fill"
+                                    <Image Source ="{Binding thumb_url }" Stretch="Fill"
                                     Grid.Row ="0" Grid.Column ="0"  HorizontalAlignment="Center"
 
 VerticalAlignment ="Center"

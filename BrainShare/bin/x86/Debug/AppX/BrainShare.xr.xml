@@ -10,6 +10,7 @@
     <RootPropertyPathName Name="DefaultViewModel" />
     <RootPropertyPathName Name="BookList" />
     <RootPropertyPathName Name="book_title" />
+    <RootPropertyPathName Name="thumb_url" />
     <RootPropertyPathName Name="CategoryName" />
     <RootPropertyPathName Name="FileList" />
     <RootPropertyPathName Name="FileName" />

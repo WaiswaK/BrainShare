@@ -60,27 +60,7 @@ namespace BrainShare.Common
                             {
                                 try
                                 {
-                                    //Try downloading the images here and also changing the notes
-                                    //try
-                                    //{
-                                        //await NotesImageDownloader(topic.body, subject.name, topic.folder_name);
-                                        //string new_notes = NotesUpdater(topic.body, subject.name, topic.folder_name);
-                                        //try
-                                        //{
-                                         //   db.Insert(new Topic() { TopicID = topic.TopicID, Notes = new_notes, SubjectId = subject.Id, teacher_full_names = topic.teacher, TopicTitle = topic.TopicTitle, Updated_at = topic.Updated_at, Folder_Id = topic.folder_id, Folder_Name = topic.folder_name });
-                                       // }
-                                        //catch
-                                        //{
-
-                                      //  }
-                                    //}
-                                    //catch
-                                    //{
                                         db.Insert(new Topic() { TopicID = topic.TopicID, Notes = topic.body, SubjectId = subject.Id, teacher_full_names = topic.teacher, TopicTitle = topic.TopicTitle, Updated_at = topic.Updated_at, Folder_Id = topic.folder_id, Folder_Name = topic.folder_name });
-                                    //}
-                                    //Algorithm to change the notes put here
-                                    //End of new Code
-                                    //db.Insert(new Topic() { TopicID = topic.TopicID, Notes = topic.body, SubjectId = subject.Id, teacher_full_names = topic.teacher, TopicTitle = topic.TopicTitle, Updated_at = topic.Updated_at, Folder_Id = topic.folder_id, Folder_Name = topic.folder_name });
                                 }
                                 catch
                                 {
@@ -248,11 +228,11 @@ namespace BrainShare.Common
             }
             catch
             {
-                  //var message = new MessageDialog(Message.Download_Error, Message.Download_Header).ShowAsync();
+
             }
         }     
-        //Notes image download function
-        public static async Task NotesImageDownloader(string notes, string subject, string topic)
+        //Notes image download methods
+        public static async void NotesImageDownloader(string notes, string subject, string topic)
         {
             string start_string = "/assets/content_images/";
             int notes_image = 0;
@@ -265,6 +245,60 @@ namespace BrainShare.Common
                 await ImageDownloader(imageName, _string); //Pending is change of notes after download..
             }
         }
+        public static void GetNotesImagesSubjectsAsync(List<SubjectObservable> subjects)
+        {
+            List<TopicObservable> topics = new List<TopicObservable>();
+            bool proceed = true;
+                var db = new SQLite.SQLiteConnection(Constants.dbPath);
+                foreach (var subject in subjects)
+                {
+                    try
+                    {
+                        var query = (db.Table<Subject>().Where(c => c.SubjectId == subject.Id)).Single();
+                        proceed = false;
+                    }
+                    catch
+                    {
+                        proceed = true;
+                    }
+                    if (proceed == true)
+                    {
+                        topics = subject.topics;
+                        if (topics.Count > 0)
+                        {
+                            foreach (var topic in topics)
+                            {
+                            try
+                            {
+                                //Try downloading the images here and also changing the notes
+                                try
+                                {
+                                    NotesImageDownloader(topic.body, subject.name, topic.folder_name);
+                                    string new_notes = NotesUpdater(topic.body, subject.name, topic.folder_name);
+                                    try
+                                    {
+                                        db.Update(new Topic() { TopicID = topic.TopicID, Notes = new_notes, SubjectId = subject.Id, teacher_full_names = topic.teacher, TopicTitle = topic.TopicTitle, Updated_at = topic.Updated_at, Folder_Id = topic.folder_id, Folder_Name = topic.folder_name });
+                                    }
+                                    catch
+                                    {
+
+                                    }
+                                }
+                                catch
+                                {
+                                    
+                                }
+                            }
+                            catch
+                            {
+
+                            }
+                               
+                            }
+                        }                    
+                    }
+                }
+            }
         //Method to updateNotes
         public static string NotesUpdater(string notes, string subject, string topic)
         {
@@ -314,16 +348,13 @@ namespace BrainShare.Common
             }
             try
             {
-                //await ImageDownloader(school.SchoolName, school.ImagePath);
                 await ImageDownloader(school.SchoolName, school.ImagePath);
             }
             catch
             {
 
             }
-            //string newPath = "/" + school.SchoolName + Constants.JPG_extension; //Original
-            //string newPath = Constants.appPath +"/" + school.SchoolName + Constants.JPG_extension; //Cater for local folder
-            string newPath = school.SchoolName + Constants.PNG_extension;
+            string newPath = imagePath(school.SchoolName + Constants.PNG_extension);
             try
             {
                 db.Insert(new School() { SchoolName = school.SchoolName, SchoolBadge = newPath, School_id = school.SchoolId });
@@ -470,21 +501,14 @@ namespace BrainShare.Common
         public static async Task UpdateUserAsync(UserObservable user)
         {
             var db = new SQLite.SQLiteConnection(Constants.dbPath);
-            //var query = (db.Table<User>().Where(c => c.e_mail == user.email)).Single();
             List<string> subjectsnames = SubjectNames(user.subjects);
             string ConcatSubjects = JoinedSubjects(subjectsnames);
             ConcatSubjects = UserSubjects(ConcatSubjects);
             SchoolObservable school = user.School;
-            //string newPath = school.SchoolName + Constants.JPG_extension; //Original
-            //string newPath = Constants.appPath + school.SchoolName + Constants.JPG_extension;
-            string newPath = school.SchoolName + Constants.PNG_extension;
-
-            //   if (query.subjects.Equals(ConcatSubjects))
-            //   {                
-            if (school.ImagePath.Equals(newPath)) { }
+            string newPath = imagePath(school.SchoolName + Constants.PNG_extension);              
+            if (school.ImagePath.Equals(newPath)) { } //Checking if image was downloaded
             else
             {
-                //await ImageDownloader(school.SchoolName, school.ImagePath);
                 await ImageDownloader(school.SchoolName, school.ImagePath);
                 School sch = new School(school.SchoolId, school.SchoolName, newPath);
                 try
@@ -1638,7 +1662,7 @@ namespace BrainShare.Common
                         try
                         {
                             await ImageDownloader(book.book_title, book.thumb_url);
-                            string newPath = book.book_title + Constants.PNG_extension;
+                            string newPath = imagePath(book.book_title + Constants.PNG_extension);
 
                             //Insert here book if success here
                             db.Insert(new Book()
@@ -1694,7 +1718,7 @@ namespace BrainShare.Common
                     foreach (var book in books)
                     {
                         await ImageDownloader(book.book_title, book.thumb_url);
-                        string newPath = book.book_title + Constants.PNG_extension;
+                        string newPath = imagePath(book.book_title + Constants.PNG_extension);
                         db.Insert(new Book()
                         {
                             Book_id = book.book_id,

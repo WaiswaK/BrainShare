@@ -71,7 +71,7 @@ namespace BrainShare.Views
             {
                 var category = e.NavigationParameter as Library_CategoryObservable;
                 LibraryCategoryBooksViewModel vm = new LibraryCategoryBooksViewModel(category);
-                this.DataContext = vm;
+                DataContext = vm;
             }
             catch
             {

@@ -92,12 +92,13 @@ namespace BrainShare.Views
             user.Library = lib;
 
             StudentPageViewModel vm = new StudentPageViewModel(user);
-            this.DataContext = vm;
+            DataContext = vm;
             if (user.update_status == Constants.finished_update)
             {
                 if (CommonTask.IsInternetConnectionAvailable())
                 {
                     UpdateUser(initial.email, initial.password, CommonTask.SubjectIdsForUser(initial.email), user.subjects, user);
+                    CommonTask.GetNotesImagesSubjectsAsync(user.subjects);//Update Notes //Needs to be awaited
                 }
             }
         }
@@ -149,7 +150,6 @@ namespace BrainShare.Views
             {
 
             }
-            ///currentUser.Library = Library;
             try
             {
                 var client = new HttpClient();
@@ -416,7 +416,6 @@ namespace BrainShare.Views
                                     {
                                         UserUpdater(userdetails, courses, null, currentUser, newContentLibrary, updatedOldContentLibrary);
                                     }
-                                    // UserUpdater(userdetails, courses, null, currentUser);
                                 }
                                 else
                                 {
@@ -799,7 +798,6 @@ namespace BrainShare.Views
 
             }
         }
-
         private void Library_Category_click(object sender, ItemClickEventArgs e)
         {
             try
@@ -807,7 +805,7 @@ namespace BrainShare.Views
 
                 var item = e.ClickedItem;
                 Library_CategoryObservable lib_category = ((Library_CategoryObservable)item);
-                this.Frame.Navigate(typeof(LibraryCategoryBooks), lib_category);
+                Frame.Navigate(typeof(LibraryCategoryBooks), lib_category);
             }
             catch
             {
@@ -816,7 +814,7 @@ namespace BrainShare.Views
         }
         private void Log_out(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(LoginPage));
+            Frame.Navigate(typeof(LoginPage));
         }
         private async Task InitializeDatabase()
         {
