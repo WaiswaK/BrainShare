@@ -237,8 +237,7 @@ namespace BrainShare.Common
         }
         public static async Task ImageDownloader(string fileName, string filepath)
         {
-            string file_extension = ImageFormat(fileName);
-            StorageFile storageFile = await Constants.appFolder.CreateFileAsync(fileName + file_extension, CreationCollisionOption.ReplaceExisting);
+            StorageFile storageFile = await Constants.appFolder.CreateFileAsync(fileName + Constants.PNG_extension, CreationCollisionOption.ReplaceExisting);
             string newpath = Constants.BaseUri + filepath;
             try
             {
@@ -251,56 +250,7 @@ namespace BrainShare.Common
             {
                   //var message = new MessageDialog(Message.Download_Error, Message.Download_Header).ShowAsync();
             }
-        }
-        //School Logo Downloader 
-        //It was put to see if logos will download properly
-        public static async Task LogoDownloader(string fileName, string filepath)
-        {
-            string file_extension = ImageFormat(fileName);
-            StorageFile storageFile = await Constants.appFolder.CreateFileAsync(fileName + file_extension, CreationCollisionOption.ReplaceExisting);
-            string newpath = Constants.BaseUri + filepath;
-            try
-            {
-                var downloader = new BackgroundDownloader();
-                Uri uri = new Uri(newpath);
-                DownloadOperation op = downloader.CreateDownload(uri, storageFile);
-                await op.StartAsync();
-            }
-            catch
-            {
-                //var message = new MessageDialog(Message.Download_Error, Message.Download_Header).ShowAsync();
-            }
-        }
-        //Method to get the image format from link
-        //Method Bases on 2 methods desired to search for jpg and png 
-        private static string ImageFormat(string fileName)
-        { 
-            int f = 0;
-            int l = fileName.Length;
-            int c = Constants.JPG_extension.Length;
-
-            for (int i = 0; i < l; i++)
-            {
-                if (fileName[i] == Constants.JPG_extension[0])
-                {
-                    for (int K = i + 1, j = 1; j < c; j++, K++)
-                    {
-                        if (fileName[K] == Constants.JPG_extension[j])
-                        {
-                            f++;
-                        }
-                    }
-                }
-            }
-            if (f == c - 1)
-            {
-                return Constants.JPG_extension;
-            }
-            else
-            {
-                return Constants.PNG_extension;
-            }
-        }
+        }     
         //Notes image download function
         public static async Task NotesImageDownloader(string notes, string subject, string topic)
         {
@@ -331,6 +281,12 @@ namespace BrainShare.Common
             }
             return notes;
         }
+        //Function to make image path
+        public static string imagePath(string imagename)
+        {
+            string path = Path.Combine(ApplicationData.Current.LocalFolder.Path, imagename);
+            return path;
+        }
         //Method to get all image link locations in notes
         private static List<string> Links(string text, string expr)
         {
@@ -359,7 +315,7 @@ namespace BrainShare.Common
             try
             {
                 //await ImageDownloader(school.SchoolName, school.ImagePath);
-                await LogoDownloader(school.SchoolName, school.ImagePath);
+                await ImageDownloader(school.SchoolName, school.ImagePath);
             }
             catch
             {
@@ -367,7 +323,7 @@ namespace BrainShare.Common
             }
             //string newPath = "/" + school.SchoolName + Constants.JPG_extension; //Original
             //string newPath = Constants.appPath +"/" + school.SchoolName + Constants.JPG_extension; //Cater for local folder
-            string newPath = Constants.imagePath(school.SchoolName + Constants.JPG_extension);
+            string newPath = school.SchoolName + Constants.PNG_extension;
             try
             {
                 db.Insert(new School() { SchoolName = school.SchoolName, SchoolBadge = newPath, School_id = school.SchoolId });
@@ -521,7 +477,7 @@ namespace BrainShare.Common
             SchoolObservable school = user.School;
             //string newPath = school.SchoolName + Constants.JPG_extension; //Original
             //string newPath = Constants.appPath + school.SchoolName + Constants.JPG_extension;
-            string newPath = Constants.imagePath(school.SchoolName + Constants.JPG_extension);
+            string newPath = school.SchoolName + Constants.PNG_extension;
 
             //   if (query.subjects.Equals(ConcatSubjects))
             //   {                
@@ -529,7 +485,7 @@ namespace BrainShare.Common
             else
             {
                 //await ImageDownloader(school.SchoolName, school.ImagePath);
-                await LogoDownloader(school.SchoolName, school.ImagePath);
+                await ImageDownloader(school.SchoolName, school.ImagePath);
                 School sch = new School(school.SchoolId, school.SchoolName, newPath);
                 try
                 {
@@ -1682,7 +1638,7 @@ namespace BrainShare.Common
                         try
                         {
                             await ImageDownloader(book.book_title, book.thumb_url);
-                            string newPath = Constants.imagePath(book.book_title + Constants.JPG_extension);
+                            string newPath = book.book_title + Constants.PNG_extension;
 
                             //Insert here book if success here
                             db.Insert(new Book()
@@ -1718,20 +1674,6 @@ namespace BrainShare.Common
                                 updated_at = book.updated_at
                             });
                         }
-                     /*   db.Insert(new Book()
-                        {
-                            Book_id = book.book_id,
-                            Book_author = book.book_author,
-                            Book_description = book.book_description,
-                            Book_title = book.book_title,
-                            Category_id = category.category_id,
-                            Category_name = category.category_name,
-                            file_size = book.file_size,
-                            file_url = book.file_url,
-                            Library_id = lib.library_id,
-                            thumb_url = newPath,
-                            updated_at = book.updated_at
-                        });*/
                     }
                 }
             }
@@ -1748,16 +1690,11 @@ namespace BrainShare.Common
             {
                 foreach (var category in categories)
                 {
-                    // BookObservable book = new BookObservable();
                     List<BookObservable> books = category.category_books;
                     foreach (var book in books)
                     {
-
                         await ImageDownloader(book.book_title, book.thumb_url);
-                        //string newPath = "/" + book.book_title + Constants.JPG_extension;//Original
-                        //string newPath = Constants.appPath + book.book_title + Constants.JPG_extension;
-                        string newPath = Constants.imagePath(book.book_title + Constants.JPG_extension);
-
+                        string newPath = book.book_title + Constants.PNG_extension;
                         db.Insert(new Book()
                         {
                             Book_id = book.book_id,
@@ -1830,64 +1767,68 @@ namespace BrainShare.Common
             LibraryObservable library = new LibraryObservable();
             List<Book> books = new List<Book>();
             List<Library_CategoryObservable> categories = new List<Library_CategoryObservable>();
+            int count;
             using (var db = new SQLite.SQLiteConnection(Constants.dbPath))
             {
                 var query = db.Table<Book>().Where(c => c.Library_id == school_id);
                 books = query.ToList();
+                count = books.Count;
             }
-
             foreach (var book in books)
             {
-                Library_CategoryObservable lib_category = new Library_CategoryObservable();
-                List<BookObservable> Categorybooks = new List<BookObservable>();
-                bool finished = false;
-                lib_category.category_id = book.Category_id;
-                lib_category.category_name = book.Category_name;
-
-                foreach (var comparisonBook in books)
-                {
-                    finished = false; 
-                    if (lib_category.category_id == comparisonBook.Category_id)
+                if (count > 0)
+                { //If Starts here
+                    Library_CategoryObservable lib_category = new Library_CategoryObservable();
+                    List<BookObservable> Categorybooks = new List<BookObservable>();
+                    bool finished = false;
+                    lib_category.category_id = book.Category_id;
+                    lib_category.category_name = book.Category_name;
+                    foreach (var comparisonBook in books)
                     {
-                        if (book.Book_id == comparisonBook.Book_id)
+                        finished = false;
+                        if (lib_category.category_id == comparisonBook.Category_id)
                         {
-                            if (Categorybooks.Count > 0)
+                            if (book.Book_id == comparisonBook.Book_id)
                             {
-                                finished = true;
+                                if (Categorybooks.Count > 0)
+                                {
+                                    finished = true;
+                                }
+                                else
+                                {
+                                    BookObservable newbook = new BookObservable(book.Book_id, book.Book_title, book.Book_author, book.Book_description,
+                                        book.updated_at, book.thumb_url, book.file_url, book.file_size, book.Library_id, book.Category_id, book.Category_name);
+                                    Categorybooks.Add(newbook);
+                                    count = count - 1; //Reduce
+                                }
                             }
                             else
                             {
-                                BookObservable newbook = new BookObservable(book.Book_id, book.Book_title, book.Book_author, book.Book_description,
-                                    book.updated_at, book.thumb_url, book.file_url, book.file_size, book.Library_id, book.Category_id, book.Category_name);
-                                Categorybooks.Add(newbook);
-                            }
-                        }
-                        else
-                        {
-                            //if (lib_category.category_books.Count > 0) //Recently commented out //Null in breakpoint
-                            if (Categorybooks.Count > 0)
-                            {
-                                foreach (var CheckBook in Categorybooks)
+                                if (Categorybooks.Count > 0)
                                 {
-                                    if (comparisonBook.Book_id == CheckBook.book_id)
+                                    foreach (var CheckBook in Categorybooks)
                                     {
-                                        finished = true;
+                                        if (comparisonBook.Book_id == CheckBook.book_id)
+                                        {
+                                            finished = true;
+                                        }
                                     }
                                 }
-                            }
-                            if (finished == false)
-                            {
-                                BookObservable newbook = new BookObservable(comparisonBook.Book_id, comparisonBook.Book_title, comparisonBook.Book_author,
-                                    comparisonBook.Book_description, comparisonBook.updated_at, comparisonBook.thumb_url, comparisonBook.file_url, comparisonBook.file_size,
-                                    comparisonBook.Library_id, comparisonBook.Category_id, comparisonBook.Category_name);
-                                Categorybooks.Add(newbook);
+                                if (finished == false)
+                                {
+                                    BookObservable newbook = new BookObservable(comparisonBook.Book_id, comparisonBook.Book_title, comparisonBook.Book_author,
+                                        comparisonBook.Book_description, comparisonBook.updated_at, comparisonBook.thumb_url, comparisonBook.file_url, comparisonBook.file_size,
+                                        comparisonBook.Library_id, comparisonBook.Category_id, comparisonBook.Category_name);
+                                    Categorybooks.Add(newbook);
+                                    count = count - 1; //reduce
+                                }
                             }
                         }
+                        lib_category.category_books = Categorybooks;
+                        lib_category.book_count = Categorybooks.Count;
                     }
-                    lib_category.category_books = Categorybooks;  
-                    lib_category.book_count = Categorybooks.Count;
-                }
-                categories.Add(lib_category);
+                    categories.Add(lib_category);
+                } //if ends here
             }
             library.library_id = school_id;
             library.categories = categories;

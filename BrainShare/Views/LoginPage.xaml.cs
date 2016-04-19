@@ -461,7 +461,6 @@ namespace BrainShare
             List<User> users = CommonTask.SelectAllUsers();
             bool found = false;
             lib = user.Library;
-            //CommonTask.InsertLibAsync(lib); //Library Entry
             subs = user.subjects;
             if (subs.Count > 0)
             {
@@ -471,7 +470,6 @@ namespace BrainShare
                     {
                         await CommonTask.InsertUserAsync(user);
                         CommonTask.InsertSubjectsAsync(user.subjects);
-                        //CommonTask.InsertLibAsync(lib); //Library added here too
                         user.update_status = Constants.finished_update;
                         Frame.Navigate(typeof(StudentPage), user);
                     }
@@ -499,7 +497,7 @@ namespace BrainShare
                                     }
                                     catch(Exception ex)
                                     {
-                                        String word = ex.ToString();
+                                        string word = ex.ToString();
                                     }
                                 }
                             }
