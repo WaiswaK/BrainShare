@@ -65,7 +65,7 @@ namespace BrainShare.Views
             try
             {
                 navigationHelper.GoBackCommand = new RelayCommand(() => GoBack(), () => CanGoBack());
-                this.itemListView.SelectionChanged += ItemListView_SelectionChanged;
+                itemListView.SelectionChanged += ItemListView_SelectionChanged;
             }
             catch
             {
@@ -77,7 +77,7 @@ namespace BrainShare.Views
             try
             {
                 Window.Current.SizeChanged += Window_SizeChanged;
-                this.InvalidateVisualState();
+                InvalidateVisualState();
             }
             catch
             {
@@ -183,7 +183,7 @@ namespace BrainShare.Views
                                         db.Update(fileDownloaded);
                                         file.FilePath = newPath;
                                     }
-                                    this.loadedFile = await Constants.appFolder.GetFileAsync(file.FilePath);
+                                    loadedFile = await Constants.appFolder.GetFileAsync(file.FilePath);
                                     try
                                     {
                                         await LoadPdfFileAsync(loadedFile);
@@ -264,7 +264,7 @@ namespace BrainShare.Views
                                 IRandomAccessStream randomStream = await pngFile.OpenAsync(FileAccessMode.ReadWrite);
                                 PdfPageRenderOptions pdfPageRenderOptions = new PdfPageRenderOptions();
                                 //try catch for every await to be added
-                                pdfPageRenderOptions.DestinationWidth = (uint)(this.ActualWidth - 130);
+                                pdfPageRenderOptions.DestinationWidth = (uint)(ActualWidth - 130);
                                 try
                                 {
                                     await pdfPage.RenderToStreamAsync(randomStream, pdfPageRenderOptions);
@@ -311,9 +311,9 @@ namespace BrainShare.Views
         {
             try
             {
-                if (this.itemsViewSource.View != null)
+                if (itemsViewSource.View != null)
                 {
-                    var selectedItem = (PdfDataItem)this.itemsViewSource.View.CurrentItem;
+                    var selectedItem = (PdfDataItem)itemsViewSource.View.CurrentItem;
                     if (selectedItem != null) e.PageState["SelectedItem"] = selectedItem.UniqueId;
                 }
             }
@@ -380,7 +380,7 @@ namespace BrainShare.Views
         {
             try
             {
-                if (this.UsingLogicalPageNavigation() && this.itemListView.SelectedItem != null)
+                if (UsingLogicalPageNavigation() && itemListView.SelectedItem != null)
                 {
                     return true;
                 }
@@ -398,7 +398,7 @@ namespace BrainShare.Views
         {
             try
             {
-                if (this.UsingLogicalPageNavigation() && this.itemListView.SelectedItem != null)
+                if (UsingLogicalPageNavigation() && itemListView.SelectedItem != null)
                 {
                     // When logical page navigation is in effect and there's a selected item that
                     // item's details are currently displayed.  Clearing the selection will return to
@@ -442,7 +442,7 @@ namespace BrainShare.Views
                 return "PrimaryView";
 
             // Update the back button's enabled state when the view state changes
-            var logicalPageBack = this.UsingLogicalPageNavigation() && this.itemListView.SelectedItem != null;
+            var logicalPageBack = UsingLogicalPageNavigation() && itemListView.SelectedItem != null;
 
             return logicalPageBack ? "SinglePane_Detail" : "SinglePane";
         }

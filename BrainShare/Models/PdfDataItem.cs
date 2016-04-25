@@ -15,7 +15,7 @@ namespace BrainShare.Models
         public string ImagePath { get; private set; }
         public override string ToString()
         {
-            return this.PageNumber;
+            return PageNumber;
         }
     }    
 }

@@ -33,18 +33,18 @@ namespace BrainShare.Views
         /// </summary>
         public NavigationHelper NavigationHelper
         {
-            get { return this.navigationHelper; }
+            get { return navigationHelper; }
         }
         /// <summary>
         /// This can be changed to a strongly typed view model.
         /// </summary>
         public ObservableDictionary DefaultViewModel
         {
-            get { return this.defaultViewModel; }
+            get { return defaultViewModel; }
         }
         public LibraryBookReader()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             // Setup the navigation helper
             navigationHelper = new NavigationHelper(this);
             navigationHelper.LoadState += navigationHelper_LoadState;
@@ -63,7 +63,7 @@ namespace BrainShare.Views
             // Start listening for Window size changes 
             // to change from showing two panes to showing a single pane
             Window.Current.SizeChanged += Window_SizeChanged;
-            this.InvalidateVisualState();
+            InvalidateVisualState();
         }
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
@@ -153,7 +153,7 @@ namespace BrainShare.Views
                                     db.Update(fileDownloaded);
                                     file.file_url = newPath;
                                 }
-                                this.loadedFile = await Constants.appFolder.GetFileAsync(file.file_url);
+                                loadedFile = await Constants.appFolder.GetFileAsync(file.file_url);
                                 await LoadPdfFileAsync(loadedFile);
                             }
                             else if (fullydownloaded == false)
@@ -220,7 +220,7 @@ namespace BrainShare.Views
                             {
                                 IRandomAccessStream randomStream = await pngFile.OpenAsync(FileAccessMode.ReadWrite);
                                 PdfPageRenderOptions pdfPageRenderOptions = new PdfPageRenderOptions();
-                                pdfPageRenderOptions.DestinationWidth = (uint)(this.ActualWidth - 130);
+                                pdfPageRenderOptions.DestinationWidth = (uint)(ActualWidth - 130);
                                 try
                                 {
                                     await pdfPage.RenderToStreamAsync(randomStream, pdfPageRenderOptions);
@@ -267,9 +267,9 @@ namespace BrainShare.Views
         {
             try
             {
-                if (this.itemsViewSource.View != null)
+                if (itemsViewSource.View != null)
                 {
-                    var selectedItem = (PdfDataItem)this.itemsViewSource.View.CurrentItem;
+                    var selectedItem = (PdfDataItem)itemsViewSource.View.CurrentItem;
                     if (selectedItem != null) e.PageState["SelectedItem"] = selectedItem.UniqueId;
                 }
             }
@@ -354,7 +354,7 @@ namespace BrainShare.Views
         {
             try
             {
-                if (this.UsingLogicalPageNavigation() && this.itemListView.SelectedItem != null)
+                if (UsingLogicalPageNavigation() && itemListView.SelectedItem != null)
                 {
                     // When logical page navigation is in effect and there's a selected item that
                     // item's details are currently displayed.  Clearing the selection will return to
@@ -391,7 +391,7 @@ namespace BrainShare.Views
                 return "PrimaryView";
 
             // Update the back button's enabled state when the view state changes
-            var logicalPageBack = this.UsingLogicalPageNavigation() && this.itemListView.SelectedItem != null;
+            var logicalPageBack = UsingLogicalPageNavigation() && itemListView.SelectedItem != null;
 
             return logicalPageBack ? "SinglePane_Detail" : "SinglePane";
         }

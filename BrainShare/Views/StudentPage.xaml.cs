@@ -35,7 +35,7 @@ namespace BrainShare.Views
         /// </summary>
         public ObservableDictionary DefaultViewModel
         {
-            get { return this.defaultViewModel; }
+            get { return defaultViewModel; }
         }
 
         /// <summary>
@@ -44,16 +44,16 @@ namespace BrainShare.Views
         /// </summary>
         public NavigationHelper NavigationHelper
         {
-            get { return this.navigationHelper; }
+            get { return navigationHelper; }
         }
 
 
         public StudentPage()
         {
-            this.InitializeComponent();
-            this.navigationHelper = new NavigationHelper(this);
-            this.navigationHelper.LoadState += navigationHelper_LoadState;
-            this.navigationHelper.SaveState += navigationHelper_SaveState;
+            InitializeComponent();
+            navigationHelper = new NavigationHelper(this);
+            navigationHelper.LoadState += navigationHelper_LoadState;
+            navigationHelper.SaveState += navigationHelper_SaveState;
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace BrainShare.Views
                 if (CommonTask.IsInternetConnectionAvailable())
                 {
                     UpdateUser(initial.email, initial.password, CommonTask.SubjectIdsForUser(initial.email), user.subjects, user);
-                    CommonTask.GetNotesImagesSubjectsAsync(user.subjects);//Update Notes //Needs to be awaited
+                   // CommonTask.GetNotesImagesSubjectsAsync(user.subjects);//Update Notes //Needs to be awaited
                 }
             }
         }
@@ -791,7 +791,7 @@ namespace BrainShare.Views
             {
                 var item = e.ClickedItem;
                 SubjectObservable _subject = ((SubjectObservable)item);
-                this.Frame.Navigate(typeof(SubjectPage), _subject);
+                Frame.Navigate(typeof(SubjectPage), _subject);
             }
             catch
             {
@@ -802,7 +802,6 @@ namespace BrainShare.Views
         {
             try
             {
-
                 var item = e.ClickedItem;
                 Library_CategoryObservable lib_category = ((Library_CategoryObservable)item);
                 Frame.Navigate(typeof(LibraryCategoryBooks), lib_category);
@@ -862,7 +861,7 @@ namespace BrainShare.Views
             {
 
 
-                this.Frame.Navigate(typeof(LoginPage));
+                Frame.Navigate(typeof(LoginPage));
                 //var item = e.ClickedItem;
                 //FolderObservable _folder = ((FolderObservable)item);
                 //this.Frame.Navigate(typeof(LibraryCategories));

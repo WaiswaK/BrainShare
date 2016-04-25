@@ -39,7 +39,7 @@ namespace BrainShare.Views
         /// </summary>
         public ObservableDictionary DefaultViewModel
         {
-            get { return this.defaultViewModel; }
+            get { return defaultViewModel; }
         }
 
         /// <summary>
@@ -48,16 +48,16 @@ namespace BrainShare.Views
         /// </summary>
         public NavigationHelper NavigationHelper
         {
-            get { return this.navigationHelper; }
+            get { return navigationHelper; }
         }
 
 
         public TopicsPage()
         {
-            this.InitializeComponent();
-            this.navigationHelper = new NavigationHelper(this);
-            this.navigationHelper.LoadState += navigationHelper_LoadState;
-            this.navigationHelper.SaveState += navigationHelper_SaveState;
+            InitializeComponent();
+            navigationHelper = new NavigationHelper(this);
+            navigationHelper.LoadState += navigationHelper_LoadState;
+            navigationHelper.SaveState += navigationHelper_SaveState;
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace BrainShare.Views
         {
             var topics = e.NavigationParameter as FolderObservable;
             TopicsPageViewModel vm = new TopicsPageViewModel(topics);
-            this.DataContext = vm;  
+            DataContext = vm;  
         }
 
         private void itemGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -86,7 +86,7 @@ namespace BrainShare.Views
         private void Topic_click(object sender, ItemClickEventArgs e){
             var item = e.ClickedItem;
             TopicObservable _topic = ((TopicObservable)item);
-            this.Frame.Navigate(typeof(TopicPage), _topic);
+            Frame.Navigate(typeof(TopicPage), _topic);
         }
 
   

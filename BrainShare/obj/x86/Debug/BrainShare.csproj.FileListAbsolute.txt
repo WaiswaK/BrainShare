@@ -651,6 +651,7 @@ D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\View
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\LibraryBookReader.xbf
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\PlayPage.xbf
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\PDFViewPage.xbf
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\Settings.xbf
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\StudentPage.xbf
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\SubjectPage.xbf
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\AssignmentPage.xbf
@@ -680,6 +681,8 @@ D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\View
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\PlayPage.g.cs
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\PDFViewPage.g.i.cs
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\PDFViewPage.g.cs
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\Settings.g.i.cs
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\Settings.g.cs
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\StudentPage.g.i.cs
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\StudentPage.g.cs
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\SubjectPage.g.i.cs
@@ -703,6 +706,7 @@ D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\View
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\LibraryBookReader.xaml
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\PlayPage.xaml
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\PDFViewPage.xaml
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\Settings.xaml
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\StudentPage.xaml
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\SubjectPage.xaml
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\AssignmentPage.xaml
@@ -718,6 +722,7 @@ D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\View
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\LibraryBookReader.xbf
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\PlayPage.xbf
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\PDFViewPage.xbf
+D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\Settings.xbf
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\StudentPage.xbf
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\SubjectPage.xbf
 D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\obj\x86\Debug\Views\AssignmentPage.xbf

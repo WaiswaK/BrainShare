@@ -237,68 +237,80 @@ namespace BrainShare.Common
             string start_string = "/assets/content_images/";
             int notes_image = 0;
             string expression = start_string + @"\S*\d{10}"; //Ending with 10 digits and starting with /assets/content_images/
-            List<string> downloadLinks = Links(notes, expression);
+            List<string> downloadLinks = Links(notes, expression); //First expression
+            string start_string_two = "http://imgur.com/";
+            string expression_png = start_string_two + @"\S*" + Constants.PNG_extension;
+            string expression_jpg = start_string_two + @"\S*" + Constants.JPG_extension;
+ 
+            List<string> imgur_jpg_links = Links(notes, expression_jpg); //Links with png
+            List<string> imgur_png_links = Links(notes, expression_png); //Links with jpg
+          
+            //Search for links with first Regular Expression
             foreach (string _string in downloadLinks)
             {
                 notes_image++;
                 string imageName = subject + "-" + topic + "_" + "notes_image" + notes_image.ToString();
-                await ImageDownloader(imageName, _string); //Pending is change of notes after download..
+                await ImageDownloader(imageName, _string); 
+            }
+
+            //Search for links with Seconf Regular Expression with jpg 
+            foreach (string _string in imgur_jpg_links)
+            {
+                notes_image++;
+                string imageName = subject + "-" + topic + "_" + "notes_image" + notes_image.ToString();
+                await ImageDownloader(imageName, _string); 
+            }
+
+            //Search for links with Seconf Regular Expression with png 
+            foreach (string _string in imgur_png_links)
+            {
+                notes_image++;
+                string imageName = subject + "-" + topic + "_" + "notes_image" + notes_image.ToString();
+                await ImageDownloader(imageName, _string);
             }
         }
         public static void GetNotesImagesSubjectsAsync(List<SubjectObservable> subjects)
         {
             List<TopicObservable> topics = new List<TopicObservable>();
-            bool proceed = true;
+            try
+            {
                 var db = new SQLite.SQLiteConnection(Constants.dbPath);
                 foreach (var subject in subjects)
                 {
-                    try
+                    topics = subject.topics;
+                    if (topics != null)
                     {
-                        var query = (db.Table<Subject>().Where(c => c.SubjectId == subject.Id)).Single();
-                        proceed = false;
-                    }
-                    catch
-                    {
-                        proceed = true;
-                    }
-                    if (proceed == true)
-                    {
-                        topics = subject.topics;
-                        if (topics.Count > 0)
+                        foreach (var topic in topics)
                         {
-                            foreach (var topic in topics)
-                            {
                             try
                             {
-                                //Try downloading the images here and also changing the notes
+                                NotesImageDownloader(topic.body, subject.name, topic.folder_name);
+                                string new_notes = NotesUpdater(topic.body, subject.name, topic.folder_name);
+                                Topic newTopic = new Topic(topic.TopicID, subject.Id, topic.TopicTitle, new_notes, topic.Updated_at, topic.teacher, topic.folder_id, topic.folder_name);
+
                                 try
                                 {
-                                    NotesImageDownloader(topic.body, subject.name, topic.folder_name);
-                                    string new_notes = NotesUpdater(topic.body, subject.name, topic.folder_name);
-                                    try
-                                    {
-                                        db.Update(new Topic() { TopicID = topic.TopicID, Notes = new_notes, SubjectId = subject.Id, teacher_full_names = topic.teacher, TopicTitle = topic.TopicTitle, Updated_at = topic.Updated_at, Folder_Id = topic.folder_id, Folder_Name = topic.folder_name });
-                                    }
-                                    catch
-                                    {
-
-                                    }
+                                    db.Update(newTopic);
                                 }
                                 catch
                                 {
-                                    
+
                                 }
                             }
                             catch
                             {
 
                             }
-                               
-                            }
-                        }                    
+                        }
                     }
+
                 }
             }
+            catch
+            {
+
+            }
+        }
         //Method to updateNotes
         public static string NotesUpdater(string notes, string subject, string topic)
         {

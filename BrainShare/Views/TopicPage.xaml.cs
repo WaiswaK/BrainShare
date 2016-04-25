@@ -38,7 +38,7 @@ namespace BrainShare.Views
         /// </summary>
         public ObservableDictionary DefaultViewModel
         {
-            get { return this.defaultViewModel; }
+            get { return defaultViewModel; }
         }
 
         /// <summary>
@@ -47,17 +47,17 @@ namespace BrainShare.Views
         /// </summary>
         public NavigationHelper NavigationHelper
         {
-            get { return this.navigationHelper; }
+            get { return navigationHelper; }
         }
           
 
         public TopicPage()
         {
-            
-            this.InitializeComponent();
-            this.navigationHelper = new NavigationHelper(this);
-            this.navigationHelper.LoadState += navigationHelper_LoadState;
-            this.navigationHelper.SaveState += navigationHelper_SaveState;
+
+            InitializeComponent();
+            navigationHelper = new NavigationHelper(this);
+            navigationHelper.LoadState += navigationHelper_LoadState;
+            navigationHelper.SaveState += navigationHelper_SaveState;
             
         }
 
@@ -76,7 +76,7 @@ namespace BrainShare.Views
         {
              var topic = e.NavigationParameter as TopicObservable;
              TopicPageViewModel vm = new TopicPageViewModel(topic);
-             this.DataContext = vm;
+            DataContext = vm;
              all_notes = topic.body;
             
         }
@@ -84,8 +84,15 @@ namespace BrainShare.Views
         private void WebView2_Loaded(object sender, RoutedEventArgs e)
         {
 
+            //To be removed after tests
+            //string notesfromJson = Constants.ReadTextFile().ToString();
+           // string notestwo = "\u003Cp class=\"fr-tag\"\u003EThe East African countries stretch west from the Indian Ocean to the Rwenzori Mountains and Lakes Tanganyika, Albert, Edward and Malawi.";
+            //string initial = "class=" +@"\" + @"fr-tag\" + @"\u003E\u003Cimg class=\" + "\"fr-fin fr-tag\"" + @"data-fr-image-preview=\" + "\"false\\"; 
+            //string imagenotes = @"Image title\" +" src=\"/assets/content_images/relief_rgns.PNG?1459501498\" width=\"665\"\u003E\u003C/p\u003E\u003Cp class=\"fr-tag\"\u003E\u003Ci\u003EFig 1.002\u003C/i\u003E\u003C/p\u003E";
+            //string notesfromJson = notestwo + initial + imagenotes;
             var WebView = (WebView)sender;
             string content = WebViewContentHelper.WrapHtml(all_notes, WebView.ActualWidth, WebView.ActualHeight);
+            //string content = WebViewContentHelper.WrapHtml(notesfromJson, WebView.ActualWidth, WebView.ActualHeight);
             WebView.NavigateToString(content);
         }
 
@@ -93,7 +100,7 @@ namespace BrainShare.Views
         {
             var item = e.ClickedItem;
             AttachmentObservable _file = ((AttachmentObservable)item);
-            this.Frame.Navigate(typeof(PDFViewPage), _file);
+            Frame.Navigate(typeof(PDFViewPage), _file);
         }
 
         private void itemGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -124,7 +124,7 @@ namespace BrainShare.BrainShare_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[22];
+            _typeNameTable = new string[25];
             _typeNameTable[0] = "BrainShare.Views.CreateAccountPage";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
@@ -140,15 +140,18 @@ namespace BrainShare.BrainShare_XamlTypeInfo
             _typeNameTable[12] = "BrainShare.Views.LibraryBookReader";
             _typeNameTable[13] = "BrainShare.Views.PlayPage";
             _typeNameTable[14] = "BrainShare.Views.PDFViewPage";
-            _typeNameTable[15] = "BrainShare.Views.StudentPage";
-            _typeNameTable[16] = "BrainShare.Views.SubjectPage";
-            _typeNameTable[17] = "BrainShare.Views.AssignmentPage";
-            _typeNameTable[18] = "BrainShare.Views.AssignmentsPage";
-            _typeNameTable[19] = "BrainShare.Views.TopicPage";
-            _typeNameTable[20] = "BrainShare.Views.TopicsPage";
-            _typeNameTable[21] = "BrainShare.Views.VideosPage";
+            _typeNameTable[15] = "BrainShare.Views.Settings";
+            _typeNameTable[16] = "Windows.UI.Xaml.Controls.SettingsFlyout";
+            _typeNameTable[17] = "Windows.UI.Xaml.Controls.ContentControl";
+            _typeNameTable[18] = "BrainShare.Views.StudentPage";
+            _typeNameTable[19] = "BrainShare.Views.SubjectPage";
+            _typeNameTable[20] = "BrainShare.Views.AssignmentPage";
+            _typeNameTable[21] = "BrainShare.Views.AssignmentsPage";
+            _typeNameTable[22] = "BrainShare.Views.TopicPage";
+            _typeNameTable[23] = "BrainShare.Views.TopicsPage";
+            _typeNameTable[24] = "BrainShare.Views.VideosPage";
 
-            _typeTable = new global::System.Type[22];
+            _typeTable = new global::System.Type[25];
             _typeTable[0] = typeof(global::BrainShare.Views.CreateAccountPage);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
@@ -164,13 +167,16 @@ namespace BrainShare.BrainShare_XamlTypeInfo
             _typeTable[12] = typeof(global::BrainShare.Views.LibraryBookReader);
             _typeTable[13] = typeof(global::BrainShare.Views.PlayPage);
             _typeTable[14] = typeof(global::BrainShare.Views.PDFViewPage);
-            _typeTable[15] = typeof(global::BrainShare.Views.StudentPage);
-            _typeTable[16] = typeof(global::BrainShare.Views.SubjectPage);
-            _typeTable[17] = typeof(global::BrainShare.Views.AssignmentPage);
-            _typeTable[18] = typeof(global::BrainShare.Views.AssignmentsPage);
-            _typeTable[19] = typeof(global::BrainShare.Views.TopicPage);
-            _typeTable[20] = typeof(global::BrainShare.Views.TopicsPage);
-            _typeTable[21] = typeof(global::BrainShare.Views.VideosPage);
+            _typeTable[15] = typeof(global::BrainShare.Views.Settings);
+            _typeTable[16] = typeof(global::Windows.UI.Xaml.Controls.SettingsFlyout);
+            _typeTable[17] = typeof(global::Windows.UI.Xaml.Controls.ContentControl);
+            _typeTable[18] = typeof(global::BrainShare.Views.StudentPage);
+            _typeTable[19] = typeof(global::BrainShare.Views.SubjectPage);
+            _typeTable[20] = typeof(global::BrainShare.Views.AssignmentPage);
+            _typeTable[21] = typeof(global::BrainShare.Views.AssignmentsPage);
+            _typeTable[22] = typeof(global::BrainShare.Views.TopicPage);
+            _typeTable[23] = typeof(global::BrainShare.Views.TopicsPage);
+            _typeTable[24] = typeof(global::BrainShare.Views.VideosPage);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -214,13 +220,14 @@ namespace BrainShare.BrainShare_XamlTypeInfo
         private object Activate_12_LibraryBookReader() { return new global::BrainShare.Views.LibraryBookReader(); }
         private object Activate_13_PlayPage() { return new global::BrainShare.Views.PlayPage(); }
         private object Activate_14_PDFViewPage() { return new global::BrainShare.Views.PDFViewPage(); }
-        private object Activate_15_StudentPage() { return new global::BrainShare.Views.StudentPage(); }
-        private object Activate_16_SubjectPage() { return new global::BrainShare.Views.SubjectPage(); }
-        private object Activate_17_AssignmentPage() { return new global::BrainShare.Views.AssignmentPage(); }
-        private object Activate_18_AssignmentsPage() { return new global::BrainShare.Views.AssignmentsPage(); }
-        private object Activate_19_TopicPage() { return new global::BrainShare.Views.TopicPage(); }
-        private object Activate_20_TopicsPage() { return new global::BrainShare.Views.TopicsPage(); }
-        private object Activate_21_VideosPage() { return new global::BrainShare.Views.VideosPage(); }
+        private object Activate_15_Settings() { return new global::BrainShare.Views.Settings(); }
+        private object Activate_18_StudentPage() { return new global::BrainShare.Views.StudentPage(); }
+        private object Activate_19_SubjectPage() { return new global::BrainShare.Views.SubjectPage(); }
+        private object Activate_20_AssignmentPage() { return new global::BrainShare.Views.AssignmentPage(); }
+        private object Activate_21_AssignmentsPage() { return new global::BrainShare.Views.AssignmentsPage(); }
+        private object Activate_22_TopicPage() { return new global::BrainShare.Views.TopicPage(); }
+        private object Activate_23_TopicsPage() { return new global::BrainShare.Views.TopicsPage(); }
+        private object Activate_24_VideosPage() { return new global::BrainShare.Views.VideosPage(); }
         private void MapAdd_4_ObservableDictionary(object instance, object key, object item)
         {
             var collection = (global::System.Collections.Generic.IDictionary<global::System.String, global::System.Object>)instance;
@@ -342,63 +349,78 @@ namespace BrainShare.BrainShare_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 15:   //  BrainShare.Views.StudentPage
+            case 15:   //  BrainShare.Views.Settings
+                userType = new global::BrainShare.BrainShare_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.SettingsFlyout"));
+                userType.Activator = Activate_15_Settings;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 16:   //  Windows.UI.Xaml.Controls.SettingsFlyout
+                xamlType = new global::BrainShare.BrainShare_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 17:   //  Windows.UI.Xaml.Controls.ContentControl
+                xamlType = new global::BrainShare.BrainShare_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 18:   //  BrainShare.Views.StudentPage
                 userType = new global::BrainShare.BrainShare_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_15_StudentPage;
+                userType.Activator = Activate_18_StudentPage;
                 userType.AddMemberName("DefaultViewModel");
                 userType.AddMemberName("NavigationHelper");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 16:   //  BrainShare.Views.SubjectPage
+            case 19:   //  BrainShare.Views.SubjectPage
                 userType = new global::BrainShare.BrainShare_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_16_SubjectPage;
+                userType.Activator = Activate_19_SubjectPage;
                 userType.AddMemberName("DefaultViewModel");
                 userType.AddMemberName("NavigationHelper");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 17:   //  BrainShare.Views.AssignmentPage
+            case 20:   //  BrainShare.Views.AssignmentPage
                 userType = new global::BrainShare.BrainShare_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_17_AssignmentPage;
+                userType.Activator = Activate_20_AssignmentPage;
                 userType.AddMemberName("DefaultViewModel");
                 userType.AddMemberName("NavigationHelper");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 18:   //  BrainShare.Views.AssignmentsPage
+            case 21:   //  BrainShare.Views.AssignmentsPage
                 userType = new global::BrainShare.BrainShare_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_18_AssignmentsPage;
+                userType.Activator = Activate_21_AssignmentsPage;
                 userType.AddMemberName("DefaultViewModel");
                 userType.AddMemberName("NavigationHelper");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 19:   //  BrainShare.Views.TopicPage
+            case 22:   //  BrainShare.Views.TopicPage
                 userType = new global::BrainShare.BrainShare_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_19_TopicPage;
+                userType.Activator = Activate_22_TopicPage;
                 userType.AddMemberName("DefaultViewModel");
                 userType.AddMemberName("NavigationHelper");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 20:   //  BrainShare.Views.TopicsPage
+            case 23:   //  BrainShare.Views.TopicsPage
                 userType = new global::BrainShare.BrainShare_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_20_TopicsPage;
+                userType.Activator = Activate_23_TopicsPage;
                 userType.AddMemberName("DefaultViewModel");
                 userType.AddMemberName("NavigationHelper");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 21:   //  BrainShare.Views.VideosPage
+            case 24:   //  BrainShare.Views.VideosPage
                 userType = new global::BrainShare.BrainShare_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_21_VideosPage;
+                userType.Activator = Activate_24_VideosPage;
                 userType.AddMemberName("DefaultViewModel");
                 userType.AddMemberName("NavigationHelper");
                 userType.SetIsLocalType();

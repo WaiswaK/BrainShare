@@ -14,7 +14,7 @@ namespace BrainShare.Views
     {
         public CreateAccountPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             
         }
         private void WebView2_Loaded(object sender, RoutedEventArgs e)

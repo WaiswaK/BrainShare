@@ -75,20 +75,20 @@ namespace BrainShare.Common
                 Windows.Phone.UI.Input.HardwareButtons.BackPressed += HardwareButtons_BackPressed;
 #else
                 // Keyboard and mouse navigation only apply when occupying the entire window
-                if (this.Page.ActualHeight == Window.Current.Bounds.Height &&
-                    this.Page.ActualWidth == Window.Current.Bounds.Width)
+                if (Page.ActualHeight == Window.Current.Bounds.Height &&
+                    Page.ActualWidth == Window.Current.Bounds.Width)
                 {
                     // Listen to the window directly so focus isn't required
                     Window.Current.CoreWindow.Dispatcher.AcceleratorKeyActivated +=
                         CoreDispatcher_AcceleratorKeyActivated;
                     Window.Current.CoreWindow.PointerPressed +=
-                        this.CoreWindow_PointerPressed;
+                        CoreWindow_PointerPressed;
                 }
 #endif
             };
 
             // Undo the same changes when the page is no longer visible
-            this.Page.Unloaded += (sender, e) =>
+            Page.Unloaded += (sender, e) =>
             {
 #if WINDOWS_PHONE_APP
                 Windows.Phone.UI.Input.HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
@@ -96,7 +96,7 @@ namespace BrainShare.Common
                 Window.Current.CoreWindow.Dispatcher.AcceleratorKeyActivated -=
                     CoreDispatcher_AcceleratorKeyActivated;
                 Window.Current.CoreWindow.PointerPressed -=
-                    this.CoreWindow_PointerPressed;
+                    CoreWindow_PointerPressed;
 #endif
             };
         }
@@ -121,8 +121,8 @@ namespace BrainShare.Common
                 if (_goBackCommand == null)
                 {
                     _goBackCommand = new RelayCommand(
-                        () => this.GoBack(),
-                        () => this.CanGoBack());
+                        () => GoBack(),
+                        () => CanGoBack());
                 }
                 return _goBackCommand;
             }
@@ -145,8 +145,8 @@ namespace BrainShare.Common
                 if (_goForwardCommand == null)
                 {
                     _goForwardCommand = new RelayCommand(
-                        () => this.GoForward(),
-                        () => this.CanGoForward());
+                        () => GoForward(),
+                        () => CanGoForward());
                 }
                 return _goForwardCommand;
             }
@@ -162,7 +162,7 @@ namespace BrainShare.Common
         /// </returns>
         public virtual bool CanGoBack()
         {
-            return this.Frame != null && this.Frame.CanGoBack;
+            return Frame != null && Frame.CanGoBack;
         }
         /// <summary>
         /// Virtual method used by the <see cref="GoForwardCommand"/> property
@@ -261,7 +261,7 @@ namespace BrainShare.Common
                 {
                     // When the previous key or Alt+Left are pressed navigate back
                     e.Handled = true;
-                    this.GoBackCommand.Execute(null);
+                    GoBackCommand.Execute(null);
                 }
                 else if (((int)virtualKey == 167 && noModifiers) ||
                     (virtualKey == VirtualKey.Right && onlyAlt))
@@ -295,8 +295,8 @@ namespace BrainShare.Common
             if (backPressed ^ forwardPressed)
             {
                 e.Handled = true;
-                if (backPressed) this.GoBackCommand.Execute(null);
-                if (forwardPressed) this.GoForwardCommand.Execute(null);
+                if (backPressed) GoBackCommand.Execute(null);
+                if (forwardPressed) GoForwardCommand.Execute(null);
             }
         }
 #endif
@@ -330,15 +330,15 @@ namespace BrainShare.Common
         /// property provides the group to be displayed.</param>
         public void OnNavigatedTo(NavigationEventArgs e)
         {
-            var frameState = SuspensionManager.SessionStateForFrame(this.Frame);
-            this._pageKey = "Page-" + this.Frame.BackStackDepth;
+            var frameState = SuspensionManager.SessionStateForFrame(Frame);
+            _pageKey = "Page-" + Frame.BackStackDepth;
 
             if (e.NavigationMode == NavigationMode.New)
             {
                 // Clear existing state for forward navigation when adding a new page to the
                 // navigation stack
-                var nextPageKey = this._pageKey;
-                int nextPageIndex = this.Frame.BackStackDepth;
+                var nextPageKey = _pageKey;
+                int nextPageIndex = Frame.BackStackDepth;
                 while (frameState.Remove(nextPageKey))
                 {
                     nextPageIndex++;
@@ -346,19 +346,16 @@ namespace BrainShare.Common
                 }
 
                 // Pass the navigation parameter to the new page
-                if (this.LoadState != null)
-                {
-                    this.LoadState(this, new LoadStateEventArgs(e.Parameter, null));
-                }
+                LoadState?.Invoke(this, new LoadStateEventArgs(e.Parameter, null));
             }
             else
             {
                 // Pass the navigation parameter and preserved page state to the page, using
                 // the same strategy for loading suspended state and recreating pages discarded
                 // from cache
-                if (this.LoadState != null)
+                if (LoadState != null)
                 {
-                    this.LoadState(this, new LoadStateEventArgs(e.Parameter, (Dictionary<String, Object>)frameState[this._pageKey]));
+                    LoadState(this, new LoadStateEventArgs(e.Parameter, (Dictionary<String, Object>)frameState[_pageKey]));
                 }
             }
         }
@@ -372,11 +369,11 @@ namespace BrainShare.Common
         /// property provides the group to be displayed.</param>
         public void OnNavigatedFrom(NavigationEventArgs e)
         {
-            var frameState = SuspensionManager.SessionStateForFrame(this.Frame);
+            var frameState = SuspensionManager.SessionStateForFrame(Frame);
             var pageState = new Dictionary<String, Object>();
-            if (this.SaveState != null)
+            if (SaveState != null)
             {
-                this.SaveState(this, new SaveStateEventArgs(pageState));
+                SaveState(this, new SaveStateEventArgs(pageState));
             }
             frameState[_pageKey] = pageState;
         }
@@ -423,8 +420,8 @@ namespace BrainShare.Common
         public LoadStateEventArgs(Object navigationParameter, Dictionary<string, Object> pageState)
             : base()
         {
-            this.NavigationParameter = navigationParameter;
-            this.PageState = pageState;
+            NavigationParameter = navigationParameter;
+            PageState = pageState;
         }
     }
     /// <summary>
@@ -444,7 +441,7 @@ namespace BrainShare.Common
         public SaveStateEventArgs(Dictionary<string, Object> pageState)
             : base()
         {
-            this.PageState = pageState;
+            PageState = pageState;
         }
     }
 }

@@ -21,7 +21,7 @@
     <AppxPackagedFile Include="D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\BrainShare.exe">
       <PackagePath>BrainShare.exe</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\SQLite.WinRT81\3.12.0\Redist\Debug\x86\sqlite3.dll">
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\SQLite.WinRT81\3.12.2\Redist\Debug\x86\sqlite3.dll">
       <PackagePath>sqlite3.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\Assets\bbgg.jpg">
@@ -135,6 +135,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\PDFViewPage.xbf">
       <PackagePath>Views\PDFViewPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\Settings.xbf">
+      <PackagePath>Views\Settings.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Work\BrainShare Current Work\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\StudentPage.xbf">
       <PackagePath>Views\StudentPage.xbf</PackagePath>

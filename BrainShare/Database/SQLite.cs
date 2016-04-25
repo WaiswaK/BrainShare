@@ -2536,7 +2536,7 @@ namespace SQLite
 
 		public T FirstOrDefault ()
 		{
-			var query = this.Take (1);
+			var query = Take(1);
 			return query.ToList<T>().FirstOrDefault ();
 		}
     }

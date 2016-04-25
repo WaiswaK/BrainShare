@@ -20,7 +20,7 @@ namespace BrainShare.Views
         /// </summary>
         public ObservableDictionary DefaultViewModel
         {
-            get { return this.defaultViewModel; }
+            get { return defaultViewModel; }
         }
         /// <summary>
         /// NavigationHelper is used on each page to aid in navigation and 
@@ -32,10 +32,10 @@ namespace BrainShare.Views
         }
         public LibraryCategoryBooks()
         {
-            this.InitializeComponent();
-            this.navigationHelper = new NavigationHelper(this);
-            this.navigationHelper.LoadState += navigationHelper_LoadState;
-            this.navigationHelper.SaveState += navigationHelper_SaveState;
+            InitializeComponent();
+            navigationHelper = new NavigationHelper(this);
+            navigationHelper.LoadState += navigationHelper_LoadState;
+            navigationHelper.SaveState += navigationHelper_SaveState;
         }     
         private void book_click(object sender, ItemClickEventArgs e)
         {
@@ -43,7 +43,7 @@ namespace BrainShare.Views
             {
                 var item = e.ClickedItem;
                 BookObservable _topic = ((BookObservable)item);
-                this.Frame.Navigate(typeof(LibraryBookReader), _topic);
+                Frame.Navigate(typeof(LibraryBookReader), _topic);
             }
             catch
             {

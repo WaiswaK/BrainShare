@@ -41,7 +41,7 @@ namespace BrainShare
         /// </summary>
         public ObservableDictionary DefaultViewModel
         {
-            get { return this.defaultViewModel; }
+            get { return defaultViewModel; }
         }
         /// <summary>
         /// NavigationHelper is used on each page to aid in navigation and 
@@ -49,20 +49,29 @@ namespace BrainShare
         /// </summary>
         public NavigationHelper NavigationHelper
         {
-            get { return this.navigationHelper; }
+            get { return navigationHelper; }
         }
         public LoginPage()
         {
-            this.InitializeComponent();
-            SettingsPane.GetForCurrentView().CommandsRequested += SettingCharmManager_CommandsRequested;
+            InitializeComponent();
+            SettingsPane.GetForCurrentView().CommandsRequested += onCommandsRequested;
             navigationHelper = new NavigationHelper(this);
             navigationHelper.LoadState += navigationHelper_LoadState;
             navigationHelper.SaveState += navigationHelper_SaveState;    
         }
-        private void SettingCharmManager_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+
+        //New method for Settings
+        private void onCommandsRequested(SettingsPane settingsPane, SettingsPaneCommandsRequestedEventArgs e)
         {
-            args.Request.ApplicationCommands.Add(new SettingsCommand("privacypolicy", "Privacy policy", OpenPrivacyPolicy));
+            e.Request.ApplicationCommands.Add(new SettingsCommand("privacypolicy", "Privacy policy", OpenPrivacyPolicy));
+            e.Request.ApplicationCommands.Add(new SettingsCommand("defaults", "Modules",
+                (handler) =>
+                {
+                    Settings sf = new Settings();
+                    sf.Show();
+                }));
         }
+
         private async void OpenPrivacyPolicy(IUICommand command)
         {
             Uri uri = new Uri("http://learn.brainshare.ug/privacy_policy");
@@ -113,6 +122,7 @@ namespace BrainShare
             {
 
             }
+            //SettingsPane.GetForCurrentView().CommandsRequested -= onCommandsRequested; // Added here
         }
         #endregion
         public async void Button_Click(object sender, RoutedEventArgs e)
@@ -155,6 +165,9 @@ namespace BrainShare
 
             base.OnNavigatedTo(e); //important to cover this error http://stackoverflow.com/questions/13790344/argumentnullexception-on-changing-frame
             navigationHelper.OnNavigatedTo(e);
+
+            //SettingsPane.GetForCurrentView().CommandsRequested += onCommandsRequested; // Added here
+
         }
         private async Task RestoreAsync()
         {

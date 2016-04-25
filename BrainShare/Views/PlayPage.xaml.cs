@@ -41,7 +41,7 @@ namespace BrainShare.Views
         /// </summary>
         public ObservableDictionary DefaultViewModel
         {
-            get { return this.defaultViewModel; }
+            get { return defaultViewModel; }
         }
 
         /// <summary>
@@ -50,16 +50,16 @@ namespace BrainShare.Views
         /// </summary>
         public NavigationHelper NavigationHelper
         {
-            get { return this.navigationHelper; }
+            get { return navigationHelper; }
         }
 
 
         public PlayPage()
         {
-            this.InitializeComponent();
-            this.navigationHelper = new NavigationHelper(this);
-            this.navigationHelper.LoadState += navigationHelper_LoadState;
-            this.navigationHelper.SaveState += navigationHelper_SaveState;
+            InitializeComponent();
+            navigationHelper = new NavigationHelper(this);
+            navigationHelper.LoadState += navigationHelper_LoadState;
+            navigationHelper.SaveState += navigationHelper_SaveState;
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace BrainShare.Views
             var file = e.NavigationParameter as VideoObservable;
             PlayPageViewModel vm = new PlayPageViewModel(file);
             LoadFile(file.FilePath);
-            this.DataContext = vm;
+            DataContext = vm;
         }
         private void DoubleTap(object sender, Windows.UI.Xaml.Input.DoubleTappedRoutedEventArgs e)
         {
@@ -92,7 +92,7 @@ namespace BrainShare.Views
             {
                     try
                     {
-                        this.loadedFile = await Constants.appFolder.GetFileAsync(filePath);
+                    loadedFile = await Constants.appFolder.GetFileAsync(filePath);
                         IRandomAccessStream stream = await loadedFile.OpenAsync(FileAccessMode.Read);
                         MediaElement.SetSource(stream, loadedFile.ContentType);
                         Offline.Visibility = Visibility.Visible;
@@ -151,7 +151,7 @@ namespace BrainShare.Views
             {
                 try
                 {
-                    this.loadedFile = await Constants.appFolder.GetFileAsync(filePath);
+                    loadedFile = await Constants.appFolder.GetFileAsync(filePath);
                     IRandomAccessStream stream = await loadedFile.OpenAsync(FileAccessMode.Read);
                     MediaElement.SetSource(stream, loadedFile.ContentType);
                     Offline.Visibility = Visibility.Visible;

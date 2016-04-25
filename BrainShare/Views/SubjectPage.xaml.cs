@@ -20,7 +20,7 @@ namespace BrainShare.Views
         /// </summary>
         public ObservableDictionary DefaultViewModel
         {
-            get { return this.defaultViewModel; }
+            get { return defaultViewModel; }
         }
         /// <summary>
         /// NavigationHelper is used on each page to aid in navigation and 
@@ -28,14 +28,14 @@ namespace BrainShare.Views
         /// </summary>
         public NavigationHelper NavigationHelper
         {
-            get { return this.navigationHelper; }
+            get { return navigationHelper; }
         }
         public SubjectPage()
         {
-            this.InitializeComponent();
-            this.navigationHelper = new NavigationHelper(this);
-            this.navigationHelper.LoadState += navigationHelper_LoadState;
-            this.navigationHelper.SaveState += navigationHelper_SaveState;
+            InitializeComponent();
+            navigationHelper = new NavigationHelper(this);
+            navigationHelper.LoadState += navigationHelper_LoadState;
+            navigationHelper.SaveState += navigationHelper_SaveState;
         }
         /// <summary>
         /// Populates the page with content passed during navigation. Any saved state is also
@@ -52,7 +52,7 @@ namespace BrainShare.Views
         {
             var subject = e.NavigationParameter as SubjectObservable;
             SubjectPageViewModel vm = new SubjectPageViewModel(subject);
-            this.DataContext = vm;  
+            DataContext = vm;  
         }
         private void Category_click(object sender, ItemClickEventArgs e)
         {
@@ -60,26 +60,26 @@ namespace BrainShare.Views
             CategoryObservable _category = ((CategoryObservable)item);
             if (_category.categoryName.Equals("Quiz")) 
             {
-                this.Frame.Navigate(typeof(TopicsPage), _category);
+                Frame.Navigate(typeof(TopicsPage), _category);
             }
             if (_category.categoryName.Equals("Videos")) 
             {
-                this.Frame.Navigate(typeof(VideosPage), _category);
+                Frame.Navigate(typeof(VideosPage), _category);
             }
             if (_category.categoryName.Equals("Files")) 
             {
-                this.Frame.Navigate(typeof(LibraryPage), _category);
+                Frame.Navigate(typeof(LibraryPage), _category);
             }
             if (_category.categoryName.Equals("Assignments")) 
             {
-                this.Frame.Navigate(typeof(AssignmentsPage), _category);
+                Frame.Navigate(typeof(AssignmentsPage), _category);
             }
         }
         private void Topic_click(object sender, ItemClickEventArgs e)
         {
             var item = e.ClickedItem;
             FolderObservable _folder = ((FolderObservable)item);
-            this.Frame.Navigate(typeof(TopicsPage), _folder); 
+            Frame.Navigate(typeof(TopicsPage), _folder); 
         }
         /// <summary>
         /// Preserves state associated with this page in case the application is suspended or the
@@ -95,7 +95,7 @@ namespace BrainShare.Views
        
          private void logout_btn_click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(LoginPage));
+            Frame.Navigate(typeof(LoginPage));
         }
 
         private void itemGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)

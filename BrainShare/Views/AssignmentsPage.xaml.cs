@@ -21,7 +21,7 @@ namespace BrainShare.Views
         /// </summary>
         public ObservableDictionary DefaultViewModel
         {
-            get { return this.defaultViewModel; }
+            get { return defaultViewModel; }
         }
         /// <summary>
         /// NavigationHelper is used on each page to aid in navigation and 
@@ -29,14 +29,14 @@ namespace BrainShare.Views
         /// </summary>
         public NavigationHelper NavigationHelper
         {
-            get { return this.navigationHelper; }
+            get { return navigationHelper; }
         }
         public AssignmentsPage()
         {
-            this.InitializeComponent();
-            this.navigationHelper = new NavigationHelper(this);
-            this.navigationHelper.LoadState += navigationHelper_LoadState;
-            this.navigationHelper.SaveState += navigationHelper_SaveState;
+            InitializeComponent();
+            navigationHelper = new NavigationHelper(this);
+            navigationHelper.LoadState += navigationHelper_LoadState;
+            navigationHelper.SaveState += navigationHelper_SaveState;
         }
         /// <summary>
         /// Populates the page with content passed during navigation. Any saved state is also
@@ -71,7 +71,7 @@ namespace BrainShare.Views
             {
                 var item = e.ClickedItem;
                 AssignmentObservable _assignment = ((AssignmentObservable)item);
-                this.Frame.Navigate(typeof(AssignmentPage), _assignment);
+                Frame.Navigate(typeof(AssignmentPage), _assignment);
             }
             catch
             {

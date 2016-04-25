@@ -1,5 +1,8 @@
 ﻿using System.IO;
+using System.Threading.Tasks;
 using Windows.Storage; //To be removed after test
+using Windows.Storage.Streams; //To be removed 
+using System;//To be removed after
 
 namespace BrainShare.Common
 {
