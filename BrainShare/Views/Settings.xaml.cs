@@ -2,6 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.System;
 using Windows.UI.Core;
+using BrainShare.Common;
 // The Settings Flyout item template is documented at http://go.microsoft.com/fwlink/?LinkId=273769
 
 namespace BrainShare.Views
@@ -43,6 +44,52 @@ namespace BrainShare.Views
                 {
                     args.Handled = true;
                     Hide();
+                }
+            }
+        }
+
+        private void Notes_Toggle(object sender, RoutedEventArgs e)
+        {
+            ToggleSwitch toggleSwitch = sender as ToggleSwitch;
+            if (toggleSwitch != null)
+            {
+                if (toggleSwitch.IsOn == true)
+                {
+                    Constants.NotesModule = true;
+                }
+                else
+                {
+                    Constants.NotesModule = false;
+                }
+            }
+        }
+        private void Library_Toggle(object sender, RoutedEventArgs e)
+        {
+            ToggleSwitch toggleSwitch = sender as ToggleSwitch;
+            if (toggleSwitch != null)
+            {
+                if (toggleSwitch.IsOn == true)
+                {
+                    Constants.LibraryModule = true;
+                }
+                else
+                {
+                    Constants.LibraryModule = false;
+                }
+            }
+        }
+        private void Videos_Toggle(object sender, RoutedEventArgs e)
+        {
+            ToggleSwitch toggleSwitch = sender as ToggleSwitch;
+            if (toggleSwitch != null)
+            {
+                if (toggleSwitch.IsOn == true)
+                {
+                    Constants.VideosModule = true;
+                }
+                else
+                {
+                    Constants.VideosModule = false;
                 }
             }
         }

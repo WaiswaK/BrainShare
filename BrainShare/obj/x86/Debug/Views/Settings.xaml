@@ -7,15 +7,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     IconSource="Assets/SmallLogo.png"
-    Title="Settings"
+    Title="Modules"
     d:DesignWidth="346">
 
     <!-- This StackPanel acts as a root panel for vertical layout of the content sections -->
     <StackPanel>
         <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
-            <ToggleSwitch Margin="-6,0,0,0" Header = "Notes Module" HorizontalAlignment="Left" HorizontalContentAlignment="Left"/>
-            <ToggleSwitch Margin="-6,0,0,0" Header = "Library Modules" HorizontalAlignment="Stretch"/>
-            <ToggleSwitch Margin="-6,0,0,0" Header = "Videos Module" HorizontalAlignment="Stretch"/>
+            <ToggleSwitch x:ConnectionId='1' Margin="-6,0,0,0" Header = "Notes Module" HorizontalAlignment="Left" HorizontalContentAlignment="Left" IsOn="True"                       />
+            <ToggleSwitch x:ConnectionId='2' Margin="-6,0,0,0" Header = "Library Modules" HorizontalAlignment="Stretch" IsOn="True"                         />
+            <ToggleSwitch x:ConnectionId='3' Margin="-6,0,0,0" Header = "Videos Module" HorizontalAlignment="Stretch" IsOn="True"                        />
         </StackPanel>
     </StackPanel>
 </SettingsFlyout>

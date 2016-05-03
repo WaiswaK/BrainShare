@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using BrainShare.Models;
 using BrainShare.ViewModels;
+using Windows.Storage;
+using Windows.Storage.Streams;
 
 
 
@@ -76,23 +78,53 @@ namespace BrainShare.Views
         {
              var topic = e.NavigationParameter as TopicObservable;
              TopicPageViewModel vm = new TopicPageViewModel(topic);
-            DataContext = vm;
+             DataContext = vm;
              all_notes = topic.body;
             
         }
 
-        private void WebView2_Loaded(object sender, RoutedEventArgs e)
+        private async void WebView2_Loaded(object sender, RoutedEventArgs e)
         {
 
             //To be removed after tests
-            //string notesfromJson = Constants.ReadTextFile().ToString();
-           // string notestwo = "\u003Cp class=\"fr-tag\"\u003EThe East African countries stretch west from the Indian Ocean to the Rwenzori Mountains and Lakes Tanganyika, Albert, Edward and Malawi.";
-            //string initial = "class=" +@"\" + @"fr-tag\" + @"\u003E\u003Cimg class=\" + "\"fr-fin fr-tag\"" + @"data-fr-image-preview=\" + "\"false\\"; 
-            //string imagenotes = @"Image title\" +" src=\"/assets/content_images/relief_rgns.PNG?1459501498\" width=\"665\"\u003E\u003C/p\u003E\u003Cp class=\"fr-tag\"\u003E\u003Ci\u003EFig 1.002\u003C/i\u003E\u003C/p\u003E";
-            //string notesfromJson = notestwo + initial + imagenotes;
-            var WebView = (WebView)sender;
-            string content = WebViewContentHelper.WrapHtml(all_notes, WebView.ActualWidth, WebView.ActualHeight);
-            //string content = WebViewContentHelper.WrapHtml(notesfromJson, WebView.ActualWidth, WebView.ActualHeight);
+
+            //string imagePAth = @"C:\Users\Kenneth\AppData\Local\Packages\CodeVisionLtd.BrainShare_fd97ja0290hr0\LocalState\Biology_ECOLOGY_notes_image1.png";
+            //string imagePAth = @"D:\UnSorted Content\Junk\Jh\0db0e0c312ee26ad7e303804a5449f91.jpg";
+            //string notesfromJson = "<br><div><br></div><div><img src=";
+            //string notesfromJson = "<img src=";
+            //string quote = "\"";
+
+            //string x = " width=" + quote + "470" + "><br></div><div>";
+
+            //string header = @"file:///";
+
+            //string pth2 = "file:///D:/UnSorted%20Content/Junk/Jh/02.jpg";
+
+            //string x = " width=" + quote + "900" + "><br>";
+
+            StorageFolder appFolder = ApplicationData.Current.LocalFolder;
+            StorageFile file = await appFolder.GetFileAsync("00b8170e-318b-4f31-8f2b-fca44ec3099b.jpg");
+            string base64 = "";
+            using (var stream = await file.OpenAsync(FileAccessMode.Read))
+            {
+                var reader = new DataReader(stream.GetInputStreamAt(0));
+                var bytes = new byte[stream.Size];
+                await reader.LoadAsync((uint)stream.Size);
+                reader.ReadBytes(bytes);
+                base64 = Convert.ToBase64String(bytes);
+            }
+
+            string tester = "<html><head><title>Image test</title></head><body><p>This is a test app!</p><img src=\"data:image/png;base64" + base64 + "\" /></body></html>";
+            
+            //string test = notesfromJson + quote + pth2 + quote + x;
+
+            //< img src = "http://i.imgur.com/dApHyaa.gif" width = "600" >< br >
+
+            //D: \UnSorted Content\Junk\Jh\0db0e0c312ee26ad7e303804a5449f91.jpg
+
+                var WebView = (WebView)sender;
+            //string content = WebViewContentHelper.WrapHtml(all_notes, WebView.ActualWidth, WebView.ActualHeight);
+            string content = WebViewContentHelper.WrapHtml(tester, WebView.ActualWidth, WebView.ActualHeight);
             WebView.NavigateToString(content);
         }
 

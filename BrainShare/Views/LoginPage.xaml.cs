@@ -194,7 +194,7 @@ namespace BrainShare
             }
         }  
         public async void Login()
-        {  
+        {
             try
             {
                 await CommonTask.InitializeDatabase();
@@ -210,7 +210,7 @@ namespace BrainShare
             else
             {
                 OfflineExperience();
-            }
+            } 
         }
         private void OfflineExperience()
         {

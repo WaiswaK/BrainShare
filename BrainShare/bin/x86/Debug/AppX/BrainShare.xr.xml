@@ -287,6 +287,8 @@
       <RootProperty Name="Header" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="HorizontalContentAlignment" />
+      <RootProperty Name="IsOn" />
+      <RootEvent Name="Toggled" />
     </RootType>
     <RootType FullName="BrainShare.Views.Settings" />
     <RootType FullName="Windows.UI.Xaml.Controls.ProgressBar">

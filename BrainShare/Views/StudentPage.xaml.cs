@@ -98,8 +98,9 @@ namespace BrainShare.Views
                 if (CommonTask.IsInternetConnectionAvailable())
                 {
                     UpdateUser(initial.email, initial.password, CommonTask.SubjectIdsForUser(initial.email), user.subjects, user);
-                   // CommonTask.GetNotesImagesSubjectsAsync(user.subjects);//Update Notes //Needs to be awaited
+                    CommonTask.GetNotesImagesSubjectsAsync(user.subjects);//Update Notes //Needs to be awaited
                 }
+                //CommonTask.GetNotesImagesSubjectsAsync(user.subjects); //To be deleted after
             }
         }
 

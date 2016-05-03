@@ -10,6 +10,9 @@ using Windows.Networking.BackgroundTransfer;
 using BrainShare.Models;
 using System.Text.RegularExpressions;
 using System.IO;
+using Windows.Storage.Streams;
+using System.Net.Http;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace BrainShare.Common
 {
@@ -215,7 +218,8 @@ namespace BrainShare.Common
                 //var message = new MessageDialog("An error occured while downloading", "Download Error").ShowAsync();
             }
         }
-        public static async Task ImageDownloader(string fileName, string filepath)
+        //Images code download
+        public static async Task BookImageDownloader(string fileName, string filepath)
         {
             StorageFile storageFile = await Constants.appFolder.CreateFileAsync(fileName + Constants.PNG_extension, CreationCollisionOption.ReplaceExisting);
             string newpath = Constants.BaseUri + filepath;
@@ -231,6 +235,209 @@ namespace BrainShare.Common
 
             }
         }     
+        public static async Task NotesImageDownloader(string filepath)
+        {
+            Uri uri = new Uri(filepath);
+
+            string imagePath = imageFormat(filepath);
+            var fileName = Guid.NewGuid().ToString() + imagePath;
+
+            // download pic
+            var bitmapImage = new BitmapImage();
+            var httpClient = new HttpClient();
+            var httpResponse = await httpClient.GetAsync(uri);
+            byte[] b = await httpResponse.Content.ReadAsByteArrayAsync();
+
+            // create a new in memory stream and datawriter
+            using (var stream = new InMemoryRandomAccessStream())
+            {
+                using (DataWriter dw = new DataWriter(stream))
+                {
+                    // write the raw bytes and store
+                    dw.WriteBytes(b);
+                    await dw.StoreAsync();
+
+                    // set the image source
+                    stream.Seek(0);
+                    bitmapImage.SetSource(stream);
+
+                    // write to local pictures
+                    StorageFile storageFile = await Constants.appFolder.CreateFileAsync(fileName, 
+                        CreationCollisionOption.FailIfExists); //Fail if exists
+                    using (var storageStream = await storageFile.OpenAsync(FileAccessMode.ReadWrite))
+                    {
+                        await RandomAccessStream.CopyAndCloseAsync(stream.GetInputStreamAt(0), storageStream.GetOutputStreamAt(0));
+                    }
+                }
+            }
+        }
+        public static async Task LogoImageDownloader(string filepath, string fileName)
+        {
+            Uri uri = new Uri(filepath);
+
+            string imagePath = imageFormat(filepath);
+            //var fileName = Guid.NewGuid().ToString() + imagePath;
+
+            // download pic
+            var bitmapImage = new BitmapImage();
+            var httpClient = new HttpClient();
+            var httpResponse = await httpClient.GetAsync(uri);
+            byte[] b = await httpResponse.Content.ReadAsByteArrayAsync();
+
+            // create a new in memory stream and datawriter
+            using (var stream = new InMemoryRandomAccessStream())
+            {
+                using (DataWriter dw = new DataWriter(stream))
+                {
+                    // write the raw bytes and store
+                    dw.WriteBytes(b);
+                    await dw.StoreAsync();
+
+                    // set the image source
+                    stream.Seek(0);
+                    bitmapImage.SetSource(stream);
+
+                    // write to local pictures
+                    StorageFile storageFile = await Constants.appFolder.CreateFileAsync(fileName, 
+                        CreationCollisionOption.ReplaceExisting);
+                    using (var storageStream = await storageFile.OpenAsync(FileAccessMode.ReadWrite))
+                    {
+                        await RandomAccessStream.CopyAndCloseAsync(stream.GetInputStreamAt(0), storageStream.GetOutputStreamAt(0));
+                    }
+                }
+            }
+        }
+        //Getting image name from a string
+        public static string imageName(string filepath)
+        {
+            string imagename = string.Empty;
+            char[] delimiter = { '/' };
+            string[] linksplit = filepath.Split(delimiter);
+            List<string> linklist = linksplit.ToList();
+            imagename = linklist.Last();
+            return imagename;
+        }
+        //Getting image format from a string 
+        public static string imageFormat(string filepath)
+        {
+            int f = 0;
+            string imageformat = string.Empty;
+            int l = filepath.Length;
+            int JPG_extension = Constants.JPG_extension.Length;
+            int PNG_extension = Constants.PNG_extension.Length;
+            int GIF_extension = Constants.GIF_extension.Length;
+            int TIFF_extension = Constants.TIFF_extension.Length;
+            int BMP_extension = Constants.BMP_extension.Length;
+
+            //Search for jpg 
+            for (int i = 0; i < l; i++)
+            {
+                if (filepath[i] == Constants.JPG_extension[0])
+                {
+                    for (int K = i + 1, j = 1; j < JPG_extension; j++, K++)
+                    {
+                        if (filepath[K] == Constants.JPG_extension[j])
+                        {
+                            f++;
+                        }
+                    }
+                }
+            }
+            if (f == JPG_extension - 1)
+            {
+                imageformat = Constants.JPG_extension;
+            }
+
+            if (imageformat == string.Empty)
+            {
+                //Search for png 
+                f = 0;
+                for (int i = 0; i < l; i++)
+                {
+                    if (filepath[i] == Constants.PNG_extension[0])
+                    {
+                        for (int K = i + 1, j = 1; j < PNG_extension; j++, K++)
+                        {
+                            if (filepath[K] == Constants.PNG_extension[j])
+                            {
+                                f++;
+                            }
+                        }
+                    }
+                }
+                if (f == PNG_extension - 1)
+                {
+                    imageformat = Constants.PNG_extension;
+                }
+                if (imageformat == string.Empty)
+                {
+                    //Search for gif 
+                    f = 0;
+                    for (int i = 0; i < l; i++)
+                    {
+                        if (filepath[i] == Constants.GIF_extension[0])
+                        {
+                            for (int K = i + 1, j = 1; j < GIF_extension; j++, K++)
+                            {
+                                if (filepath[K] == Constants.GIF_extension[j])
+                                {
+                                    f++;
+                                }
+                            }
+                        }
+                    }
+                    if (f == GIF_extension - 1)
+                    {
+                        imageformat = Constants.GIF_extension;
+                    }
+                    if (imageformat == string.Empty)
+                    {
+                        //Search for bmp 
+                        f = 0;
+                        for (int i = 0; i < l; i++)
+                        {
+                            if (filepath[i] == Constants.BMP_extension[0])
+                            {
+                                for (int K = i + 1, j = 1; j < BMP_extension; j++, K++)
+                                {
+                                    if (filepath[K] == Constants.BMP_extension[j])
+                                    {
+                                        f++;
+                                    }
+                                }
+                            }
+                        }
+                        if (f == BMP_extension - 1)
+                        {
+                            imageformat = Constants.BMP_extension;
+                        }
+                        if (imageformat == string.Empty)
+                        {
+                            //Search for tiff
+                            f = 0;
+                            for (int i = 0; i < l; i++)
+                            {
+                                if (filepath[i] == Constants.TIFF_extension[0])
+                                {
+                                    for (int K = i + 1, j = 1; j < TIFF_extension; j++, K++)
+                                    {
+                                        if (filepath[K] == Constants.TIFF_extension[j])
+                                        {
+                                            f++;
+                                        }
+                                    }
+                                }
+                            }
+                            if (f == TIFF_extension - 1)
+                            {
+                                imageformat = Constants.TIFF_extension;
+                            }
+                        }
+                    }
+                }
+            }
+            return imageformat;
+        }
         //Notes image download methods
         public static async void NotesImageDownloader(string notes, string subject, string topic)
         {
@@ -238,35 +445,74 @@ namespace BrainShare.Common
             int notes_image = 0;
             string expression = start_string + @"\S*\d{10}"; //Ending with 10 digits and starting with /assets/content_images/
             List<string> downloadLinks = Links(notes, expression); //First expression
-            string start_string_two = "http://imgur.com/";
+            string start_string_two = "http://";
             string expression_png = start_string_two + @"\S*" + Constants.PNG_extension;
             string expression_jpg = start_string_two + @"\S*" + Constants.JPG_extension;
+            string expression_gif = start_string_two + @"\S*" + Constants.GIF_extension;
  
-            List<string> imgur_jpg_links = Links(notes, expression_jpg); //Links with png
-            List<string> imgur_png_links = Links(notes, expression_png); //Links with jpg
-          
+            List<string> jpg_links = Links(notes, expression_jpg); //Links with png
+            List<string> png_links = Links(notes, expression_png); //Links with jpg
+            List<string> gif_links = Links(notes, expression_png); //Links with gif
             //Search for links with first Regular Expression
             foreach (string _string in downloadLinks)
             {
                 notes_image++;
                 string imageName = subject + "-" + topic + "_" + "notes_image" + notes_image.ToString();
-                await ImageDownloader(imageName, _string); 
-            }
+                //await ImageDownloader(imageName, _string); 
 
-            //Search for links with Seconf Regular Expression with jpg 
-            foreach (string _string in imgur_jpg_links)
+                try
+                {
+                    await NotesImageDownloader(_string);
+                }
+                catch
+                {
+
+                }
+            }
+            //Search for links with Second Regular Expression with jpg 
+            foreach (string _string in jpg_links)
             {
                 notes_image++;
                 string imageName = subject + "-" + topic + "_" + "notes_image" + notes_image.ToString();
-                await ImageDownloader(imageName, _string); 
-            }
+                //await ImageDownloader(imageName, _string); 
+                try
+                {
+                    await NotesImageDownloader(_string);
+                }
+                catch
+                {
 
-            //Search for links with Seconf Regular Expression with png 
-            foreach (string _string in imgur_png_links)
+                }
+            }
+            //Search for links with Second Regular Expression with png 
+            foreach (string _string in png_links)
             {
                 notes_image++;
                 string imageName = subject + "-" + topic + "_" + "notes_image" + notes_image.ToString();
-                await ImageDownloader(imageName, _string);
+                //await ImageDownloader(imageName, _string);
+                try
+                {
+                    await NotesImageDownloader(_string);
+                }
+                catch
+                {
+
+                }
+            }
+            //Search for links with Second Regular Expression with gif 
+            foreach (string _string in gif_links)
+            {
+                notes_image++;
+                string imageName = subject + "-" + topic + "_" + "notes_image" + notes_image.ToString();
+                //await ImageDownloader(imageName, _string);
+                try
+                {
+                    await NotesImageDownloader(_string);
+                }
+                catch
+                {
+
+                }
             }
         }
         public static void GetNotesImagesSubjectsAsync(List<SubjectObservable> subjects)
@@ -360,13 +606,18 @@ namespace BrainShare.Common
             }
             try
             {
-                await ImageDownloader(school.SchoolName, school.ImagePath);
+                //await ImageDownloader(school.SchoolName, school.ImagePath);
+                //await ImageDownloader(school.ImagePath);
+                await LogoImageDownloader(school.ImagePath, school.SchoolName);
             }
             catch
             {
 
             }
-            string newPath = imagePath(school.SchoolName + Constants.PNG_extension);
+            //string newPath = imagePath(school.SchoolName + Constants.PNG_extension);
+            //string newPath = imagePath(imageName(school.ImagePath));
+            string image_extension = imageFormat(school.ImagePath);
+            string newPath = school.SchoolName + image_extension;
             try
             {
                 db.Insert(new School() { SchoolName = school.SchoolName, SchoolBadge = newPath, School_id = school.SchoolId });
@@ -517,11 +768,15 @@ namespace BrainShare.Common
             string ConcatSubjects = JoinedSubjects(subjectsnames);
             ConcatSubjects = UserSubjects(ConcatSubjects);
             SchoolObservable school = user.School;
-            string newPath = imagePath(school.SchoolName + Constants.PNG_extension);              
+            //string newPath = imagePath(school.SchoolName + Constants.PNG_extension);  
+            string image_extension = imageFormat(school.ImagePath);
+            string newPath = school.SchoolName + image_extension;        
             if (school.ImagePath.Equals(newPath)) { } //Checking if image was downloaded
             else
             {
-                await ImageDownloader(school.SchoolName, school.ImagePath);
+                //await ImageDownloader(school.SchoolName, school.ImagePath);
+                //await ImageDownloader(school.ImagePath);
+                await LogoImageDownloader(school.ImagePath, school.SchoolName);
                 School sch = new School(school.SchoolId, school.SchoolName, newPath);
                 try
                 {
@@ -1673,9 +1928,11 @@ namespace BrainShare.Common
                     {
                         try
                         {
-                            await ImageDownloader(book.book_title, book.thumb_url);
+                            //await ImageDownloader(book.book_title, book.thumb_url);
+                            //await ImageDownloader(book.thumb_url);
+                            await BookImageDownloader(book.book_title, book.thumb_url);
                             string newPath = imagePath(book.book_title + Constants.PNG_extension);
-
+                            //string newPath = imagePath(imageName(book.thumb_url));
                             //Insert here book if success here
                             db.Insert(new Book()
                             {
@@ -1729,8 +1986,11 @@ namespace BrainShare.Common
                     List<BookObservable> books = category.category_books;
                     foreach (var book in books)
                     {
-                        await ImageDownloader(book.book_title, book.thumb_url);
+                        //await ImageDownloader(book.book_title, book.thumb_url);
+                        //await ImageDownloader(book.thumb_url);
                         string newPath = imagePath(book.book_title + Constants.PNG_extension);
+                        await BookImageDownloader(book.book_title, book.thumb_url);
+                        //string newPath = imagePath(imageName(book.thumb_url));
                         db.Insert(new Book()
                         {
                             Book_id = book.book_id,
