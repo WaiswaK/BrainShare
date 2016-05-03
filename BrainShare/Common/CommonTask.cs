@@ -449,10 +449,13 @@ namespace BrainShare.Common
             string expression_png = start_string_two + @"\S*" + Constants.PNG_extension;
             string expression_jpg = start_string_two + @"\S*" + Constants.JPG_extension;
             string expression_gif = start_string_two + @"\S*" + Constants.GIF_extension;
+
  
             List<string> jpg_links = Links(notes, expression_jpg); //Links with png
             List<string> png_links = Links(notes, expression_png); //Links with jpg
             List<string> gif_links = Links(notes, expression_png); //Links with gif
+            List<string> bmp_links = Links(notes, expression_png); //Links with bmp
+            List<string> tiff_links = Links(notes, expression_png); //Links with tiff
             //Search for links with first Regular Expression
             foreach (string _string in downloadLinks)
             {
@@ -514,8 +517,38 @@ namespace BrainShare.Common
 
                 }
             }
+            //Search for links with Second Regular Expression with bmp 
+            foreach (string _string in bmp_links)
+            {
+                notes_image++;
+                string imageName = subject + "-" + topic + "_" + "notes_image" + notes_image.ToString();
+                //await ImageDownloader(imageName, _string);
+                try
+                {
+                    await NotesImageDownloader(_string);
+                }
+                catch
+                {
+
+                }
+            }
+            //Search for links with Second Regular Expression with tiff 
+            foreach (string _string in tiff_links)
+            {
+                notes_image++;
+                string imageName = subject + "-" + topic + "_" + "notes_image" + notes_image.ToString();
+                //await ImageDownloader(imageName, _string);
+                try
+                {
+                    await NotesImageDownloader(_string);
+                }
+                catch
+                {
+
+                }
+            }
         }
-        public static void GetNotesImagesSubjectsAsync(List<SubjectObservable> subjects)
+        public static async void GetNotesImagesSubjectsAsync(List<SubjectObservable> subjects)
         {
             List<TopicObservable> topics = new List<TopicObservable>();
             try
@@ -531,7 +564,7 @@ namespace BrainShare.Common
                             try
                             {
                                 NotesImageDownloader(topic.body, subject.name, topic.folder_name);
-                                string new_notes = NotesUpdater(topic.body, subject.name, topic.folder_name);
+                                string new_notes = await NotesUpdater(topic.body, subject.name, topic.folder_name);
                                 Topic newTopic = new Topic(topic.TopicID, subject.Id, topic.TopicTitle, new_notes, topic.Updated_at, topic.teacher, topic.folder_id, topic.folder_name);
 
                                 try
@@ -557,21 +590,72 @@ namespace BrainShare.Common
 
             }
         }
-        //Method to updateNotes
-        public static string NotesUpdater(string notes, string subject, string topic)
+        //Methods to updateNotes
+        public static async Task<string> NotesUpdater(string notes, string subject, string topic)
         {
             string start_string = "/assets/content_images/";
             string expression = start_string + @"\S*\d{10}"; //Ending with 10 digits and starting with /assets/content_images/
-            List<string> downloadLinks = Links(notes, expression);
-            int notes_image = 0;
+            List<string> downloadLinks = Links(notes, expression); //First expression
+            string start_string_two = "http://";
+            string expression_png = start_string_two + @"\S*" + Constants.PNG_extension;
+            string expression_jpg = start_string_two + @"\S*" + Constants.JPG_extension;
+            string expression_gif = start_string_two + @"\S*" + Constants.GIF_extension;
+            string expression_bmp = start_string_two + @"\S*" + Constants.BMP_extension;
+            string expression_tiff = start_string_two + @"\S*" + Constants.TIFF_extension;
+
+            List<string> jpg_links = Links(notes, expression_jpg); //Links with png
+            List<string> png_links = Links(notes, expression_png); //Links with jpg
+            List<string> gif_links = Links(notes, expression_png); //Links with gif
+            List<string> bmp_links = Links(notes, expression_png); //Links with bmp
+            List<string> tiff_links = Links(notes, expression_png); //Links with tiff
+
             foreach (string _string in downloadLinks)
             {
-                notes_image++;
-                string path = ApplicationData.Current.LocalFolder.Path; //Path of Image
-                string imageName = path + subject + "-" + topic + "_" + "notes_image" + notes_image.ToString();
-                notes.Replace(_string,imageName);
+                string imageName = "data:image/png;base64, " + await Base64(_string);
+                notes.Replace(_string, imageName);
+            }
+            foreach (string _string in jpg_links)
+            {
+                string imageName = "data:image/png;base64, " + await Base64(_string);
+                notes.Replace(_string, imageName);
+            }
+            foreach (string _string in png_links)
+            {
+                string imageName = "data:image/png;base64, " + await Base64(_string);
+                notes.Replace(_string, imageName);
+            }
+            foreach (string _string in gif_links)
+            {
+                string imageName = "data:image/png;base64, " + await Base64(_string);
+                notes.Replace(_string, imageName);
+            }
+            foreach (string _string in bmp_links)
+            {
+                string imageName = "data:image/png;base64, " + await Base64(_string);
+                notes.Replace(_string, imageName);
+            }
+            foreach (string _string in tiff_links)
+            {
+                string imageName = "data:image/png;base64, " + await Base64(_string);
+                notes.Replace(_string, imageName);
             }
             return notes;
+        }
+        public static async Task<string> Base64(string image_path)
+        {
+            StorageFolder appFolder = Constants.appFolder;
+            string image = imageName(image_path);
+            StorageFile file = await appFolder.GetFileAsync(image);
+            string base64 = "";
+            using (var stream = await file.OpenAsync(FileAccessMode.Read))
+            {
+                var reader = new DataReader(stream.GetInputStreamAt(0));
+                var bytes = new byte[stream.Size];
+                await reader.LoadAsync((uint)stream.Size);
+                reader.ReadBytes(bytes);
+                base64 = Convert.ToBase64String(bytes);
+            }
+            return base64;
         }
         //Function to make image path
         public static string imagePath(string imagename)

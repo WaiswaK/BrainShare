@@ -83,7 +83,7 @@ namespace BrainShare.Views
             
         }
 
-        private async void WebView2_Loaded(object sender, RoutedEventArgs e)
+        private void WebView2_Loaded(object sender, RoutedEventArgs e)
         {
 
             //To be removed after tests
@@ -102,19 +102,9 @@ namespace BrainShare.Views
 
             //string x = " width=" + quote + "900" + "><br>";
 
-            StorageFolder appFolder = ApplicationData.Current.LocalFolder;
-            StorageFile file = await appFolder.GetFileAsync("00b8170e-318b-4f31-8f2b-fca44ec3099b.jpg");
-            string base64 = "";
-            using (var stream = await file.OpenAsync(FileAccessMode.Read))
-            {
-                var reader = new DataReader(stream.GetInputStreamAt(0));
-                var bytes = new byte[stream.Size];
-                await reader.LoadAsync((uint)stream.Size);
-                reader.ReadBytes(bytes);
-                base64 = Convert.ToBase64String(bytes);
-            }
+           
 
-            string tester = "<html><head><title>Image test</title></head><body><p>This is a test app!</p><img src=\"data:image/png;base64" + base64 + "\" /></body></html>";
+            //string tester = "<html><head><title>Image test</title></head><body><p>This is a test app!</p><img src=\"data:image/png;base64,"+ base64 + "\" /></body></html>";
             
             //string test = notesfromJson + quote + pth2 + quote + x;
 
@@ -122,9 +112,9 @@ namespace BrainShare.Views
 
             //D: \UnSorted Content\Junk\Jh\0db0e0c312ee26ad7e303804a5449f91.jpg
 
-                var WebView = (WebView)sender;
-            //string content = WebViewContentHelper.WrapHtml(all_notes, WebView.ActualWidth, WebView.ActualHeight);
-            string content = WebViewContentHelper.WrapHtml(tester, WebView.ActualWidth, WebView.ActualHeight);
+            var WebView = (WebView)sender;
+            string content = WebViewContentHelper.WrapHtml(all_notes, WebView.ActualWidth, WebView.ActualHeight);
+            //string content = WebViewContentHelper.WrapHtml(tester, WebView.ActualWidth, WebView.ActualHeight);
             WebView.NavigateToString(content);
         }
 
@@ -168,14 +158,10 @@ namespace BrainShare.Views
         {
             navigationHelper.OnNavigatedTo(e); 
         }
-
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedFrom(e);
         }
-
-        #endregion
-
-       
+        #endregion       
     }
 }
