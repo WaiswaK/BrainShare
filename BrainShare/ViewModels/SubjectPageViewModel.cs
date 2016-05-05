@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BrainShare.Models;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 
 namespace BrainShare.ViewModels
@@ -37,7 +32,7 @@ namespace BrainShare.ViewModels
             {
                 List<TopicObservable> folderTopics = new List<TopicObservable>();
                 FolderObservable folder = new FolderObservable();
-                Boolean finished = false;
+                bool finished = false;
                 folder.folder_id = topic.folder_id;
                 folder.folder_name = topic.folder_name;
                 foreach (var comparisonTopic in topics)

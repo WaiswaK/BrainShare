@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace BrainShare.Models
 {
@@ -15,5 +11,6 @@ namespace BrainShare.Models
         public List<SubjectObservable> subjects { get; set; }
         public int update_status { get; set; }
         public LibraryObservable Library { get; set; }
+        public bool NotesImagesDownloading { get; set; }
     }
 }

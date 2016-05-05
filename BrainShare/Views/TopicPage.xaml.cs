@@ -1,22 +1,9 @@
 ﻿using BrainShare.Common;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using BrainShare.Models;
 using BrainShare.ViewModels;
-using Windows.Storage;
-using Windows.Storage.Streams;
 
 
 
@@ -24,7 +11,7 @@ using Windows.Storage.Streams;
 
 namespace BrainShare.Views
 {
-    
+
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
@@ -79,42 +66,14 @@ namespace BrainShare.Views
              var topic = e.NavigationParameter as TopicObservable;
              TopicPageViewModel vm = new TopicPageViewModel(topic);
              DataContext = vm;
-             all_notes = topic.body;
+             all_notes = topic.notes;
             
         }
 
         private void WebView2_Loaded(object sender, RoutedEventArgs e)
         {
-
-            //To be removed after tests
-
-            //string imagePAth = @"C:\Users\Kenneth\AppData\Local\Packages\CodeVisionLtd.BrainShare_fd97ja0290hr0\LocalState\Biology_ECOLOGY_notes_image1.png";
-            //string imagePAth = @"D:\UnSorted Content\Junk\Jh\0db0e0c312ee26ad7e303804a5449f91.jpg";
-            //string notesfromJson = "<br><div><br></div><div><img src=";
-            //string notesfromJson = "<img src=";
-            //string quote = "\"";
-
-            //string x = " width=" + quote + "470" + "><br></div><div>";
-
-            //string header = @"file:///";
-
-            //string pth2 = "file:///D:/UnSorted%20Content/Junk/Jh/02.jpg";
-
-            //string x = " width=" + quote + "900" + "><br>";
-
-           
-
-            //string tester = "<html><head><title>Image test</title></head><body><p>This is a test app!</p><img src=\"data:image/png;base64,"+ base64 + "\" /></body></html>";
-            
-            //string test = notesfromJson + quote + pth2 + quote + x;
-
-            //< img src = "http://i.imgur.com/dApHyaa.gif" width = "600" >< br >
-
-            //D: \UnSorted Content\Junk\Jh\0db0e0c312ee26ad7e303804a5449f91.jpg
-
             var WebView = (WebView)sender;
             string content = WebViewContentHelper.WrapHtml(all_notes, WebView.ActualWidth, WebView.ActualHeight);
-            //string content = WebViewContentHelper.WrapHtml(tester, WebView.ActualWidth, WebView.ActualHeight);
             WebView.NavigateToString(content);
         }
 

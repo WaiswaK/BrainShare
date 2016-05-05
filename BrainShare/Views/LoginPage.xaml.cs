@@ -305,6 +305,7 @@ namespace BrainShare
                         loggedIn.subjects = UserSubjects;
                         found = true;
                         loggedIn.update_status = Constants.finished_update;
+                        loggedIn.NotesImagesDownloading = false;
                         Frame.Navigate(typeof(StudentPage), loggedIn);
                     }
                 }
@@ -325,7 +326,7 @@ namespace BrainShare
                 var formContent = new FormUrlEncodedContent(postData);
                 var authresponse = await client.PostAsync("http://brainshare.ug/liveapis/authenticate.json", formContent);
                 var authresult = await authresponse.Content.ReadAsStreamAsync();
-                var authstreamReader = new System.IO.StreamReader(authresult);
+                var authstreamReader = new StreamReader(authresult);
                 var authresponseContent = authstreamReader.ReadToEnd().Trim().ToString();
                 var user = JsonObject.Parse(authresponseContent);
 
@@ -386,7 +387,7 @@ namespace BrainShare
                     var formContent = new FormUrlEncodedContent(postData);
                     var courseresponse = await client.PostAsync("http://brainshare.ug/liveapis/course_units.json", formContent);
                     var coursesresult = await courseresponse.Content.ReadAsStreamAsync();
-                    var coursestreamReader = new System.IO.StreamReader(coursesresult);
+                    var coursestreamReader = new StreamReader(coursesresult);
                     var courseresponseContent = coursestreamReader.ReadToEnd().Trim().ToString();
                     var subjects = JsonArray.Parse(courseresponseContent);
 
@@ -402,7 +403,7 @@ namespace BrainShare
                         var notes_formContent = new FormUrlEncodedContent(notes_postData);
                         var notes_response = await notes_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_notes.json", notes_formContent);
                         var notes_result = await notes_response.Content.ReadAsStreamAsync();
-                        var notes_streamReader = new System.IO.StreamReader(notes_result);
+                        var notes_streamReader = new StreamReader(notes_result);
                         var notes_responseContent = notes_streamReader.ReadToEnd().Trim().ToString();
                         var notes = JsonArray.Parse(notes_responseContent);
 
@@ -414,7 +415,7 @@ namespace BrainShare
                         var videosformContent = new FormUrlEncodedContent(videospostData);
                         var videosresponse = await videos_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_videos.json", videosformContent);
                         var videosresult = await videosresponse.Content.ReadAsStreamAsync();
-                        var videosstreamReader = new System.IO.StreamReader(videosresult);
+                        var videosstreamReader = new StreamReader(videosresult);
                         var videosresponseContent = videosstreamReader.ReadToEnd().Trim().ToString();
                         var videos = JsonArray.Parse(videosresponseContent);
 
@@ -426,7 +427,7 @@ namespace BrainShare
                         var assgnmt_formContent = new FormUrlEncodedContent(assgnmt_postData);
                         var assgnmt_response = await assgnmt_httpclient.PostAsync("http://brainshare.ug/liveapis/assignments.json", assgnmt_formContent);
                         var assgnmt_result = await assgnmt_response.Content.ReadAsStreamAsync();
-                        var assgnmt_streamReader = new System.IO.StreamReader(assgnmt_result);
+                        var assgnmt_streamReader = new StreamReader(assgnmt_result);
                         var assgnmt_responseContent = assgnmt_streamReader.ReadToEnd().Trim().ToString();
                         var assignments = JsonArray.Parse(assgnmt_responseContent);
 
@@ -438,7 +439,7 @@ namespace BrainShare
                         var file_formContent = new FormUrlEncodedContent(file_postData);
                         var file_response = await file_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_files.json", file_formContent);
                         var file_result = await file_response.Content.ReadAsStreamAsync();
-                        var file_streamReader = new System.IO.StreamReader(file_result);
+                        var file_streamReader = new StreamReader(file_result);
                         var file_responseContent = file_streamReader.ReadToEnd().Trim().ToString();
                         var files = JsonArray.Parse(file_responseContent); 
                        
@@ -484,6 +485,7 @@ namespace BrainShare
                         await CommonTask.InsertUserAsync(user);
                         CommonTask.InsertSubjectsAsync(user.subjects);
                         user.update_status = Constants.finished_update;
+                        user.NotesImagesDownloading = false;
                         Frame.Navigate(typeof(StudentPage), user);
                     }
                     else
@@ -521,6 +523,7 @@ namespace BrainShare
                             CommonTask.InsertSubjectsAsync(user.subjects);
                         }
                         user.update_status = Constants.finished_update;
+                        user.NotesImagesDownloading = false;
                         Frame.Navigate(typeof(StudentPage), user);
                     }
                 }
@@ -535,6 +538,7 @@ namespace BrainShare
                     else
                     {
                         user.update_status = Constants.finished_update;
+                        user.NotesImagesDownloading = false;
                         Frame.Navigate(typeof(StudentPage), user);
                     }
                 }

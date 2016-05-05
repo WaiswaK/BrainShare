@@ -8,7 +8,6 @@ using Windows.UI.Xaml.Navigation;
 using BrainShare.ViewModels;
 using BrainShare.Models;
 using BrainShare.Database;
-using System.Threading.Tasks;
 using System.Net.Http;
 using Windows.UI.Popups;
 using Windows.Data.Json;
@@ -98,9 +97,12 @@ namespace BrainShare.Views
                 if (CommonTask.IsInternetConnectionAvailable())
                 {
                     UpdateUser(initial.email, initial.password, CommonTask.SubjectIdsForUser(initial.email), user.subjects, user);
-                    CommonTask.GetNotesImagesSubjectsAsync(user.subjects);//Update Notes //Needs to be awaited
+                    if (user.NotesImagesDownloading ==false)
+                    {
+                        user.NotesImagesDownloading = true; //Download once immediately after login
+                        CommonTask.GetNotesImagesSubjectsAsync(user.subjects);                     
+                    }           
                 }
-                //CommonTask.GetNotesImagesSubjectsAsync(user.subjects); //To be deleted after
             }
         }
 
@@ -117,7 +119,6 @@ namespace BrainShare.Views
         }
         private void itemGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
         }
         private async void UpdateUser(string username, string password, List<int> oldIDs, List<SubjectObservable> InstalledSubjects, UserObservable currentUser)
         {
@@ -284,11 +285,6 @@ namespace BrainShare.Views
                                 courses.Add(subject);
                                 newcourses.Add(subject);
                             }
-
-
-                            //if (remainedIDs != null)
-                            //{
-
                             if (remainedIDs == null)
                             {
                                 NewSubjectIds = null;
@@ -298,9 +294,6 @@ namespace BrainShare.Views
                                 InstalledSubjects.AddRange(courses);
                                 NewSubjectIds = CommonTask.newIds(IDs, remainedIDs);
                             }
-
-
-
                             if (NewSubjectIds != null)
                             {
                                 List<int> UpdateIds = CommonTask.oldIds(IDs, remainedIDs);
@@ -815,11 +808,6 @@ namespace BrainShare.Views
         private void Log_out(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(LoginPage));
-        }
-        private async Task InitializeDatabase()
-        {
-            DbConnection oDbConnection = new DbConnection();
-            await oDbConnection.InitializeDatabase();
         }
         #region NavigationHelper registration
 

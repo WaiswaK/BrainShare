@@ -81,9 +81,9 @@ namespace BrainShare.Views
             try
             {
                 var file = e.NavigationParameter as BookObservable;
-                Boolean found = false;
-                Boolean download = false;
-                Boolean fullydownloaded = false;
+                bool found = false;
+                bool download = false;
+                bool fullydownloaded = false;
                 await CommonTask.DeleteTemporaryFiles();
                 if (CommonTask.IsInternetConnectionAvailable())
                 {

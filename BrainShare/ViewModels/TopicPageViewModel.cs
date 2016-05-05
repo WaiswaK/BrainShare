@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using BrainShare.Models;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using Windows.UI.Xaml.Data;
 
 
 namespace BrainShare.ViewModels
@@ -37,7 +29,7 @@ namespace BrainShare.ViewModels
         {
             TopicName = Topic.TopicTitle;
             TopicFiles = Topic.Files;
-            TopicNotes = Topic.body;
+            TopicNotes = Topic.notes;
         }
 
     }

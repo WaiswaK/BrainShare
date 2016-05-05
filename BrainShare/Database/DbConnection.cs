@@ -1,8 +1,5 @@
-﻿using System.IO;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using SQLite;
-using BrainShare.Models;
-using Windows.Storage;
 using System;
 using BrainShare.Common;
 
@@ -24,7 +21,7 @@ namespace BrainShare.Database
         {
             if (await LocalDatabaseNotPresent(Constants.dbName))
             {
-                using (var db = new SQLite.SQLiteConnection(Constants.dbPath))
+                using (var db = new SQLiteConnection(Constants.dbPath))
                 {
                     db.CreateTable<Subject>();
                     db.CreateTable<Topic>();

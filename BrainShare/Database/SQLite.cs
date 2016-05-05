@@ -1644,7 +1644,7 @@ namespace SQLite
 		public static string SqlType (TableMapping.Column p, bool storeDateTimeAsTicks)
 		{
 			var clrType = p.ColumnType;
-			if (clrType == typeof(Boolean) || clrType == typeof(Byte) || clrType == typeof(UInt16) || clrType == typeof(SByte) || clrType == typeof(Int16) || clrType == typeof(Int32)) {
+			if (clrType == typeof(bool) || clrType == typeof(Byte) || clrType == typeof(UInt16) || clrType == typeof(SByte) || clrType == typeof(Int16) || clrType == typeof(Int32)) {
 				return "integer";
 			} else if (clrType == typeof(UInt32) || clrType == typeof(Int64)) {
 				return "bigint";
@@ -1911,7 +1911,7 @@ namespace SQLite
 					SQLite3.BindText (stmt, index, (string)value, -1, NegativePointer);
 				} else if (value is Byte || value is UInt16 || value is SByte || value is Int16) {
 					SQLite3.BindInt (stmt, index, Convert.ToInt32 (value));
-				} else if (value is Boolean) {
+				} else if (value is bool) {
 					SQLite3.BindInt (stmt, index, (bool)value ? 1 : 0);
 				} else if (value is UInt32 || value is Int64) {
 					SQLite3.BindInt64 (stmt, index, Convert.ToInt64 (value));
@@ -1958,7 +1958,7 @@ namespace SQLite
 					return SQLite3.ColumnString (stmt, index);
 				} else if (clrType == typeof(Int32)) {
 					return (int)SQLite3.ColumnInt (stmt, index);
-				} else if (clrType == typeof(Boolean)) {
+				} else if (clrType == typeof(bool)) {
 					return SQLite3.ColumnInt (stmt, index) == 1;
 				} else if (clrType == typeof(double)) {
 					return SQLite3.ColumnDouble (stmt, index);
