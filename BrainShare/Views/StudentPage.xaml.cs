@@ -102,7 +102,7 @@ namespace BrainShare.Views
                         user.NotesImagesDownloading = true; //Download once immediately after login
                         CommonTask.GetNotesImagesSubjectsAsync(user.subjects);                     
                     }           
-                }
+                }               
             }
         }
 

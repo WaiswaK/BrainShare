@@ -53,7 +53,12 @@ namespace BrainShare.Views
             var subject = e.NavigationParameter as SubjectObservable;
             SubjectPageViewModel vm = new SubjectPageViewModel(subject);
             DataContext = vm;  
+
+
+
         }
+
+       
         private void Category_click(object sender, ItemClickEventArgs e)
         {
             var item = e.ClickedItem;
@@ -93,11 +98,7 @@ namespace BrainShare.Views
         {
         }
        
-         private void logout_btn_click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(LoginPage));
-        }
-
+         
         private void itemGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using Windows.Storage;
 
 namespace BrainShare.Common
@@ -24,15 +23,7 @@ namespace BrainShare.Common
         public static bool LibraryModule;
 
 
-
-
-
-
-      
-
-
-
-
+       
 
     }
 }

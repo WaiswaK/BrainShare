@@ -18,7 +18,9 @@ namespace BrainShare.Views
     public sealed partial class TopicPage : Page
     {
         string all_notes = null;
-           
+        TopicObservable Current_Topic = null;
+
+
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
@@ -67,13 +69,15 @@ namespace BrainShare.Views
              TopicPageViewModel vm = new TopicPageViewModel(topic);
              DataContext = vm;
              all_notes = topic.notes;
-            
+             Current_Topic = topic;
         }
 
-        private void WebView2_Loaded(object sender, RoutedEventArgs e)
+        private async void WebView2_Loaded(object sender, RoutedEventArgs e)
         {
+            string new_notes = await CommonTask.Notes_loader(Current_Topic);
             var WebView = (WebView)sender;
-            string content = WebViewContentHelper.WrapHtml(all_notes, WebView.ActualWidth, WebView.ActualHeight);
+            //string content = WebViewContentHelper.WrapHtml(all_notes, WebView.ActualWidth, WebView.ActualHeight);
+            string content = WebViewContentHelper.WrapHtml(new_notes, WebView.ActualWidth, WebView.ActualHeight);
             WebView.NavigateToString(content);
         }
 
