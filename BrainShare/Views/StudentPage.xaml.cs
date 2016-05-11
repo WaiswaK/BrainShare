@@ -11,6 +11,8 @@ using BrainShare.Database;
 using System.Net.Http;
 using Windows.UI.Popups;
 using Windows.Data.Json;
+using BrainShare.Core;
+using Windows.Storage;
 
 
 
@@ -26,7 +28,16 @@ namespace BrainShare.Views
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        ErrorLogTask Logfile = new ErrorLogTask();
+        
+        //Settings
+        private const string _noteskey = "Notes";
+        private const string _libkey = "Library";
+        private const string _videoskey = "Videos";
 
+        private bool notes_on = true;
+        private bool library_on = true;
+        //private bool videos_on = false;
 
 
         /// <summary>
@@ -70,39 +81,50 @@ namespace BrainShare.Views
         {
             var user = e.NavigationParameter as UserObservable;
             UserObservable initial = user;
-            char[] delimiter = { '.' };
-            List<SubjectObservable> subjectsNew = new List<SubjectObservable>();
-            var db = new SQLite.SQLiteConnection(Constants.dbPath);
-            var query = (db.Table<User>().Where(c => c.e_mail == user.email)).Single();
 
-            string[] SplitSubjectId = query.subjects.Split(delimiter);
-            List<string> SubjectIdList = SplitSubjectId.ToList();
-            List<int> subjectids = CommonTask.SubjectIdsConvert(SubjectIdList);
-            foreach (var id in subjectids)
+            //Notes and Notes Module Settings Check
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey(_noteskey))
+                notes_on = (bool)ApplicationData.Current.LocalSettings.Values[_noteskey];
+            if (notes_on)
             {
-                SubjectObservable subject = CommonTask.GetSubject(id);
-                subjectsNew.Add(subject);
+                char[] delimiter = { '.' };
+                List<SubjectObservable> subjectsNew = new List<SubjectObservable>();
+                var db = new SQLite.SQLiteConnection(Constants.dbPath);
+                var query = (db.Table<User>().Where(c => c.e_mail == user.email)).Single();
+
+                string[] SplitSubjectId = query.subjects.Split(delimiter);
+                List<string> SubjectIdList = SplitSubjectId.ToList();
+                List<int> subjectids = ModelTask.SubjectIdsConvert(SubjectIdList);
+                foreach (var id in subjectids)
+                {
+                    SubjectObservable subject = DatabaseOutputTask.GetSubject(id);
+                    subjectsNew.Add(subject);
+                }
+                user.subjects = subjectsNew;
             }
 
-            user.subjects = subjectsNew;
-
-            //Library Update methods
-            LibraryObservable lib = CommonTask.GetLibrary(user.School.SchoolId);
-            user.Library = lib;
-
+            //Library and Library Module Settings Check                     
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey(_libkey)) 
+                library_on = (bool)ApplicationData.Current.LocalSettings.Values[_libkey];
+            if (library_on)
+            {
+                LibraryObservable lib = DatabaseOutputTask.GetLibrary(user.School.SchoolId);
+                user.Library = lib;
+            }
+                
             StudentPageViewModel vm = new StudentPageViewModel(user);
             DataContext = vm;
             if (user.update_status == Constants.finished_update)
             {
                 if (CommonTask.IsInternetConnectionAvailable())
                 {
-                    UpdateUser(initial.email, initial.password, CommonTask.SubjectIdsForUser(initial.email), user.subjects, user);
-                    if (user.NotesImagesDownloading ==false)
+                    UpdateUser(initial.email, initial.password, DatabaseOutputTask.SubjectIdsForUser(initial.email), user.subjects, user);
+                    if (user.NotesImagesDownloading == false)
                     {
                         user.NotesImagesDownloading = true; //Download once immediately after login
-                        CommonTask.GetNotesImagesSubjectsAsync(user.subjects);                     
-                    }           
-                }               
+                        NotesTask.GetNotesImagesSubjectsAsync(user.subjects);
+                    }
+                }
             }
         }
 
@@ -126,7 +148,7 @@ namespace BrainShare.Views
             SubjectObservable subject = new SubjectObservable();
             List<SubjectObservable> final = new List<SubjectObservable>();
             LibraryObservable Current_Library = new LibraryObservable();
-            LibraryObservable Old_Library = CommonTask.GetLibrary(currentUser.School.SchoolId);
+            LibraryObservable Old_Library = DatabaseOutputTask.GetLibrary(currentUser.School.SchoolId);
             currentUser.update_status = Constants.updating;
 
             pgBar.Visibility = Visibility.Visible;
@@ -146,11 +168,14 @@ namespace BrainShare.Views
                 var library_streamReader = new System.IO.StreamReader(library_result);
                 var library_responseContent = library_streamReader.ReadToEnd().Trim().ToString();
                 var library = JsonArray.Parse(library_responseContent);
-                Current_Library = CommonTask.GetLibrary(library, userdetails.School.SchoolId);
+                Current_Library = JSONTask.GetLibrary(library, userdetails.School.SchoolId);
             }
-            catch
+            catch (Exception ex)
             {
-
+                Logfile.Error_details = ex.ToString();
+                Logfile.Error_title = "UpdateUser Method";
+                Logfile.Location = "StudentPage";
+                //await ErrorLogTask.LogFileSaveAsync(Logfile);
             }
             try
             {
@@ -165,13 +190,13 @@ namespace BrainShare.Views
                 var authresponseContent = authstreamReader.ReadToEnd().Trim().ToString();
                 var loginObject = JsonObject.Parse(authresponseContent);
 
-                LoginStatus user = CommonTask.Notification(loginObject);
+                LoginStatus user = JSONTask.Notification(loginObject);
                 if (user.statusCode.Equals("200") && user.statusDescription.Equals("Authentication was successful"))
                 {
                     userdetails.email = username;
                     userdetails.password = password;
-                    userdetails.School = CommonTask.GetSchool(loginObject);
-                    userdetails.full_names = CommonTask.GetUsername(loginObject);
+                    userdetails.School = JSONTask.GetSchool(loginObject);
+                    userdetails.full_names = JSONTask.GetUsername(loginObject);
 
                     try
                     {
@@ -189,22 +214,22 @@ namespace BrainShare.Views
 
                         List<SubjectObservable> courses = new List<SubjectObservable>();
                         List<SubjectObservable> newcourses = new List<SubjectObservable>();
-                        List<int> IDs = CommonTask.SubjectIds(subjects);
-                        List<int> NewSubjectIds = CommonTask.newIds(oldIDs, IDs);
+                        List<int> IDs = JSONTask.SubjectIds(subjects);
+                        List<int> NewSubjectIds = ModelTask.newIds(oldIDs, IDs);
 
                         char[] delimiter = { '.' };
                         var db = new SQLite.SQLiteConnection(Constants.dbPath);
                         var query = (db.Table<User>().Where(c => c.e_mail == username)).Single();
                         string[] SplitSubjectId = query.subjects.Split(delimiter);
                         List<string> SubjectIdList = SplitSubjectId.ToList();
-                        List<int> subjectids = CommonTask.SubjectIdsConvert(SubjectIdList);
-                        List<int> removedIds = CommonTask.newIds(IDs, subjectids);
+                        List<int> subjectids = ModelTask.SubjectIdsConvert(SubjectIdList);
+                        List<int> removedIds = ModelTask.newIds(IDs, subjectids);
                         List<SubjectObservable> CurrentSubjects = new List<SubjectObservable>();
                         List<int> remainedIDs = new List<int>();
 
                         if (removedIds != null)
                         {
-                            remainedIDs = CommonTask.newIds(removedIds, oldIDs);
+                            remainedIDs = ModelTask.newIds(removedIds, oldIDs);
                         }
                         else
                         {
@@ -214,7 +239,7 @@ namespace BrainShare.Views
                         {
                             foreach (var id in remainedIDs)
                             {
-                                SubjectObservable subjectremoved = CommonTask.GetSubject(id);
+                                SubjectObservable subjectremoved = DatabaseOutputTask.GetSubject(id);
                                 CurrentSubjects.Add(subjectremoved);
                             }
                             InstalledSubjects = CurrentSubjects;
@@ -227,9 +252,6 @@ namespace BrainShare.Views
 
                         if (NewSubjectIds != null)
                         {
-                            //  LoadingMsg.Text = "Found Updates";
-                            //  LoadingMsg.Visibility = Visibility.Visible;
-
                             foreach (var id in NewSubjectIds)
                             {
                                 var notes_httpclient = new HttpClient();
@@ -280,7 +302,7 @@ namespace BrainShare.Views
                                 var file_responseContent = file_streamReader.ReadToEnd().Trim().ToString();
                                 var files = JsonArray.Parse(file_responseContent);
 
-                                subject = CommonTask.GetSubject(subjects, id, notes, videos, assignments, files);
+                                subject = JSONTask.GetSubject(subjects, id, notes, videos, assignments, files);
                                 CurrentSubjects.Add(subject);
                                 courses.Add(subject);
                                 newcourses.Add(subject);
@@ -292,11 +314,11 @@ namespace BrainShare.Views
                             if (remainedIDs != null)
                             {
                                 InstalledSubjects.AddRange(courses);
-                                NewSubjectIds = CommonTask.newIds(IDs, remainedIDs);
+                                NewSubjectIds = ModelTask.newIds(IDs, remainedIDs);
                             }
                             if (NewSubjectIds != null)
                             {
-                                List<int> UpdateIds = CommonTask.oldIds(IDs, remainedIDs);
+                                List<int> UpdateIds = ModelTask.oldIds(IDs, remainedIDs);
                                 List<SubjectObservable> oldcourses = new List<SubjectObservable>();
                                 foreach (var id in UpdateIds)
                                 {
@@ -348,7 +370,7 @@ namespace BrainShare.Views
                                     var file_responseContent = file_streamReader.ReadToEnd().Trim().ToString();
                                     var files = JsonArray.Parse(file_responseContent);
 
-                                    subject = CommonTask.GetSubject(subjects, id, notes, videos, assignments, files);
+                                    subject = JSONTask.GetSubject(subjects, id, notes, videos, assignments, files);
                                     oldcourses.Add(subject);
                                     courses.Add(subject);//check here
                                 }
@@ -359,7 +381,7 @@ namespace BrainShare.Views
                                 }
                                 else
                                 {
-                                    updateable = CommonTask.UpdateableSubjects(InstalledSubjects, oldcourses);
+                                    updateable = ModelTask.UpdateableSubjects(InstalledSubjects, oldcourses);
                                 }
 
                                 if (updateable == null)
@@ -372,21 +394,21 @@ namespace BrainShare.Views
                                     else
                                     {
                                         userdetails.subjects = InstalledSubjects;
-                                        updatedTopics = CommonTask.UpdateableSubjectsTopics(InstalledSubjects, oldcourses);
+                                        updatedTopics = ModelTask.UpdateableSubjectsTopics(InstalledSubjects, oldcourses);
                                         if (updatedTopics != null)
                                         {
-                                            CommonTask.InsertSubjectsUpdateAsync(updatedTopics);
+                                            DatabaseInputTask.InsertSubjectsUpdateAsync(updatedTopics);
                                         }
 
                                     }
 
-                                    LibraryObservable newContentLibrary = CommonTask.CompareLibraries(Old_Library, Current_Library);
-                                    List<Library_CategoryObservable> updatedOldContentLibrary = CommonTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
+                                    LibraryObservable newContentLibrary = ModelTask.CompareLibraries(Old_Library, Current_Library);
+                                    List<Library_CategoryObservable> updatedOldContentLibrary = ModelTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
 
 
                                     //Have this script everywhere you see the above decleration
 
-                                   // List<Library_CategoryObservable> removeOldContentLibrary = CommonTask.Category_Update_Removal(Old_Library.categories, newContentLibrary.categories);
+                                    // List<Library_CategoryObservable> removeOldContentLibrary = CommonTask.Category_Update_Removal(Old_Library.categories, newContentLibrary.categories);
 
                                     //Then modify the method below to contain it's value
                                     //Can't do that cause i only have 2 files and so i can't see everywhere they are
@@ -415,13 +437,13 @@ namespace BrainShare.Views
                                 {
                                     List<SubjectObservable> updatedTopics = new List<SubjectObservable>();
                                     userdetails.subjects = InstalledSubjects;
-                                    updatedTopics = CommonTask.UpdateableSubjectsTopics(InstalledSubjects, oldcourses);
+                                    updatedTopics = ModelTask.UpdateableSubjectsTopics(InstalledSubjects, oldcourses);
                                     if (updatedTopics != null)
                                     {
-                                        CommonTask.InsertSubjectsUpdateAsync(updatedTopics);
+                                        DatabaseInputTask.InsertSubjectsUpdateAsync(updatedTopics);
                                     }
-                                    LibraryObservable newContentLibrary = CommonTask.CompareLibraries(Old_Library, Current_Library);
-                                    List<Library_CategoryObservable> updatedOldContentLibrary = CommonTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
+                                    LibraryObservable newContentLibrary = ModelTask.CompareLibraries(Old_Library, Current_Library);
+                                    List<Library_CategoryObservable> updatedOldContentLibrary = ModelTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
                                     if (newContentLibrary == null && updatedOldContentLibrary != null)
                                     {
                                         UserUpdater(userdetails, courses, updateable, currentUser, null, updatedOldContentLibrary);
@@ -445,8 +467,8 @@ namespace BrainShare.Views
                                 if (remainedIDs == null)
                                 {
                                     userdetails.subjects = CurrentSubjects;
-                                    LibraryObservable newContentLibrary = CommonTask.CompareLibraries(Old_Library, Current_Library);
-                                    List<Library_CategoryObservable> updatedOldContentLibrary = CommonTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
+                                    LibraryObservable newContentLibrary = ModelTask.CompareLibraries(Old_Library, Current_Library);
+                                    List<Library_CategoryObservable> updatedOldContentLibrary = ModelTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
                                     if (newContentLibrary == null && updatedOldContentLibrary != null)
                                     {
                                         UserUpdater(userdetails, newcourses, null, currentUser, null, updatedOldContentLibrary);
@@ -466,7 +488,7 @@ namespace BrainShare.Views
                                 }
                                 else
                                 {
-                                    List<int> UpdateIds = CommonTask.oldIds(remainedIDs, IDs);
+                                    List<int> UpdateIds = ModelTask.oldIds(remainedIDs, IDs);
                                     List<SubjectObservable> oldcourses = new List<SubjectObservable>();
                                     foreach (var id in UpdateIds)
                                     {
@@ -518,22 +540,22 @@ namespace BrainShare.Views
                                         var file_responseContent = file_streamReader.ReadToEnd().Trim().ToString();
                                         var files = JsonArray.Parse(file_responseContent);
 
-                                        subject = CommonTask.GetSubject(subjects, id, notes, videos, assignments, files);
+                                        subject = JSONTask.GetSubject(subjects, id, notes, videos, assignments, files);
                                         oldcourses.Add(subject);
                                     }
-                                    List<SubjectObservable> updateable = CommonTask.UpdateableSubjects(InstalledSubjects, oldcourses);
+                                    List<SubjectObservable> updateable = ModelTask.UpdateableSubjects(InstalledSubjects, oldcourses);
 
                                     if (updateable == null)
                                     {
                                         userdetails.subjects = InstalledSubjects;
                                         List<SubjectObservable> updatedTopics = new List<SubjectObservable>();
-                                        updatedTopics = CommonTask.UpdateableSubjectsTopics(InstalledSubjects, oldcourses);
+                                        updatedTopics = ModelTask.UpdateableSubjectsTopics(InstalledSubjects, oldcourses);
                                         if (updatedTopics != null)
                                         {
-                                            CommonTask.InsertSubjectsUpdateAsync(updatedTopics);
+                                            DatabaseInputTask.InsertSubjectsUpdateAsync(updatedTopics);
                                         }
-                                        LibraryObservable newContentLibrary = CommonTask.CompareLibraries(Old_Library, Current_Library);
-                                        List<Library_CategoryObservable> updatedOldContentLibrary = CommonTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
+                                        LibraryObservable newContentLibrary = ModelTask.CompareLibraries(Old_Library, Current_Library);
+                                        List<Library_CategoryObservable> updatedOldContentLibrary = ModelTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
                                         if (newContentLibrary == null && updatedOldContentLibrary != null)
                                         {
                                             UserUpdater(userdetails, newcourses, null, currentUser, null, updatedOldContentLibrary);
@@ -555,13 +577,13 @@ namespace BrainShare.Views
                                     {
                                         userdetails.subjects = InstalledSubjects;
                                         List<SubjectObservable> updatedTopics = new List<SubjectObservable>();
-                                        updatedTopics = CommonTask.UpdateableSubjectsTopics(InstalledSubjects, oldcourses);
+                                        updatedTopics = ModelTask.UpdateableSubjectsTopics(InstalledSubjects, oldcourses);
                                         if (updatedTopics != null)
                                         {
-                                            CommonTask.InsertSubjectsUpdateAsync(updatedTopics);
+                                            DatabaseInputTask.InsertSubjectsUpdateAsync(updatedTopics);
                                         }
-                                        LibraryObservable newContentLibrary = CommonTask.CompareLibraries(Old_Library, Current_Library);
-                                        List<Library_CategoryObservable> updatedOldContentLibrary = CommonTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
+                                        LibraryObservable newContentLibrary = ModelTask.CompareLibraries(Old_Library, Current_Library);
+                                        List<Library_CategoryObservable> updatedOldContentLibrary = ModelTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
                                         if (newContentLibrary == null && updatedOldContentLibrary != null)
                                         {
                                             UserUpdater(userdetails, newcourses, updateable, currentUser, null, updatedOldContentLibrary);
@@ -587,8 +609,8 @@ namespace BrainShare.Views
                             if (remainedIDs == null)
                             {
                                 userdetails.subjects = null;
-                                LibraryObservable newContentLibrary = CommonTask.CompareLibraries(Old_Library, Current_Library);
-                                List<Library_CategoryObservable> updatedOldContentLibrary = CommonTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
+                                LibraryObservable newContentLibrary = ModelTask.CompareLibraries(Old_Library, Current_Library);
+                                List<Library_CategoryObservable> updatedOldContentLibrary = ModelTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
                                 if (newContentLibrary == null && updatedOldContentLibrary != null)
                                 {
                                     UserUpdater(userdetails, null, null, currentUser, null, updatedOldContentLibrary);
@@ -608,7 +630,7 @@ namespace BrainShare.Views
                             }
                             else
                             {
-                                List<int> UpdateIds = CommonTask.oldIds(remainedIDs, IDs);
+                                List<int> UpdateIds = ModelTask.oldIds(remainedIDs, IDs);
                                 List<SubjectObservable> oldcourses = new List<SubjectObservable>();
 
                                 foreach (var id in UpdateIds)
@@ -661,21 +683,21 @@ namespace BrainShare.Views
                                     var file_responseContent = file_streamReader.ReadToEnd().Trim().ToString();
                                     var files = JsonArray.Parse(file_responseContent);
 
-                                    subject = CommonTask.GetSubject(subjects, id, notes, videos, assignments, files);
+                                    subject = JSONTask.GetSubject(subjects, id, notes, videos, assignments, files);
                                     oldcourses.Add(subject);
                                     courses.Add(subject);
                                 }
-                                List<SubjectObservable> updateable = CommonTask.UpdateableSubjects(InstalledSubjects, oldcourses);
+                                List<SubjectObservable> updateable = ModelTask.UpdateableSubjects(InstalledSubjects, oldcourses);
                                 if (updateable == null)
                                 {
                                     userdetails.subjects = InstalledSubjects;
-                                    List<SubjectObservable> updatedTopics = CommonTask.UpdateableSubjectsTopics(InstalledSubjects, oldcourses);
+                                    List<SubjectObservable> updatedTopics = ModelTask.UpdateableSubjectsTopics(InstalledSubjects, oldcourses);
                                     if (updatedTopics != null)
                                     {
-                                        CommonTask.InsertSubjectsUpdateAsync(updatedTopics);
+                                        DatabaseInputTask.InsertSubjectsUpdateAsync(updatedTopics);
                                     }
-                                    LibraryObservable newContentLibrary = CommonTask.CompareLibraries(Old_Library, Current_Library);
-                                    List<Library_CategoryObservable> updatedOldContentLibrary = CommonTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
+                                    LibraryObservable newContentLibrary = ModelTask.CompareLibraries(Old_Library, Current_Library);
+                                    List<Library_CategoryObservable> updatedOldContentLibrary = ModelTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
                                     if (newContentLibrary == null && updatedOldContentLibrary != null)
                                     {
                                         UserUpdater(userdetails, null, null, currentUser, null, updatedOldContentLibrary);
@@ -695,16 +717,14 @@ namespace BrainShare.Views
                                 }
                                 else
                                 {
-                                    //  LoadingMsg.Text = "Updating ....";
-                                    //  LoadingMsg.Visibility = Visibility.Visible;
                                     userdetails.subjects = InstalledSubjects;
-                                    List<SubjectObservable> updatedTopics = CommonTask.UpdateableSubjectsTopics(InstalledSubjects, oldcourses);
+                                    List<SubjectObservable> updatedTopics = ModelTask.UpdateableSubjectsTopics(InstalledSubjects, oldcourses);
                                     if (updatedTopics != null)
                                     {
-                                        CommonTask.InsertSubjectsUpdateAsync(updatedTopics);
+                                        DatabaseInputTask.InsertSubjectsUpdateAsync(updatedTopics);
                                     }
-                                    LibraryObservable newContentLibrary = CommonTask.CompareLibraries(Old_Library, Current_Library);
-                                    List<Library_CategoryObservable> updatedOldContentLibrary = CommonTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
+                                    LibraryObservable newContentLibrary = ModelTask.CompareLibraries(Old_Library, Current_Library);
+                                    List<Library_CategoryObservable> updatedOldContentLibrary = ModelTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
                                     if (newContentLibrary == null && updatedOldContentLibrary != null)
                                     {
                                         UserUpdater(userdetails, null, updateable, currentUser, null, updatedOldContentLibrary);
@@ -728,12 +748,12 @@ namespace BrainShare.Views
 
                     catch (Exception ex)
                     {
-                        string error = ex.ToString();
+                        Logfile.Error_details = ex.ToString();
+                        Logfile.Error_title = "UpdateUser Method";
+                        Logfile.Location = "StudentPage";
+                        //await ErrorLogTask.LogFileSaveAsync(Logfile);
                         currentUser.update_status = Constants.finished_update;
                         pgBar.Visibility = Visibility.Collapsed;
-                        //   LoadingMsg.Visibility = Visibility.Collapsed;
-                        //var message = new MessageDialog(Message.Connection_Error /*error*/, Message.Connection_Error_Header).ShowAsync();
-                        //Error Message not necessary
                     }
                 }
                 else
@@ -743,19 +763,19 @@ namespace BrainShare.Views
             }
             catch (Exception ex)
             {
-                string error = ex.ToString();
+                Logfile.Error_details = ex.ToString();
+                Logfile.Error_title = "UpdateUser Method";
+                Logfile.Location = "StudentPage";
+                //await ErrorLogTask.LogFileSaveAsync(Logfile);
                 currentUser.update_status = Constants.finished_update;
                 pgBar.Visibility = Visibility.Collapsed;
-                //  LoadingMsg.Visibility = Visibility.Collapsed;
-                //var message = new MessageDialog(Message.Connection_Error /*error*/, Message.Connection_Error_Header).ShowAsync();
-                //Error Message not necessary on this page
             }
         }
         private async void UserUpdater(UserObservable user, List<SubjectObservable> newsubjects, List<SubjectObservable> updateableSubjects, UserObservable CurrentUser,
             LibraryObservable newlib, List<Library_CategoryObservable> updatedCategories)
         {
-            await CommonTask.UpdateUserAsync(user);
-            CommonTask.UpdateLibAsync(newlib); //Will be checked later // Could be awaitable
+            await DatabaseInputTask.UpdateUserAsync(user);
+            DatabaseInputTask.UpdateLibAsync(newlib); //Will be checked later // Could be awaitable
             if (updateableSubjects == null && newsubjects == null)
             {
             }
@@ -763,16 +783,16 @@ namespace BrainShare.Views
             {
                 if (updateableSubjects == null)
                 {
-                    CommonTask.InsertSubjectsAsync(newsubjects);
+                    DatabaseInputTask.InsertSubjectsAsync(newsubjects);
                 }
                 if (newsubjects == null)
                 {
-                    CommonTask.UpdateSubjectsAsync(updateableSubjects);
+                    DatabaseInputTask.UpdateSubjectsAsync(updateableSubjects);
                 }
                 if (updateableSubjects != null && newsubjects != null)
                 {
-                    CommonTask.InsertSubjectsAsync(newsubjects);
-                    CommonTask.UpdateSubjectsAsync(updateableSubjects);
+                    DatabaseInputTask.InsertSubjectsAsync(newsubjects);
+                    DatabaseInputTask.UpdateSubjectsAsync(updateableSubjects);
                 }
             }
             CurrentUser.update_status = Constants.finished_update;
@@ -781,29 +801,16 @@ namespace BrainShare.Views
         }
         private void Subject_click(object sender, ItemClickEventArgs e)
         {
-            try
-            {
-                var item = e.ClickedItem;
-                SubjectObservable _subject = ((SubjectObservable)item);
-                Frame.Navigate(typeof(SubjectPage), _subject);
-            }
-            catch
-            {
-
-            }
+            var item = e.ClickedItem;
+            SubjectObservable _subject = ((SubjectObservable)item);
+            Frame.Navigate(typeof(SubjectPage), _subject);
         }
         private void Library_Category_click(object sender, ItemClickEventArgs e)
         {
-            try
-            {
-                var item = e.ClickedItem;
-                Library_CategoryObservable lib_category = ((Library_CategoryObservable)item);
-                Frame.Navigate(typeof(LibraryCategoryBooks), lib_category);
-            }
-            catch
-            {
+            var item = e.ClickedItem;
+            Library_CategoryObservable lib_category = ((Library_CategoryObservable)item);
+            Frame.Navigate(typeof(LibraryCategoryBooks), lib_category);
 
-            }
         }
         private void Log_out(object sender, RoutedEventArgs e)
         {
@@ -822,60 +829,16 @@ namespace BrainShare.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            try
-            {
-
-
-                navigationHelper.OnNavigatedTo(e);
-            }
-            catch
-            {
-
-            }
-            //  var user = e.Parameter as UserCredential;
-            //StudentPageViewModel vm = new StudentPageViewModel(user);
-            //this.DataContext = vm;
-
-
-            //string user = (string)e.NavigationParameter;
-            //  StudentPageViewModel vm = new StudentPageViewModel("ken");
-            // this.DataContext = vm;
-
-
+            navigationHelper.OnNavigatedTo(e);
         }
 
         private void logout_btn_click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            try
-            {
-
-
-                Frame.Navigate(typeof(LoginPage));
-                //var item = e.ClickedItem;
-                //FolderObservable _folder = ((FolderObservable)item);
-                //this.Frame.Navigate(typeof(LibraryCategories));
-            }
-            catch
-            {
-
-            }
+            Frame.Navigate(typeof(LoginPage));
         }
-
-
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            try
-            {
-                navigationHelper.OnNavigatedFrom(e);
-                // string user = (string)e.NavigationParameter;
-                //StudentPageViewModel vm = new StudentPageViewModel("ken");
-                //this.DataContext = vm;
-
-            }
-            catch
-            {
-
-            }
+            navigationHelper.OnNavigatedFrom(e);
         }
 
         #endregion

@@ -18,6 +18,7 @@ using System.Net.Http;
 using System.Runtime.Serialization;
 using Windows.UI.ApplicationSettings;
 using Windows.System;
+using BrainShare.Core;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -29,6 +30,8 @@ namespace BrainShare
     public sealed partial class LoginPage : Page
     {
         UserDetail Stats = new UserDetail();
+        ErrorLogTask Logfile = new ErrorLogTask();
+
         public class UserDetail
         {
             public string email { get; set; }
@@ -114,14 +117,7 @@ namespace BrainShare
         /// in addition to page state preserved during an earlier session.   
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            try
-            {
                 navigationHelper.OnNavigatedFrom(e);
-            }
-            catch
-            {
-
-            }
             //SettingsPane.GetForCurrentView().CommandsRequested -= onCommandsRequested; // Added here
         }
         #endregion
@@ -142,17 +138,11 @@ namespace BrainShare
             }
             catch (Exception ex)
             {
-                // MessageDialog msgDialog = new MessageDialog("Access Denied. Cant write to file.", "R/W Error!");
-                // await msgDialog.ShowAsync();
-                //surpressed Access Denied Mthd - jams writing to file at times
-
-                String error = ex.ToString();
-                string header = "Save"; //for test purposes
-                var message = new MessageDialog(error, header).ShowAsync(); // for testing purposes
-
-
+                Logfile.Error_details = ex.ToString();
+                Logfile.Error_title = "Button_Click Method";
+                Logfile.Location = "LoginPage";
+                //await ErrorLogTask.LogFileSaveAsync(Logfile);
             }
-            //Login starts here
             Login();
         }
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -161,7 +151,13 @@ namespace BrainShare
             {
                 await RestoreAsync();
             }
-            catch (Exception exc) { String word = exc.ToString(); }
+            catch (Exception exc)
+            {
+                Logfile.Error_details = exc.ToString();
+                Logfile.Error_title = "OnNavigatedTo";
+                Logfile.Location = "LoginPage";
+               // //await ErrorLogTask.LogFileSaveAsync(Logfile);
+            }
 
             base.OnNavigatedTo(e); //important to cover this error http://stackoverflow.com/questions/13790344/argumentnullexception-on-changing-frame
             navigationHelper.OnNavigatedTo(e);
@@ -195,26 +191,30 @@ namespace BrainShare
         }  
         public async void Login()
         {
-            try
-            {
-                await CommonTask.InitializeDatabase();
+             try
+             {
+                 await CommonTask.InitializeDatabase();
+             }
+             catch(Exception ex)
+             {
+                Logfile.Error_details = ex.ToString();
+                Logfile.Error_title = "Login Method";
+                Logfile.Location = "LoginPage";
+                ////await ErrorLogTask.LogFileSaveAsync(Logfile);
             }
-            catch
-            {
-
-            }
-            if (CommonTask.IsInternetConnectionAvailable())
-            {
-                OnlineExperience();
-            }
-            else
-            {
-                OfflineExperience();
-            } 
+             if (CommonTask.IsInternetConnectionAvailable())
+             {
+                 OnlineExperience();
+             }
+             else
+             {
+                 OfflineExperience();
+             } 
+            
         }
         private void OfflineExperience()
         {
-            List<User> users = CommonTask.SelectAllUsers();
+            List<User> users = DatabaseOutputTask.SelectAllUsers();
             if (users == null)
             {
                 var message = new MessageDialog(Message.Login_Message_Fail, Message.Login_Header).ShowAsync();
@@ -235,15 +235,15 @@ namespace BrainShare
                     {
                         loggedIn.email = user.e_mail;
                         loggedIn.password = user.password;
-                        loggedIn.School = CommonTask.GetSchool(user.School_id);
+                        loggedIn.School = DatabaseOutputTask.GetSchool(user.School_id);
                         loggedIn.full_names = user.profileName;
-                        loggedIn.Library = CommonTask.GetLibrary(loggedIn.School.SchoolId);
+                        loggedIn.Library = DatabaseOutputTask.GetLibrary(loggedIn.School.SchoolId);
                         string[] SplitSubjectId = user.subjects.Split(delimiter);
                         List<string> SubjectIdList = SplitSubjectId.ToList();
-                        List<int> subjectids = CommonTask.SubjectIdsConvert(SubjectIdList);
+                        List<int> subjectids = ModelTask.SubjectIdsConvert(SubjectIdList);
                         foreach (var id in subjectids)
                         {
-                            SubjectObservable subject = CommonTask.GetSubject(id);
+                            SubjectObservable subject = DatabaseOutputTask.GetSubject(id);
                             UserSubjects.Add(subject);
                         }
                         loggedIn.subjects = UserSubjects;
@@ -273,7 +273,7 @@ namespace BrainShare
         }
         private void OnlineExperience()
         {
-            List<User> users = CommonTask.SelectAllUsers();
+            List<User> users = DatabaseOutputTask.SelectAllUsers();
             bool found = false;
             List<SubjectObservable> UserSubjects = new List<SubjectObservable>();
             UserObservable loggedIn = new UserObservable();
@@ -291,15 +291,15 @@ namespace BrainShare
                     {
                         loggedIn.email = user.e_mail;
                         loggedIn.password = user.password;
-                        loggedIn.School = CommonTask.GetSchool(user.School_id);
+                        loggedIn.School = DatabaseOutputTask.GetSchool(user.School_id);
                         loggedIn.full_names = user.profileName;
-                        loggedIn.Library = CommonTask.GetLibrary(loggedIn.School.SchoolId);
+                        loggedIn.Library = DatabaseOutputTask.GetLibrary(loggedIn.School.SchoolId);
                         string[] SplitSubjectId = user.subjects.Split(delimiter);
                         List<string> SubjectIdList = SplitSubjectId.ToList();
-                        List<int> subjectids = CommonTask.SubjectIdsConvert(SubjectIdList);
+                        List<int> subjectids = ModelTask.SubjectIdsConvert(SubjectIdList);
                         foreach (var id in subjectids)
                         {
-                            SubjectObservable subject = CommonTask.GetSubject(id);
+                            SubjectObservable subject = DatabaseOutputTask.GetSubject(id);
                             UserSubjects.Add(subject);
                         }
                         loggedIn.subjects = UserSubjects;
@@ -335,17 +335,17 @@ namespace BrainShare
             }
             catch (Exception ex)
             {
-                string error = ex.ToString();
-                string header = "Authentication"; //For testing purposes
-                var message = new MessageDialog(error, header).ShowAsync(); //For testing purposes
-                //var message = new MessageDialog(Message.Connection_Error, Message.Connection_Error_Header).ShowAsync();
                 loadingRing.IsActive = false;
                 LoadingMsg.Visibility = Visibility.Collapsed;
+                Logfile.Error_details = ex.ToString();
+                Logfile.Error_title = "Online Login Method";
+                Logfile.Location = "LoginPage";
+                ////await ErrorLogTask.LogFileSaveAsync(Logfile);
             }
         }
         private async void CreateUser(JsonObject loginObject, string username, string password)
         {
-            LoginStatus user = CommonTask.Notification(loginObject);
+            LoginStatus user = JSONTask.Notification(loginObject);
             UserObservable userdetails = new UserObservable();
             SubjectObservable subject = new SubjectObservable();
             LibraryObservable Library = new LibraryObservable();
@@ -353,8 +353,8 @@ namespace BrainShare
             {
                 userdetails.email = username;
                 userdetails.password = password;
-                userdetails.School = CommonTask.GetSchool(loginObject);
-                userdetails.full_names = CommonTask.GetUsername(loginObject);
+                userdetails.School = JSONTask.GetSchool(loginObject);
+                userdetails.full_names = JSONTask.GetUsername(loginObject);
 
                 try
                 {
@@ -369,11 +369,14 @@ namespace BrainShare
                     var library_streamReader = new StreamReader(library_result);
                     var library_responseContent = library_streamReader.ReadToEnd().Trim().ToString();
                     var library = JsonArray.Parse(library_responseContent);
-                    Library = CommonTask.GetLibrary(library, userdetails.School.SchoolId);
+                    Library = JSONTask.GetLibrary(library, userdetails.School.SchoolId);
                 }
-                catch
+                catch(Exception ex)
                 {
-
+                    Logfile.Error_details = ex.ToString();
+                    Logfile.Error_title = "CreateUser Method";
+                    Logfile.Location = "LoginPage";
+                    ////await ErrorLogTask.LogFileSaveAsync(Logfile);
                 }
                 userdetails.Library = Library;
                 LoadingMsg.Text = Message.Syncronization;
@@ -392,7 +395,7 @@ namespace BrainShare
                     var subjects = JsonArray.Parse(courseresponseContent);
 
                     List<SubjectObservable> courses = new List<SubjectObservable>();
-                    List<int> IDs = CommonTask.SubjectIds(subjects);
+                    List<int> IDs = JSONTask.SubjectIds(subjects);
                     foreach (var id in IDs)
                     {
                         var notes_httpclient = new HttpClient();
@@ -443,21 +446,21 @@ namespace BrainShare
                         var file_responseContent = file_streamReader.ReadToEnd().Trim().ToString();
                         var files = JsonArray.Parse(file_responseContent); 
                        
-                        subject = CommonTask.GetSubject(subjects, id, notes, videos, assignments, files);
+                        subject =JSONTask.GetSubject(subjects, id, notes, videos, assignments, files);
                         courses.Add(subject);
                     }
                     userdetails.subjects = courses;
-                    CommonTask.InsertLibAsync(userdetails.Library); //Library add here
+                    DatabaseInputTask.InsertLibAsync(userdetails.Library); //Library add here
                     AuthenticateUser(userdetails);
                 }
                 catch (Exception ex)
                 {
-                    string error = ex.ToString();
-                    string header = "Subjects error"; //For testing purposes
-                    //var message = new MessageDialog(Message.Connection_Error, Message.Connection_Error_Header).ShowAsync();   //syncronising error msg here
-                    var message = new MessageDialog(error, header).ShowAsync(); // for testing purposes
                     loadingRing.IsActive = false;
                     LoadingMsg.Visibility = Visibility.Collapsed;
+                    Logfile.Error_details = ex.ToString();
+                    Logfile.Error_title = "Create Method";
+                    Logfile.Location = "LoginPage";
+                    ////await ErrorLogTask.LogFileSaveAsync(Logfile);
                 }
 
             }
@@ -472,7 +475,7 @@ namespace BrainShare
         {
             List<SubjectObservable> subs = new List<SubjectObservable>();
             LibraryObservable lib = new LibraryObservable();
-            List<User> users = CommonTask.SelectAllUsers();
+            List<User> users = DatabaseOutputTask.SelectAllUsers();
             bool found = false;
             lib = user.Library;
             subs = user.subjects;
@@ -482,8 +485,8 @@ namespace BrainShare
                 {
                     if (users == null)
                     {
-                        await CommonTask.InsertUserAsync(user);
-                        CommonTask.InsertSubjectsAsync(user.subjects);
+                        await DatabaseInputTask.InsertUserAsync(user);
+                        DatabaseInputTask.InsertSubjectsAsync(user.subjects);
                         user.update_status = Constants.finished_update;
                         user.NotesImagesDownloading = false;
                         Frame.Navigate(typeof(StudentPage), user);
@@ -497,30 +500,33 @@ namespace BrainShare
                                 found = true;
                             }
                         }
-                        if (CommonTask.oldSubjects() != null)
+                        if (ModelTask.oldSubjects() != null)
                         {
-                            subs = CommonTask.new_subjects(user.subjects);
+                            subs = ModelTask.new_subjects(user.subjects);
                             if (subs == null) { }
                             else
                             {
-                                CommonTask.InsertSubjectsAsync(user.subjects);
+                                DatabaseInputTask.InsertSubjectsAsync(user.subjects);
                                 if (found == false)
                                 {
                                     try
                                     {
-                                        await CommonTask.InsertUserAsync(user);
+                                        await DatabaseInputTask.InsertUserAsync(user);
                                     }
                                     catch(Exception ex)
                                     {
-                                        string word = ex.ToString();
+                                        Logfile.Error_details = ex.ToString();
+                                        Logfile.Error_title = "AuthenticateUser Method";
+                                        Logfile.Location = "LoginPage";
+                                        ////await ErrorLogTask.LogFileSaveAsync(Logfile);
                                     }
                                 }
                             }
                         }
                         else
                         {
-                            await CommonTask.InsertUserAsync(user);
-                            CommonTask.InsertSubjectsAsync(user.subjects);
+                            await DatabaseInputTask.InsertUserAsync(user);
+                            DatabaseInputTask.InsertSubjectsAsync(user.subjects);
                         }
                         user.update_status = Constants.finished_update;
                         user.NotesImagesDownloading = false;
@@ -529,7 +535,7 @@ namespace BrainShare
                 }
                 else
                 {
-                    if (CommonTask.oldSubjects() == null)
+                    if (ModelTask.oldSubjects() == null)
                     {
                         var message = new MessageDialog(Message.Offline_Message, Message.Content_Header).ShowAsync();
                         loadingRing.IsActive = false;

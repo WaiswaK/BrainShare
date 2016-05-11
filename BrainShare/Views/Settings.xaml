@@ -13,9 +13,9 @@
     <!-- This StackPanel acts as a root panel for vertical layout of the content sections -->
     <StackPanel>
         <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
-            <ToggleSwitch Margin="-6,0,0,0" Header = "Notes Module" HorizontalAlignment="Left" HorizontalContentAlignment="Left" IsOn="True" Toggled="Notes_Toggle"/>
-            <ToggleSwitch Margin="-6,0,0,0" Header = "Library Modules" HorizontalAlignment="Stretch" IsOn="True" Toggled="Library_Toggle"/>
-            <ToggleSwitch Margin="-6,0,0,0" Header = "Videos Module" HorizontalAlignment="Stretch" IsOn="True" Toggled="Videos_Toggle"/>
+            <ToggleSwitch Margin="-6,0,0,0" Header = "Notes Module" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Toggled="Notes_Toggle" Name="Notes_Module"/>
+            <ToggleSwitch Margin="-6,0,0,0" Header = "Library Modules" HorizontalAlignment="Stretch" Toggled="Library_Toggle" Name="Library_Module"/>
+            <ToggleSwitch Margin="-6,0,0,0" Header = "Videos Module" HorizontalAlignment="Stretch" Toggled="Videos_Toggle" Name="Videos_Module"/>
         </StackPanel>
     </StackPanel>
 </SettingsFlyout>

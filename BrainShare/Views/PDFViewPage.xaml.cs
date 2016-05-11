@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
-using Windows.Data.Pdf;
 using Windows.Storage;
-using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -22,7 +18,7 @@ namespace BrainShare.Views
     /// A page that displays a group title, a list of items within the group, and details for
     /// the currently selected item.
     /// </summary>
-    public sealed partial class  PDFViewPage: Page
+    public sealed partial class PDFViewPage : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
@@ -32,7 +28,7 @@ namespace BrainShare.Views
         /// process lifetime management
         /// </summary>
         public NavigationHelper NavigationHelper
-        {       
+        {
             get { return navigationHelper; }
         }
         /// <summary>
@@ -44,46 +40,15 @@ namespace BrainShare.Views
         }
         public PDFViewPage()
         {
-            //InitializeComponent(); //put in try
 
-            // Setup the navigation helper
-            //New Code 
-            try
-            {
-                InitializeComponent(); //Just added
-                navigationHelper = new NavigationHelper(this);
-                navigationHelper.LoadState += navigationHelper_LoadState;
-                navigationHelper.SaveState += navigationHelper_SaveState;
-            }
-            catch
-            {
-
-            }
-            //End of new code
-            // Setup the logical page navigation components that allow
-            // the page to only show one pane at a time.
-            try
-            {
-                navigationHelper.GoBackCommand = new RelayCommand(() => GoBack(), () => CanGoBack());
-                itemListView.SelectionChanged += ItemListView_SelectionChanged;
-            }
-            catch
-            {
-
-            }
-            // Start listening for Window size changes 
-            // to change from showing two panes to showing a single pane
-            //new try catch code
-            try
-            {
-                Window.Current.SizeChanged += Window_SizeChanged;
-                InvalidateVisualState();
-            }
-            catch
-            {
-
-            }
-            //end of try catch code
+            InitializeComponent(); //Just added
+            navigationHelper = new NavigationHelper(this);
+            navigationHelper.LoadState += navigationHelper_LoadState;
+            navigationHelper.SaveState += navigationHelper_SaveState;
+            navigationHelper.GoBackCommand = new RelayCommand(() => GoBack(), () => CanGoBack());
+            itemListView.SelectionChanged += ItemListView_SelectionChanged;
+            Window.Current.SizeChanged += Window_SizeChanged;
+            InvalidateVisualState();
         }
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
@@ -98,203 +63,98 @@ namespace BrainShare.Views
         /// session.  The state will be null the first time a page is visited.</param>
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            //Overall try catch on Load State
-            try
+            var file = e.NavigationParameter as AttachmentObservable;
+            bool found = false;
+            bool download = false;
+            bool fullydownloaded = false;
+            await CommonTask.DeleteTemporaryFiles();
+            if (CommonTask.IsInternetConnectionAvailable())
             {
-                var file = e.NavigationParameter as AttachmentObservable;
-                bool found = false;
-                bool download = false;
-                bool fullydownloaded = false;
+                found = true;
                 try
                 {
-                    await CommonTask.DeleteTemporaryFiles();
+                    loadedFile = await Constants.appFolder.GetFileAsync(file.FilePath);
+                    await CommonTask.LoadPdfFileAsync(loadedFile, DefaultViewModel, ActualWidth);
                 }
                 catch
                 {
-
+                    found = false;
                 }
-                if (CommonTask.IsInternetConnectionAvailable())
+                if (found == false)
                 {
-                    try
+                    var messageDialog = new MessageDialog(Message.File_Access_Message, Message.File_Access_Header);
+                    messageDialog.Commands.Add(new UICommand(Message.Yes, (command) =>
                     {
-                        loadedFile = await Constants.appFolder.GetFileAsync(file.FilePath);
-                    }
-                    catch
+                        download = true;
+                    }));
+                    messageDialog.Commands.Add(new UICommand(Message.No, (command) =>
                     {
-                        found = false;
-                    }
-                    try
-                    {
-                        await LoadPdfFileAsync(loadedFile);
-                    }
-                    catch
-                    {
-                        found = false;
-                    }
-                        found = true;
-                    //}
-                    //catch (Exception ex)
-                    //{
-                      //  string exption = ex.ToString();
-                        //found = false;
-                    //}
+                        download = false;
+                    }));
 
-                    if (found == false)
+                    messageDialog.DefaultCommandIndex = 1;
+                    await messageDialog.ShowAsync();
+
+                    if (download == true)
                     {
-                        var messageDialog = new MessageDialog(Message.File_Access_Message, Message.File_Access_Header);
-                        messageDialog.Commands.Add(new UICommand(Message.Yes, (command) =>
-                        {
-                            download = true;
-                        }));
-                        messageDialog.Commands.Add(new UICommand(Message.No, (command) =>
-                        {
-                            download = false;
-                        }));
+                        loadingRing.IsActive = true;
 
-                        messageDialog.DefaultCommandIndex = 1;
-                        await messageDialog.ShowAsync();
-
-                        if (download == true)
+                        LoadingMsg.Visibility = Visibility.Visible;
+                        try
                         {
-                            //Adding a try and catch to the overall download of files  
+                            await CommonTask.FileDownloader(file.FilePath, file.FileName);
+                            fullydownloaded = true;
+                        }
+                        catch (Exception ex)
+                        {
+                            string err = ex.ToString();
+                            fullydownloaded = false;
+                        }
+                        if (fullydownloaded == true)
+                        {
+                            loadingRing.IsActive = false;
+                            LoadingMsg.Visibility = Visibility.Collapsed;
+                            using (var db = new SQLite.SQLiteConnection(Constants.dbPath))
+                            {
+                                var query = (db.Table<Attachment>().Where(c => c.AttachmentID == file.AttachmentID)).Single();
+                                string newPath = query.FileName + Constants.PDF_extension;
+                                Attachment fileDownloaded = new Attachment(query.AttachmentID, query.TopicID, query.FileName, newPath, query.SubjectId, query.AssignmentID);
+                                db.Update(fileDownloaded);
+                                file.FilePath = newPath;
+                            }
+                            loadedFile = await Constants.appFolder.GetFileAsync(file.FilePath);
                             try
                             {
-                                loadingRing.IsActive = true;
-                                LoadingMsg.Visibility = Visibility.Visible;
-                                try
-                                {
-                                    await CommonTask.FileDownloader(file.FilePath, file.FileName);
-                                    fullydownloaded = true;
-                                }
-                                catch (Exception ex)
-                                {
-                                    string err = ex.ToString();
-                                    fullydownloaded = false;
-                                }
-                                if (fullydownloaded == true)
-                                {
-                                    loadingRing.IsActive = false;
-                                    LoadingMsg.Visibility = Visibility.Collapsed;
-                                    using (var db = new SQLite.SQLiteConnection(Constants.dbPath))
-                                    {
-                                        var query = (db.Table<Attachment>().Where(c => c.AttachmentID == file.AttachmentID)).Single();
-                                        string newPath = query.FileName + Constants.PDF_extension;
-                                        Attachment fileDownloaded = new Attachment(query.AttachmentID, query.TopicID, query.FileName, newPath, query.SubjectId, query.AssignmentID);
-                                        db.Update(fileDownloaded);
-                                        file.FilePath = newPath;
-                                    }
-                                    loadedFile = await Constants.appFolder.GetFileAsync(file.FilePath);
-                                    try
-                                    {
-                                        await LoadPdfFileAsync(loadedFile);
-                                    }
-                                    catch
-                                    {
-
-                                    }
-                                }
-                                else if (fullydownloaded == false)
-                                {
-                                    var message = new MessageDialog(Message.Download_Error, Message.Download_Header).ShowAsync();
-                                }
+                                await CommonTask.LoadPdfFileAsync(loadedFile, DefaultViewModel, ActualWidth);
                             }
-                            catch (Exception ex)
+                            catch
                             {
-                                string exemption = ex.ToString();
+
                             }
                         }
-                    }
-                }
-                else
-                {
-                    try
-                    {
-                        loadedFile = await Constants.appFolder.GetFileAsync(file.FilePath);
-                    }
-                    catch
-                    {
-                        found = false;
-                    }
-                    try
-                    {
-                        await LoadPdfFileAsync(loadedFile);
-                    }
-                    catch
-                    {
-                        found = false;
-                    }
-                        found = true;
-                    //}
-                    //catch (Exception ex)
-                    //{
-                      //  string exption = ex.ToString();
-                        //found = false;
-                    //}
-                    if (found == false)
-                    {
-                        var messageDialog = new MessageDialog(Message.Offline_File_Unavailable, Message.File_Access_Header).ShowAsync();
-                    }
-                }
-            }
-            catch
-            {
-
-            }
-        }
-        private async Task LoadPdfFileAsync(StorageFile File)
-        {
-            try
-            {
-                StorageFile pdfFile = File;
-                PdfDocument pdfDocument = await PdfDocument.LoadFromFileAsync(pdfFile); ;
-                ObservableCollection<PdfDataItem> items = new ObservableCollection<PdfDataItem>();
-                DefaultViewModel["Items"] = items;
-                if (pdfDocument != null && pdfDocument.PageCount > 0)
-                {
-                    for (int pageIndex = 0; pageIndex < pdfDocument.PageCount; pageIndex++)
-                    {
-                        var pdfPage = pdfDocument.GetPage((uint)pageIndex);
-                        if (pdfPage != null)
-                        {       
-                            StorageFolder tempFolder = ApplicationData.Current.TemporaryFolder;
-                            StorageFile pngFile = await tempFolder.CreateFileAsync(Guid.NewGuid().ToString() + ".png", CreationCollisionOption.ReplaceExisting);
-
-                            if (pngFile != null)
-                            {
-                                IRandomAccessStream randomStream = await pngFile.OpenAsync(FileAccessMode.ReadWrite);
-                                PdfPageRenderOptions pdfPageRenderOptions = new PdfPageRenderOptions();
-                                //try catch for every await to be added
-                                pdfPageRenderOptions.DestinationWidth = (uint)(ActualWidth - 130);
-                                try
-                                {
-                                    await pdfPage.RenderToStreamAsync(randomStream, pdfPageRenderOptions);
-                                }
-                                catch
-                                {
-
-                                }
-                                try
-                                {
-                                    await randomStream.FlushAsync();
-                                }                              
-                                catch
-                                {
-
-                                }
-                                randomStream.Dispose();
-                                pdfPage.Dispose();
-                                items.Add(new PdfDataItem(
-                                    pageIndex.ToString(),
-                                    pageIndex.ToString(),
-                                    pngFile.Path));
-                            }
+                        else if (fullydownloaded == false)
+                        {
+                            var message = new MessageDialog(Message.Download_Error, Message.Download_Header).ShowAsync();
                         }
                     }
                 }
             }
-            catch (Exception err)
+            else
             {
-                string error = err.ToString();
+                found = true;
+                try
+                {
+                    loadedFile = await Constants.appFolder.GetFileAsync(file.FilePath);
+                    await CommonTask.LoadPdfFileAsync(loadedFile, DefaultViewModel, ActualWidth);
+                }
+                catch
+                {
+                    found = false;
+                }
+                if (found == false)
+                {
+                    var messageDialog = new MessageDialog(Message.Offline_File_Unavailable, Message.File_Access_Header).ShowAsync();
+                }
             }
         }
         /// <summary>
@@ -309,18 +169,11 @@ namespace BrainShare.Views
         /// session.  This will be null the first time a page is visited.</param>
         private void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
-            try
+            if (itemsViewSource.View != null)
             {
-                if (itemsViewSource.View != null)
-                {
-                    var selectedItem = (PdfDataItem)itemsViewSource.View.CurrentItem;
-                    if (selectedItem != null) e.PageState["SelectedItem"] = selectedItem.UniqueId;
-                }
+                var selectedItem = (PdfDataItem)itemsViewSource.View.CurrentItem;
+                if (selectedItem != null) e.PageState["SelectedItem"] = selectedItem.UniqueId;
             }
-            catch
-            {
-
-            }  
         }
         #region Logical page navigation
         // The split page isdesigned so that when the Window does have enough space to show
@@ -346,14 +199,7 @@ namespace BrainShare.Views
         /// <param name="e">Event data that describes the new size of the Window</param>
         private void Window_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
         {
-            try
-            {
-                InvalidateVisualState();
-            }
-            catch
-            {
-
-            }
+            InvalidateVisualState();
         }
         /// <summary>
         /// Invoked when an item within the list is selected.
@@ -367,65 +213,37 @@ namespace BrainShare.Views
             // an item is selected this has the effect of changing from displaying the item list
             // to showing the selected item's details.  When the selection is cleared this has the
             // opposite effect.
-            try
-            {
-                if (UsingLogicalPageNavigation()) InvalidateVisualState();
-            }
-            catch
-            {
-
-            }
+            if (UsingLogicalPageNavigation()) InvalidateVisualState();
         }
         private bool CanGoBack()
         {
-            try
+            if (UsingLogicalPageNavigation() && itemListView.SelectedItem != null)
             {
-                if (UsingLogicalPageNavigation() && itemListView.SelectedItem != null)
-                {
-                    return true;
-                }
-                else
-                {                
-                  return navigationHelper.CanGoBack();              
-                }
+                return true;
             }
-            catch
+            else
             {
                 return navigationHelper.CanGoBack();
             }
         }
         private void GoBack()
         {
-            try
+            if (UsingLogicalPageNavigation() && itemListView.SelectedItem != null)
             {
-                if (UsingLogicalPageNavigation() && itemListView.SelectedItem != null)
-                {
-                    // When logical page navigation is in effect and there's a selected item that
-                    // item's details are currently displayed.  Clearing the selection will return to
-                    // the item list.  From the user's point of view this is a logical backward
-                    // navigation.
-                    itemListView.SelectedItem = null;
-                }
-                else
-                {
-                    try
-                    {
-                        navigationHelper.GoBack();
-                    }
-                    catch
-                    {
-
-                    }
-                }
+                // When logical page navigation is in effect and there's a selected item that
+                // item's details are currently displayed.  Clearing the selection will return to
+                // the item list.  From the user's point of view this is a logical backward
+                // navigation.
+                itemListView.SelectedItem = null;
             }
-            catch
+            else
             {
-
+                navigationHelper.GoBack();
             }
         }
         private void InvalidateVisualState()
         {
-           // var visualState = DetermineVisualState();
+            // var visualState = DetermineVisualState();
             //VisualStateManager.GoToState(this, visualState, false);
             //this.navigationHelper.GoBackCommand.RaiseCanExecuteChanged();
         }
@@ -459,25 +277,11 @@ namespace BrainShare.Views
         /// in addition to page state preserved during an earlier session.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            try
-            {
-                navigationHelper.OnNavigatedTo(e);
-            }
-            catch
-            {
-
-            }
+            navigationHelper.OnNavigatedTo(e);
         }
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            try
-            {
-                navigationHelper.OnNavigatedFrom(e);
-            }
-            catch
-            {
-
-            }
+            navigationHelper.OnNavigatedFrom(e);
         }
         #endregion
     }

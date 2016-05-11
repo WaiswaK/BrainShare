@@ -127,6 +127,13 @@
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Common\WebViewContentHelper.cs" />
+    <Compile Include="Core\DatabaseInputTask.cs" />
+    <Compile Include="Core\DatabaseOutputTask.cs" />
+    <Compile Include="Core\ErrorLogTask.cs" />
+    <Compile Include="Core\ImageTask.cs" />
+    <Compile Include="Core\JSONTask.cs" />
+    <Compile Include="Core\NotesTask.cs" />
+    <Compile Include="Core\ModelTask.cs" />
     <Compile Include="Database\Assignment.cs" />
     <Compile Include="Database\Attachment.cs" />
     <Compile Include="Database\Book.cs" />

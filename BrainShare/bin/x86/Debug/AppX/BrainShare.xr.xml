@@ -283,11 +283,11 @@
       <RootProperty Name="Content" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ToggleSwitch">
+      <RootProperty Name="Name" />
       <RootProperty Name="Margin" />
       <RootProperty Name="Header" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="HorizontalContentAlignment" />
-      <RootProperty Name="IsOn" />
       <RootEvent Name="Toggled" />
     </RootType>
     <RootType FullName="BrainShare.Views.Settings" />

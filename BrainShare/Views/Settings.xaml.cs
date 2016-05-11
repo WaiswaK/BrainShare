@@ -2,17 +2,27 @@
 using Windows.UI.Xaml;
 using Windows.System;
 using Windows.UI.Core;
-using BrainShare.Common;
+using Windows.Storage;
 // The Settings Flyout item template is documented at http://go.microsoft.com/fwlink/?LinkId=273769
 
 namespace BrainShare.Views
 {
     public sealed partial class Settings : SettingsFlyout
     {
+        private const string _noteskey = "Notes";
+        private const string _libkey = "Library";
+        private const string _videoskey = "Videos";
         public Settings()
         {
             InitializeComponent();
 
+            // Initialize the ToggleSwitch controls
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey(_noteskey))
+                Notes_Module.IsOn = !(bool)ApplicationData.Current.LocalSettings.Values[_noteskey];
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey(_noteskey))
+                Videos_Module.IsOn = !(bool)ApplicationData.Current.LocalSettings.Values[_videoskey];
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey(_noteskey))
+                Library_Module.IsOn = !(bool)ApplicationData.Current.LocalSettings.Values[_libkey];
 
             // Handle all key events when loaded into visual tree
             Loaded += (sender, e) =>
@@ -24,7 +34,6 @@ namespace BrainShare.Views
                 Window.Current.CoreWindow.Dispatcher.AcceleratorKeyActivated -= SettingsFlyout1_AcceleratorKeyActivated;
             };
         }
-
         void SettingsFlyout1_AcceleratorKeyActivated(CoreDispatcher sender, AcceleratorKeyEventArgs args)
         {
             // Only investigate further when Left is pressed
@@ -47,51 +56,17 @@ namespace BrainShare.Views
                 }
             }
         }
-
         private void Notes_Toggle(object sender, RoutedEventArgs e)
         {
-            ToggleSwitch toggleSwitch = sender as ToggleSwitch;
-            if (toggleSwitch != null)
-            {
-                if (toggleSwitch.IsOn == true)
-                {
-                    Constants.NotesModule = true;
-                }
-                else
-                {
-                    Constants.NotesModule = false;
-                }
-            }
+            ApplicationData.Current.LocalSettings.Values[_noteskey] = !(bool)Notes_Module.IsOn;
         }
         private void Library_Toggle(object sender, RoutedEventArgs e)
         {
-            ToggleSwitch toggleSwitch = sender as ToggleSwitch;
-            if (toggleSwitch != null)
-            {
-                if (toggleSwitch.IsOn == true)
-                {
-                    Constants.LibraryModule = true;
-                }
-                else
-                {
-                    Constants.LibraryModule = false;
-                }
-            }
+            ApplicationData.Current.LocalSettings.Values[_libkey] = !(bool)Library_Module.IsOn;
         }
         private void Videos_Toggle(object sender, RoutedEventArgs e)
         {
-            ToggleSwitch toggleSwitch = sender as ToggleSwitch;
-            if (toggleSwitch != null)
-            {
-                if (toggleSwitch.IsOn == true)
-                {
-                    Constants.VideosModule = true;
-                }
-                else
-                {
-                    Constants.VideosModule = false;
-                }
-            }
+            ApplicationData.Current.LocalSettings.Values[_videoskey] = !(bool)Videos_Module.IsOn;
         }
     }
 }
