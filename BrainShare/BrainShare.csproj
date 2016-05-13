@@ -292,8 +292,8 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Settings.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\StudentPage.xaml">
       <Generator>MSBuild:Compile</Generator>

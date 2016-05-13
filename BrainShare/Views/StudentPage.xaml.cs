@@ -33,11 +33,8 @@ namespace BrainShare.Views
         //Settings
         private const string _noteskey = "Notes";
         private const string _libkey = "Library";
-        private const string _videoskey = "Videos";
-
         private bool notes_on = true;
         private bool library_on = true;
-        //private bool videos_on = false;
 
 
         /// <summary>
@@ -81,10 +78,10 @@ namespace BrainShare.Views
         {
             var user = e.NavigationParameter as UserObservable;
             UserObservable initial = user;
-
+                      
             //Notes and Notes Module Settings Check
             if (ApplicationData.Current.LocalSettings.Values.ContainsKey(_noteskey))
-                notes_on = (bool)ApplicationData.Current.LocalSettings.Values[_noteskey];
+                notes_on = !(bool)ApplicationData.Current.LocalSettings.Values[_noteskey];
             if (notes_on)
             {
                 char[] delimiter = { '.' };
@@ -102,15 +99,24 @@ namespace BrainShare.Views
                 }
                 user.subjects = subjectsNew;
             }
+            else
+            {
+                user.subjects = null;
+            }
 
             //Library and Library Module Settings Check                     
             if (ApplicationData.Current.LocalSettings.Values.ContainsKey(_libkey)) 
-                library_on = (bool)ApplicationData.Current.LocalSettings.Values[_libkey];
+                library_on = !(bool)ApplicationData.Current.LocalSettings.Values[_libkey];
             if (library_on)
             {
                 LibraryObservable lib = DatabaseOutputTask.GetLibrary(user.School.SchoolId);
                 user.Library = lib;
             }
+            else
+            {
+                LibraryObservable library = new LibraryObservable();
+                user.Library = library;
+             }
                 
             StudentPageViewModel vm = new StudentPageViewModel(user);
             DataContext = vm;
@@ -121,7 +127,7 @@ namespace BrainShare.Views
                     UpdateUser(initial.email, initial.password, DatabaseOutputTask.SubjectIdsForUser(initial.email), user.subjects, user);
                     if (user.NotesImagesDownloading == false)
                     {
-                        user.NotesImagesDownloading = true; //Download once immediately after login
+                        user.NotesImagesDownloading = true; 
                         NotesTask.GetNotesImagesSubjectsAsync(user.subjects);
                     }
                 }
@@ -797,7 +803,6 @@ namespace BrainShare.Views
             }
             CurrentUser.update_status = Constants.finished_update;
             pgBar.Visibility = Visibility.Collapsed;
-            //   LoadingMsg.Visibility = Visibility.Collapsed;
         }
         private void Subject_click(object sender, ItemClickEventArgs e)
         {

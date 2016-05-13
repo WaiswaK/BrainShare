@@ -229,7 +229,7 @@ namespace BrainShare.Core
         //Function to make image path
         public static string imagePath(string imagename)
         {
-            string path = Path.Combine(ApplicationData.Current.LocalFolder.Path, imagename);
+            string path = Path.Combine(Constants.appFolder.Path, imagename);
             return path;
         }
     }

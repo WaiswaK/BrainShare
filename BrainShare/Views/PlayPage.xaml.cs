@@ -116,7 +116,6 @@ namespace BrainShare.Views
 
                         if (download == true)
                         {
-
                             //Youtube Downloader will be called here
                             //await CommonTask.FileDownloader(filePath, fileName);
                             //using (var db = new SQLite.SQLiteConnection(Constants.dbPath))
@@ -158,7 +157,7 @@ namespace BrainShare.Views
         }     
 
         /// <summary>
-        /// Preserves state associated with this page in case the application is suspended or the
+        /// Preser ves state associated with this page in case the application is suspended or the
         /// page is discarded from the navigation cache.  Values must conform to the serialization
         /// requirements of <see cref="SuspensionManager.SessionState"/>.
         /// </summary>
