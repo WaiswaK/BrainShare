@@ -134,7 +134,7 @@ namespace BrainShare.BrainShare_XamlTypeInfo
             _typeNameTable[6] = "String";
             _typeNameTable[7] = "BrainShare.Common.NavigationHelper";
             _typeNameTable[8] = "Windows.UI.Xaml.DependencyObject";
-            _typeNameTable[9] = "BrainShare.Views.LibraryPage";
+            _typeNameTable[9] = "BrainShare.Views.DocumentsPage";
             _typeNameTable[10] = "BrainShare.LoginPage";
             _typeNameTable[11] = "BrainShare.Common.BooleanToVisibilityConverter";
             _typeNameTable[12] = "BrainShare.Views.LibraryBookReader";
@@ -161,7 +161,7 @@ namespace BrainShare.BrainShare_XamlTypeInfo
             _typeTable[6] = typeof(global::System.String);
             _typeTable[7] = typeof(global::BrainShare.Common.NavigationHelper);
             _typeTable[8] = typeof(global::Windows.UI.Xaml.DependencyObject);
-            _typeTable[9] = typeof(global::BrainShare.Views.LibraryPage);
+            _typeTable[9] = typeof(global::BrainShare.Views.DocumentsPage);
             _typeTable[10] = typeof(global::BrainShare.LoginPage);
             _typeTable[11] = typeof(global::BrainShare.Common.BooleanToVisibilityConverter);
             _typeTable[12] = typeof(global::BrainShare.Views.LibraryBookReader);
@@ -214,7 +214,7 @@ namespace BrainShare.BrainShare_XamlTypeInfo
         private object Activate_0_CreateAccountPage() { return new global::BrainShare.Views.CreateAccountPage(); }
         private object Activate_3_LibraryCategoryBooks() { return new global::BrainShare.Views.LibraryCategoryBooks(); }
         private object Activate_4_ObservableDictionary() { return new global::BrainShare.Common.ObservableDictionary(); }
-        private object Activate_9_LibraryPage() { return new global::BrainShare.Views.LibraryPage(); }
+        private object Activate_9_DocumentsPage() { return new global::BrainShare.Views.DocumentsPage(); }
         private object Activate_10_LoginPage() { return new global::BrainShare.LoginPage(); }
         private object Activate_11_BooleanToVisibilityConverter() { return new global::BrainShare.Common.BooleanToVisibilityConverter(); }
         private object Activate_12_LibraryBookReader() { return new global::BrainShare.Views.LibraryBookReader(); }
@@ -297,9 +297,9 @@ namespace BrainShare.BrainShare_XamlTypeInfo
                 xamlType = new global::BrainShare.BrainShare_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 9:   //  BrainShare.Views.LibraryPage
+            case 9:   //  BrainShare.Views.DocumentsPage
                 userType = new global::BrainShare.BrainShare_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_9_LibraryPage;
+                userType.Activator = Activate_9_DocumentsPage;
                 userType.AddMemberName("DefaultViewModel");
                 userType.AddMemberName("NavigationHelper");
                 userType.SetIsLocalType();
@@ -441,14 +441,14 @@ namespace BrainShare.BrainShare_XamlTypeInfo
             var that = (global::BrainShare.Views.LibraryCategoryBooks)instance;
             return that.NavigationHelper;
         }
-        private object get_2_LibraryPage_DefaultViewModel(object instance)
+        private object get_2_DocumentsPage_DefaultViewModel(object instance)
         {
-            var that = (global::BrainShare.Views.LibraryPage)instance;
+            var that = (global::BrainShare.Views.DocumentsPage)instance;
             return that.DefaultViewModel;
         }
-        private object get_3_LibraryPage_NavigationHelper(object instance)
+        private object get_3_DocumentsPage_NavigationHelper(object instance)
         {
-            var that = (global::BrainShare.Views.LibraryPage)instance;
+            var that = (global::BrainShare.Views.DocumentsPage)instance;
             return that.NavigationHelper;
         }
         private object get_4_LoginPage_DefaultViewModel(object instance)
@@ -581,16 +581,16 @@ namespace BrainShare.BrainShare_XamlTypeInfo
                 xamlMember.Getter = get_1_LibraryCategoryBooks_NavigationHelper;
                 xamlMember.SetIsReadOnly();
                 break;
-            case "BrainShare.Views.LibraryPage.DefaultViewModel":
-                userType = (global::BrainShare.BrainShare_XamlTypeInfo.XamlUserType)GetXamlTypeByName("BrainShare.Views.LibraryPage");
+            case "BrainShare.Views.DocumentsPage.DefaultViewModel":
+                userType = (global::BrainShare.BrainShare_XamlTypeInfo.XamlUserType)GetXamlTypeByName("BrainShare.Views.DocumentsPage");
                 xamlMember = new global::BrainShare.BrainShare_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "BrainShare.Common.ObservableDictionary");
-                xamlMember.Getter = get_2_LibraryPage_DefaultViewModel;
+                xamlMember.Getter = get_2_DocumentsPage_DefaultViewModel;
                 xamlMember.SetIsReadOnly();
                 break;
-            case "BrainShare.Views.LibraryPage.NavigationHelper":
-                userType = (global::BrainShare.BrainShare_XamlTypeInfo.XamlUserType)GetXamlTypeByName("BrainShare.Views.LibraryPage");
+            case "BrainShare.Views.DocumentsPage.NavigationHelper":
+                userType = (global::BrainShare.BrainShare_XamlTypeInfo.XamlUserType)GetXamlTypeByName("BrainShare.Views.DocumentsPage");
                 xamlMember = new global::BrainShare.BrainShare_XamlTypeInfo.XamlMember(this, "NavigationHelper", "BrainShare.Common.NavigationHelper");
-                xamlMember.Getter = get_3_LibraryPage_NavigationHelper;
+                xamlMember.Getter = get_3_DocumentsPage_NavigationHelper;
                 xamlMember.SetIsReadOnly();
                 break;
             case "BrainShare.LoginPage.DefaultViewModel":
@@ -1050,6 +1050,5 @@ namespace BrainShare.BrainShare_XamlTypeInfo
         }
     }
 }
-
 
 

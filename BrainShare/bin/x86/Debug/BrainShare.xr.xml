@@ -186,7 +186,7 @@
       <RootEvent Name="ItemClick" />
     </RootType>
     <RootType FullName="BrainShare.Views.LibraryCategoryBooks" />
-    <RootType FullName="BrainShare.Views.LibraryPage" />
+    <RootType FullName="BrainShare.Views.DocumentsPage" />
     <RootType FullName="System.String" />
     <RootType FullName="Windows.UI.Xaml.Controls.Control">
       <RootProperty Name="Background" />

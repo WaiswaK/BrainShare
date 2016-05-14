@@ -2,6 +2,8 @@
 using BrainShare.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Windows.Data.Json;
 
 namespace BrainShare.Core
@@ -85,6 +87,21 @@ namespace BrainShare.Core
                 }
             }
             return user;
+        }
+        public static async Task<JsonObject> LoginJsonObject(string username, string password)
+        {
+            JsonObject loginObject = new JsonObject();
+            var client = new HttpClient();
+            var postData = new List<KeyValuePair<string, string>>();
+            postData.Add(new KeyValuePair<string, string>("email", username));
+            postData.Add(new KeyValuePair<string, string>("password", password));
+            var formContent = new FormUrlEncodedContent(postData);
+            var authresponse = await client.PostAsync("http://brainshare.ug/liveapis/authenticate.json", formContent);
+            var authresult = await authresponse.Content.ReadAsStreamAsync();
+            var authstreamReader = new System.IO.StreamReader(authresult);
+            var authresponseContent = authstreamReader.ReadToEnd().Trim().ToString();
+            loginObject = JsonObject.Parse(authresponseContent);
+            return loginObject;
         }
         #endregion
         #region Subjects JSON Methods
@@ -181,6 +198,139 @@ namespace BrainShare.Core
                 }
             }
             return attachment;
+        }        
+        public static async Task <List<SubjectObservable>> Get_Subjects(string username, string password,List<int> remainedIDs, List<int> IDs, JsonArray subjects)
+        {
+            List<int> UpdateIds = ModelTask.oldIds(remainedIDs, IDs);
+            List<SubjectObservable> oldcourses = new List<SubjectObservable>();
+
+            foreach (var id in UpdateIds)
+            {
+                var notes_httpclient = new HttpClient();
+                var notes_postData = new List<KeyValuePair<string, string>>();
+                notes_postData.Add(new KeyValuePair<string, string>("email", username));
+                notes_postData.Add(new KeyValuePair<string, string>("password", password));
+                notes_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
+                var notes_formContent = new FormUrlEncodedContent(notes_postData);
+                var notes_response = await notes_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_notes.json", notes_formContent);
+                var notes_result = await notes_response.Content.ReadAsStreamAsync();
+                var notes_streamReader = new System.IO.StreamReader(notes_result);
+                var notes_responseContent = notes_streamReader.ReadToEnd().Trim().ToString();
+                var notes = JsonArray.Parse(notes_responseContent);
+
+                var videos_httpclient = new HttpClient();
+                var videospostData = new List<KeyValuePair<string, string>>();
+                videospostData.Add(new KeyValuePair<string, string>("email", username));
+                videospostData.Add(new KeyValuePair<string, string>("password", password));
+                videospostData.Add(new KeyValuePair<string, string>("id", id.ToString()));
+                var videosformContent = new FormUrlEncodedContent(videospostData);
+                var videosresponse = await videos_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_videos.json", videosformContent);
+                var videosresult = await videosresponse.Content.ReadAsStreamAsync();
+                var videosstreamReader = new System.IO.StreamReader(videosresult);
+                var videosresponseContent = videosstreamReader.ReadToEnd().Trim().ToString();
+                var videos = JsonArray.Parse(videosresponseContent);
+
+                var assgnmt_httpclient = new HttpClient();
+                var assgnmt_postData = new List<KeyValuePair<string, string>>();
+                assgnmt_postData.Add(new KeyValuePair<string, string>("email", username));
+                assgnmt_postData.Add(new KeyValuePair<string, string>("password", password));
+                assgnmt_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
+                var assgnmt_formContent = new FormUrlEncodedContent(assgnmt_postData);
+                var assgnmt_response = await assgnmt_httpclient.PostAsync("http://brainshare.ug/liveapis/assignments.json", assgnmt_formContent);
+                var assgnmt_result = await assgnmt_response.Content.ReadAsStreamAsync();
+                var assgnmt_streamReader = new System.IO.StreamReader(assgnmt_result);
+                var assgnmt_responseContent = assgnmt_streamReader.ReadToEnd().Trim().ToString();
+                var assignments = JsonArray.Parse(assgnmt_responseContent);
+
+                var file_httpclient = new HttpClient();
+                var file_postData = new List<KeyValuePair<string, string>>();
+                file_postData.Add(new KeyValuePair<string, string>("email", username));
+                file_postData.Add(new KeyValuePair<string, string>("password", password));
+                file_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
+                var file_formContent = new FormUrlEncodedContent(file_postData);
+                var file_response = await file_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_files.json", file_formContent);
+                var file_result = await file_response.Content.ReadAsStreamAsync();
+                var file_streamReader = new System.IO.StreamReader(file_result);
+                var file_responseContent = file_streamReader.ReadToEnd().Trim().ToString();
+                var files = JsonArray.Parse(file_responseContent);
+
+                SubjectObservable subject = GetSubject(subjects, id, notes, videos, assignments, files);
+                oldcourses.Add(subject);
+            }
+            return oldcourses;
+        }
+        public static async Task<List<SubjectObservable>> Get_New_Subjects(string username, string password, List<int> NewSubjectIds, JsonArray subjects)
+        {
+            List<SubjectObservable> CurrentSubjects = new List<SubjectObservable>();
+            foreach (var id in NewSubjectIds)
+            {
+                var notes_httpclient = new HttpClient();
+                var notes_postData = new List<KeyValuePair<string, string>>();
+                notes_postData.Add(new KeyValuePair<string, string>("email", username));
+                notes_postData.Add(new KeyValuePair<string, string>("password", password));
+                notes_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
+                var notes_formContent = new FormUrlEncodedContent(notes_postData);
+                var notes_response = await notes_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_notes.json", notes_formContent);
+                var notes_result = await notes_response.Content.ReadAsStreamAsync();
+                var notes_streamReader = new System.IO.StreamReader(notes_result);
+                var notes_responseContent = notes_streamReader.ReadToEnd().Trim().ToString();
+                var notes = JsonArray.Parse(notes_responseContent);
+
+                var videos_httpclient = new HttpClient();
+                var videospostData = new List<KeyValuePair<string, string>>();
+                videospostData.Add(new KeyValuePair<string, string>("email", username));
+                videospostData.Add(new KeyValuePair<string, string>("password", password));
+                videospostData.Add(new KeyValuePair<string, string>("id", id.ToString()));
+                var videosformContent = new FormUrlEncodedContent(videospostData);
+                var videosresponse = await videos_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_videos.json", videosformContent);
+                var videosresult = await videosresponse.Content.ReadAsStreamAsync();
+                var videosstreamReader = new System.IO.StreamReader(videosresult);
+                var videosresponseContent = videosstreamReader.ReadToEnd().Trim().ToString();
+                var videos = JsonArray.Parse(videosresponseContent);
+
+                var assgnmt_httpclient = new HttpClient();
+                var assgnmt_postData = new List<KeyValuePair<string, string>>();
+                assgnmt_postData.Add(new KeyValuePair<string, string>("email", username));
+                assgnmt_postData.Add(new KeyValuePair<string, string>("password", password));
+                assgnmt_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
+                var assgnmt_formContent = new FormUrlEncodedContent(assgnmt_postData);
+                var assgnmt_response = await assgnmt_httpclient.PostAsync("http://brainshare.ug/liveapis/assignments.json", assgnmt_formContent);
+                var assgnmt_result = await assgnmt_response.Content.ReadAsStreamAsync();
+                var assgnmt_streamReader = new System.IO.StreamReader(assgnmt_result);
+                var assgnmt_responseContent = assgnmt_streamReader.ReadToEnd().Trim().ToString();
+                var assignments = JsonArray.Parse(assgnmt_responseContent);
+
+                var file_httpclient = new HttpClient();
+                var file_postData = new List<KeyValuePair<string, string>>();
+                file_postData.Add(new KeyValuePair<string, string>("email", username));
+                file_postData.Add(new KeyValuePair<string, string>("password", password));
+                file_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
+                var file_formContent = new FormUrlEncodedContent(file_postData);
+                var file_response = await file_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_files.json", file_formContent);
+                var file_result = await file_response.Content.ReadAsStreamAsync();
+                var file_streamReader = new System.IO.StreamReader(file_result);
+                var file_responseContent = file_streamReader.ReadToEnd().Trim().ToString();
+                var files = JsonArray.Parse(file_responseContent);
+
+                SubjectObservable subject = GetSubject(subjects, id, notes, videos, assignments, files);
+                CurrentSubjects.Add(subject);
+            }
+            return CurrentSubjects;
+        }        
+        public static async Task<JsonArray> SubjectsJsonArray(string username, string password)
+        {
+            JsonArray subjects = new JsonArray();
+            var units_http_client = new HttpClient();
+            var units_postData = new List<KeyValuePair<string, string>>();
+            units_postData.Add(new KeyValuePair<string, string>("email", username));
+            units_postData.Add(new KeyValuePair<string, string>("password", password));
+            var units_formContent = new FormUrlEncodedContent(units_postData);
+            var courseresponse = await units_http_client.PostAsync("http://brainshare.ug/liveapis/course_units.json", units_formContent);
+            var coursesresult = await courseresponse.Content.ReadAsStreamAsync();
+            var coursestreamReader = new System.IO.StreamReader(coursesresult);
+            var courseresponseContent = coursestreamReader.ReadToEnd().Trim().ToString();
+            subjects = JsonArray.Parse(courseresponseContent);
+            return subjects;
         }
         #endregion
         #region Topics JSON Methods
@@ -448,6 +598,30 @@ namespace BrainShare.Core
             library.categories = GetLibraryCategories(CategoryList, id);
             return library;
         }
+        public static async Task<LibraryObservable> Current_Library(string username, string password, int school_id)
+        {
+            LibraryObservable Current = new LibraryObservable();
+            try
+            {
+                var library_httpclient = new HttpClient();
+                var library_postData = new List<KeyValuePair<string, string>>();
+                library_postData.Add(new KeyValuePair<string, string>("email", username));
+                library_postData.Add(new KeyValuePair<string, string>("password", password));
+                library_postData.Add(new KeyValuePair<string, string>("id", school_id.ToString()));
+                var library_formContent = new FormUrlEncodedContent(library_postData);
+                var library_response = await library_httpclient.PostAsync("http://brainshare.ug/liveapis/books.json", library_formContent);
+                var library_result = await library_response.Content.ReadAsStreamAsync();
+                var library_streamReader = new System.IO.StreamReader(library_result);
+                var library_responseContent = library_streamReader.ReadToEnd().Trim().ToString();
+                var library = JsonArray.Parse(library_responseContent);
+                Current = GetLibrary(library, school_id);
+            }
+            catch 
+            {
+                
+            }
+            return Current;
+        }     
         #endregion
     }
 }

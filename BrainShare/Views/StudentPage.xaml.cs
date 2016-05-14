@@ -29,7 +29,7 @@ namespace BrainShare.Views
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
         ErrorLogTask Logfile = new ErrorLogTask();
-        
+
         //Settings
         private const string _noteskey = "Notes";
         private const string _libkey = "Library";
@@ -78,7 +78,7 @@ namespace BrainShare.Views
         {
             var user = e.NavigationParameter as UserObservable;
             UserObservable initial = user;
-                      
+
             //Notes and Notes Module Settings Check
             if (ApplicationData.Current.LocalSettings.Values.ContainsKey(_noteskey))
                 notes_on = !(bool)ApplicationData.Current.LocalSettings.Values[_noteskey];
@@ -105,7 +105,7 @@ namespace BrainShare.Views
             }
 
             //Library and Library Module Settings Check                     
-            if (ApplicationData.Current.LocalSettings.Values.ContainsKey(_libkey)) 
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey(_libkey))
                 library_on = !(bool)ApplicationData.Current.LocalSettings.Values[_libkey];
             if (library_on)
             {
@@ -116,8 +116,8 @@ namespace BrainShare.Views
             {
                 LibraryObservable library = new LibraryObservable();
                 user.Library = library;
-             }
-                
+            }
+
             StudentPageViewModel vm = new StudentPageViewModel(user);
             DataContext = vm;
             if (user.update_status == Constants.finished_update)
@@ -127,7 +127,7 @@ namespace BrainShare.Views
                     UpdateUser(initial.email, initial.password, DatabaseOutputTask.SubjectIdsForUser(initial.email), user.subjects, user);
                     if (user.NotesImagesDownloading == false)
                     {
-                        user.NotesImagesDownloading = true; 
+                        user.NotesImagesDownloading = true;
                         NotesTask.GetNotesImagesSubjectsAsync(user.subjects);
                     }
                 }
@@ -156,46 +156,17 @@ namespace BrainShare.Views
             LibraryObservable Current_Library = new LibraryObservable();
             LibraryObservable Old_Library = DatabaseOutputTask.GetLibrary(currentUser.School.SchoolId);
             currentUser.update_status = Constants.updating;
-
             pgBar.Visibility = Visibility.Visible;
-            // LoadingMsg.Text = "Checking for updates...";
-            // LoadingMsg.Visibility = Visibility.Visible;
-
             try
             {
-                var library_httpclient = new HttpClient();
-                var library_postData = new List<KeyValuePair<string, string>>();
-                library_postData.Add(new KeyValuePair<string, string>("email", username));
-                library_postData.Add(new KeyValuePair<string, string>("password", password));
-                library_postData.Add(new KeyValuePair<string, string>("id", userdetails.School.SchoolId.ToString()));
-                var library_formContent = new FormUrlEncodedContent(library_postData);
-                var library_response = await library_httpclient.PostAsync("http://brainshare.ug/liveapis/books.json", library_formContent);
-                var library_result = await library_response.Content.ReadAsStreamAsync();
-                var library_streamReader = new System.IO.StreamReader(library_result);
-                var library_responseContent = library_streamReader.ReadToEnd().Trim().ToString();
-                var library = JsonArray.Parse(library_responseContent);
-                Current_Library = JSONTask.GetLibrary(library, userdetails.School.SchoolId);
+                Current_Library = await JSONTask.Current_Library(username, password, userdetails.School.SchoolId);
             }
-            catch (Exception ex)
+            catch
             {
-                Logfile.Error_details = ex.ToString();
-                Logfile.Error_title = "UpdateUser Method";
-                Logfile.Location = "StudentPage";
-                //await ErrorLogTask.LogFileSaveAsync(Logfile);
             }
             try
             {
-                var client = new HttpClient();
-                var postData = new List<KeyValuePair<string, string>>();
-                postData.Add(new KeyValuePair<string, string>("email", username));
-                postData.Add(new KeyValuePair<string, string>("password", password));
-                var formContent = new FormUrlEncodedContent(postData);
-                var authresponse = await client.PostAsync("http://brainshare.ug/liveapis/authenticate.json", formContent);
-                var authresult = await authresponse.Content.ReadAsStreamAsync();
-                var authstreamReader = new System.IO.StreamReader(authresult);
-                var authresponseContent = authstreamReader.ReadToEnd().Trim().ToString();
-                var loginObject = JsonObject.Parse(authresponseContent);
-
+                JsonObject loginObject = await JSONTask.LoginJsonObject(username, password);
                 LoginStatus user = JSONTask.Notification(loginObject);
                 if (user.statusCode.Equals("200") && user.statusDescription.Equals("Authentication was successful"))
                 {
@@ -203,21 +174,9 @@ namespace BrainShare.Views
                     userdetails.password = password;
                     userdetails.School = JSONTask.GetSchool(loginObject);
                     userdetails.full_names = JSONTask.GetUsername(loginObject);
-
                     try
                     {
-                        var units_http_client = new HttpClient();
-                        var units_postData = new List<KeyValuePair<string, string>>();
-                        units_postData.Add(new KeyValuePair<string, string>("email", username));
-                        units_postData.Add(new KeyValuePair<string, string>("password", password));
-                        var units_formContent = new FormUrlEncodedContent(units_postData);
-                        var courseresponse = await units_http_client.PostAsync("http://brainshare.ug/liveapis/course_units.json", units_formContent);
-                        var coursesresult = await courseresponse.Content.ReadAsStreamAsync();
-                        var coursestreamReader = new System.IO.StreamReader(coursesresult);
-                        var courseresponseContent = coursestreamReader.ReadToEnd().Trim().ToString();
-                        var subjects = JsonArray.Parse(courseresponseContent);
-
-
+                        JsonArray subjects = await JSONTask.SubjectsJsonArray(username, password);
                         List<SubjectObservable> courses = new List<SubjectObservable>();
                         List<SubjectObservable> newcourses = new List<SubjectObservable>();
                         List<int> IDs = JSONTask.SubjectIds(subjects);
@@ -258,61 +217,13 @@ namespace BrainShare.Views
 
                         if (NewSubjectIds != null)
                         {
-                            foreach (var id in NewSubjectIds)
+                            CurrentSubjects = await JSONTask.Get_New_Subjects(username, password, NewSubjectIds, subjects);
+                            foreach (var sub in CurrentSubjects)
                             {
-                                var notes_httpclient = new HttpClient();
-                                var notes_postData = new List<KeyValuePair<string, string>>();
-                                notes_postData.Add(new KeyValuePair<string, string>("email", username));
-                                notes_postData.Add(new KeyValuePair<string, string>("password", password));
-                                notes_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
-                                var notes_formContent = new FormUrlEncodedContent(notes_postData);
-                                var notes_response = await notes_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_notes.json", notes_formContent);
-                                var notes_result = await notes_response.Content.ReadAsStreamAsync();
-                                var notes_streamReader = new System.IO.StreamReader(notes_result);
-                                var notes_responseContent = notes_streamReader.ReadToEnd().Trim().ToString();
-                                var notes = JsonArray.Parse(notes_responseContent);
-
-                                var videos_httpclient = new HttpClient();
-                                var videospostData = new List<KeyValuePair<string, string>>();
-                                videospostData.Add(new KeyValuePair<string, string>("email", username));
-                                videospostData.Add(new KeyValuePair<string, string>("password", password));
-                                videospostData.Add(new KeyValuePair<string, string>("id", id.ToString()));
-                                var videosformContent = new FormUrlEncodedContent(videospostData);
-                                var videosresponse = await videos_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_videos.json", videosformContent);
-                                var videosresult = await videosresponse.Content.ReadAsStreamAsync();
-                                var videosstreamReader = new System.IO.StreamReader(videosresult);
-                                var videosresponseContent = videosstreamReader.ReadToEnd().Trim().ToString();
-                                var videos = JsonArray.Parse(videosresponseContent);
-
-                                var assgnmt_httpclient = new HttpClient();
-                                var assgnmt_postData = new List<KeyValuePair<string, string>>();
-                                assgnmt_postData.Add(new KeyValuePair<string, string>("email", username));
-                                assgnmt_postData.Add(new KeyValuePair<string, string>("password", password));
-                                assgnmt_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
-                                var assgnmt_formContent = new FormUrlEncodedContent(assgnmt_postData);
-                                var assgnmt_response = await assgnmt_httpclient.PostAsync("http://brainshare.ug/liveapis/assignments.json", assgnmt_formContent);
-                                var assgnmt_result = await assgnmt_response.Content.ReadAsStreamAsync();
-                                var assgnmt_streamReader = new System.IO.StreamReader(assgnmt_result);
-                                var assgnmt_responseContent = assgnmt_streamReader.ReadToEnd().Trim().ToString();
-                                var assignments = JsonArray.Parse(assgnmt_responseContent);
-
-                                var file_httpclient = new HttpClient();
-                                var file_postData = new List<KeyValuePair<string, string>>();
-                                file_postData.Add(new KeyValuePair<string, string>("email", username));
-                                file_postData.Add(new KeyValuePair<string, string>("password", password));
-                                file_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
-                                var file_formContent = new FormUrlEncodedContent(file_postData);
-                                var file_response = await file_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_files.json", file_formContent);
-                                var file_result = await file_response.Content.ReadAsStreamAsync();
-                                var file_streamReader = new System.IO.StreamReader(file_result);
-                                var file_responseContent = file_streamReader.ReadToEnd().Trim().ToString();
-                                var files = JsonArray.Parse(file_responseContent);
-
-                                subject = JSONTask.GetSubject(subjects, id, notes, videos, assignments, files);
-                                CurrentSubjects.Add(subject);
-                                courses.Add(subject);
-                                newcourses.Add(subject);
+                                courses.Add(sub);
+                                newcourses.Add(sub);
                             }
+
                             if (remainedIDs == null)
                             {
                                 NewSubjectIds = null;
@@ -324,62 +235,12 @@ namespace BrainShare.Views
                             }
                             if (NewSubjectIds != null)
                             {
-                                List<int> UpdateIds = ModelTask.oldIds(IDs, remainedIDs);
-                                List<SubjectObservable> oldcourses = new List<SubjectObservable>();
-                                foreach (var id in UpdateIds)
+                                List<SubjectObservable> oldcourses = await JSONTask.Get_Subjects(username, password, remainedIDs, IDs, subjects);
+                                foreach (var course in oldcourses)
                                 {
-                                    var notes_httpclient = new HttpClient();
-                                    var notes_postData = new List<KeyValuePair<string, string>>();
-                                    notes_postData.Add(new KeyValuePair<string, string>("email", username));
-                                    notes_postData.Add(new KeyValuePair<string, string>("password", password));
-                                    notes_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
-                                    var notes_formContent = new FormUrlEncodedContent(notes_postData);
-                                    var notes_response = await notes_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_notes.json", notes_formContent);
-                                    var notes_result = await notes_response.Content.ReadAsStreamAsync();
-                                    var notes_streamReader = new System.IO.StreamReader(notes_result);
-                                    var notes_responseContent = notes_streamReader.ReadToEnd().Trim().ToString();
-                                    var notes = JsonArray.Parse(notes_responseContent);
-
-                                    var videos_httpclient = new HttpClient();
-                                    var videospostData = new List<KeyValuePair<string, string>>();
-                                    videospostData.Add(new KeyValuePair<string, string>("email", username));
-                                    videospostData.Add(new KeyValuePair<string, string>("password", password));
-                                    videospostData.Add(new KeyValuePair<string, string>("id", id.ToString()));
-                                    var videosformContent = new FormUrlEncodedContent(videospostData);
-                                    var videosresponse = await videos_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_videos.json", videosformContent);
-                                    var videosresult = await videosresponse.Content.ReadAsStreamAsync();
-                                    var videosstreamReader = new System.IO.StreamReader(videosresult);
-                                    var videosresponseContent = videosstreamReader.ReadToEnd().Trim().ToString();
-                                    var videos = JsonArray.Parse(videosresponseContent);
-
-                                    var assgnmt_httpclient = new HttpClient();
-                                    var assgnmt_postData = new List<KeyValuePair<string, string>>();
-                                    assgnmt_postData.Add(new KeyValuePair<string, string>("email", username));
-                                    assgnmt_postData.Add(new KeyValuePair<string, string>("password", password));
-                                    assgnmt_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
-                                    var assgnmt_formContent = new FormUrlEncodedContent(assgnmt_postData);
-                                    var assgnmt_response = await assgnmt_httpclient.PostAsync("http://brainshare.ug/liveapis/assignments.json", assgnmt_formContent);
-                                    var assgnmt_result = await assgnmt_response.Content.ReadAsStreamAsync();
-                                    var assgnmt_streamReader = new System.IO.StreamReader(assgnmt_result);
-                                    var assgnmt_responseContent = assgnmt_streamReader.ReadToEnd().Trim().ToString();
-                                    var assignments = JsonArray.Parse(assgnmt_responseContent);
-
-                                    var file_httpclient = new HttpClient();
-                                    var file_postData = new List<KeyValuePair<string, string>>();
-                                    file_postData.Add(new KeyValuePair<string, string>("email", username));
-                                    file_postData.Add(new KeyValuePair<string, string>("password", password));
-                                    file_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
-                                    var file_formContent = new FormUrlEncodedContent(file_postData);
-                                    var file_response = await file_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_files.json", file_formContent);
-                                    var file_result = await file_response.Content.ReadAsStreamAsync();
-                                    var file_streamReader = new System.IO.StreamReader(file_result);
-                                    var file_responseContent = file_streamReader.ReadToEnd().Trim().ToString();
-                                    var files = JsonArray.Parse(file_responseContent);
-
-                                    subject = JSONTask.GetSubject(subjects, id, notes, videos, assignments, files);
-                                    oldcourses.Add(subject);
-                                    courses.Add(subject);//check here
+                                    courses.Add(course);
                                 }
+
                                 List<SubjectObservable> updateable = new List<SubjectObservable>();
                                 if (remainedIDs == null)
                                 {
@@ -424,19 +285,19 @@ namespace BrainShare.Views
 
                                     if (newContentLibrary == null && updatedOldContentLibrary != null)
                                     {
-                                        UserUpdater(userdetails, courses, null, currentUser, null, updatedOldContentLibrary);
+                                        ModelTask.UserUpdater(userdetails, courses, null, currentUser, null, updatedOldContentLibrary);
                                     }
                                     else if (newContentLibrary == null && updatedOldContentLibrary == null)
                                     {
-                                        UserUpdater(userdetails, courses, null, currentUser, null, null);
+                                        ModelTask.UserUpdater(userdetails, courses, null, currentUser, null, null);
                                     }
                                     else if (newContentLibrary != null && updatedOldContentLibrary == null)
                                     {
-                                        UserUpdater(userdetails, courses, null, currentUser, newContentLibrary, null);
+                                        ModelTask.UserUpdater(userdetails, courses, null, currentUser, newContentLibrary, null);
                                     }
                                     else if (newContentLibrary != null && updatedOldContentLibrary != null)
                                     {
-                                        UserUpdater(userdetails, courses, null, currentUser, newContentLibrary, updatedOldContentLibrary);
+                                        ModelTask.UserUpdater(userdetails, courses, null, currentUser, newContentLibrary, updatedOldContentLibrary);
                                     }
                                 }
                                 else
@@ -452,19 +313,19 @@ namespace BrainShare.Views
                                     List<Library_CategoryObservable> updatedOldContentLibrary = ModelTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
                                     if (newContentLibrary == null && updatedOldContentLibrary != null)
                                     {
-                                        UserUpdater(userdetails, courses, updateable, currentUser, null, updatedOldContentLibrary);
+                                        ModelTask.UserUpdater(userdetails, courses, updateable, currentUser, null, updatedOldContentLibrary);
                                     }
                                     else if (newContentLibrary == null && updatedOldContentLibrary == null)
                                     {
-                                        UserUpdater(userdetails, courses, updateable, currentUser, null, null);
+                                        ModelTask.UserUpdater(userdetails, courses, updateable, currentUser, null, null);
                                     }
                                     else if (newContentLibrary != null && updatedOldContentLibrary == null)
                                     {
-                                        UserUpdater(userdetails, courses, updateable, currentUser, newContentLibrary, null);
+                                        ModelTask.UserUpdater(userdetails, courses, updateable, currentUser, newContentLibrary, null);
                                     }
                                     else if (newContentLibrary != null && updatedOldContentLibrary != null)
                                     {
-                                        UserUpdater(userdetails, courses, updateable, currentUser, newContentLibrary, updatedOldContentLibrary);
+                                        ModelTask.UserUpdater(userdetails, courses, updateable, currentUser, newContentLibrary, updatedOldContentLibrary);
                                     }
                                 }
                             }
@@ -477,78 +338,24 @@ namespace BrainShare.Views
                                     List<Library_CategoryObservable> updatedOldContentLibrary = ModelTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
                                     if (newContentLibrary == null && updatedOldContentLibrary != null)
                                     {
-                                        UserUpdater(userdetails, newcourses, null, currentUser, null, updatedOldContentLibrary);
+                                        ModelTask.UserUpdater(userdetails, newcourses, null, currentUser, null, updatedOldContentLibrary);
                                     }
                                     else if (newContentLibrary == null && updatedOldContentLibrary == null)
                                     {
-                                        UserUpdater(userdetails, newcourses, null, currentUser, null, null);
+                                        ModelTask.UserUpdater(userdetails, newcourses, null, currentUser, null, null);
                                     }
                                     else if (newContentLibrary != null && updatedOldContentLibrary == null)
                                     {
-                                        UserUpdater(userdetails, newcourses, null, currentUser, newContentLibrary, null);
+                                        ModelTask.UserUpdater(userdetails, newcourses, null, currentUser, newContentLibrary, null);
                                     }
                                     else if (newContentLibrary != null && updatedOldContentLibrary != null)
                                     {
-                                        UserUpdater(userdetails, newcourses, null, currentUser, newContentLibrary, updatedOldContentLibrary);
+                                        ModelTask.UserUpdater(userdetails, newcourses, null, currentUser, newContentLibrary, updatedOldContentLibrary);
                                     }
                                 }
                                 else
                                 {
-                                    List<int> UpdateIds = ModelTask.oldIds(remainedIDs, IDs);
-                                    List<SubjectObservable> oldcourses = new List<SubjectObservable>();
-                                    foreach (var id in UpdateIds)
-                                    {
-                                        var notes_httpclient = new HttpClient();
-                                        var notes_postData = new List<KeyValuePair<string, string>>();
-                                        notes_postData.Add(new KeyValuePair<string, string>("email", username));
-                                        notes_postData.Add(new KeyValuePair<string, string>("password", password));
-                                        notes_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
-                                        var notes_formContent = new FormUrlEncodedContent(notes_postData);
-                                        var notes_response = await notes_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_notes.json", notes_formContent);
-                                        var notes_result = await notes_response.Content.ReadAsStreamAsync();
-                                        var notes_streamReader = new System.IO.StreamReader(notes_result);
-                                        var notes_responseContent = notes_streamReader.ReadToEnd().Trim().ToString();
-                                        var notes = JsonArray.Parse(notes_responseContent);
-
-                                        var videos_httpclient = new HttpClient();
-                                        var videospostData = new List<KeyValuePair<string, string>>();
-                                        videospostData.Add(new KeyValuePair<string, string>("email", username));
-                                        videospostData.Add(new KeyValuePair<string, string>("password", password));
-                                        videospostData.Add(new KeyValuePair<string, string>("id", id.ToString()));
-                                        var videosformContent = new FormUrlEncodedContent(videospostData);
-                                        var videosresponse = await videos_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_videos.json", videosformContent);
-                                        var videosresult = await videosresponse.Content.ReadAsStreamAsync();
-                                        var videosstreamReader = new System.IO.StreamReader(videosresult);
-                                        var videosresponseContent = videosstreamReader.ReadToEnd().Trim().ToString();
-                                        var videos = JsonArray.Parse(videosresponseContent);
-
-                                        var assgnmt_httpclient = new HttpClient();
-                                        var assgnmt_postData = new List<KeyValuePair<string, string>>();
-                                        assgnmt_postData.Add(new KeyValuePair<string, string>("email", username));
-                                        assgnmt_postData.Add(new KeyValuePair<string, string>("password", password));
-                                        assgnmt_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
-                                        var assgnmt_formContent = new FormUrlEncodedContent(assgnmt_postData);
-                                        var assgnmt_response = await assgnmt_httpclient.PostAsync("http://brainshare.ug/liveapis/assignments.json", assgnmt_formContent);
-                                        var assgnmt_result = await assgnmt_response.Content.ReadAsStreamAsync();
-                                        var assgnmt_streamReader = new System.IO.StreamReader(assgnmt_result);
-                                        var assgnmt_responseContent = assgnmt_streamReader.ReadToEnd().Trim().ToString();
-                                        var assignments = JsonArray.Parse(assgnmt_responseContent);
-
-                                        var file_httpclient = new HttpClient();
-                                        var file_postData = new List<KeyValuePair<string, string>>();
-                                        file_postData.Add(new KeyValuePair<string, string>("email", username));
-                                        file_postData.Add(new KeyValuePair<string, string>("password", password));
-                                        file_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
-                                        var file_formContent = new FormUrlEncodedContent(file_postData);
-                                        var file_response = await file_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_files.json", file_formContent);
-                                        var file_result = await file_response.Content.ReadAsStreamAsync();
-                                        var file_streamReader = new System.IO.StreamReader(file_result);
-                                        var file_responseContent = file_streamReader.ReadToEnd().Trim().ToString();
-                                        var files = JsonArray.Parse(file_responseContent);
-
-                                        subject = JSONTask.GetSubject(subjects, id, notes, videos, assignments, files);
-                                        oldcourses.Add(subject);
-                                    }
+                                    List<SubjectObservable> oldcourses = await JSONTask.Get_Subjects(username, password, remainedIDs, IDs, subjects);
                                     List<SubjectObservable> updateable = ModelTask.UpdateableSubjects(InstalledSubjects, oldcourses);
 
                                     if (updateable == null)
@@ -564,19 +371,19 @@ namespace BrainShare.Views
                                         List<Library_CategoryObservable> updatedOldContentLibrary = ModelTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
                                         if (newContentLibrary == null && updatedOldContentLibrary != null)
                                         {
-                                            UserUpdater(userdetails, newcourses, null, currentUser, null, updatedOldContentLibrary);
+                                            ModelTask.UserUpdater(userdetails, newcourses, null, currentUser, null, updatedOldContentLibrary);
                                         }
                                         else if (newContentLibrary == null && updatedOldContentLibrary == null)
                                         {
-                                            UserUpdater(userdetails, newcourses, null, currentUser, null, null);
+                                            ModelTask.UserUpdater(userdetails, newcourses, null, currentUser, null, null);
                                         }
                                         else if (newContentLibrary != null && updatedOldContentLibrary == null)
                                         {
-                                            UserUpdater(userdetails, newcourses, null, currentUser, newContentLibrary, null);
+                                            ModelTask.UserUpdater(userdetails, newcourses, null, currentUser, newContentLibrary, null);
                                         }
                                         else if (newContentLibrary != null && updatedOldContentLibrary != null)
                                         {
-                                            UserUpdater(userdetails, newcourses, null, currentUser, newContentLibrary, updatedOldContentLibrary);
+                                            ModelTask.UserUpdater(userdetails, newcourses, null, currentUser, newContentLibrary, updatedOldContentLibrary);
                                         }
                                     }
                                     else
@@ -592,19 +399,20 @@ namespace BrainShare.Views
                                         List<Library_CategoryObservable> updatedOldContentLibrary = ModelTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
                                         if (newContentLibrary == null && updatedOldContentLibrary != null)
                                         {
-                                            UserUpdater(userdetails, newcourses, updateable, currentUser, null, updatedOldContentLibrary);
+                                            ModelTask.UserUpdater(userdetails, newcourses, updateable, currentUser, null, updatedOldContentLibrary);
                                         }
                                         else if (newContentLibrary == null && updatedOldContentLibrary == null)
                                         {
-                                            UserUpdater(userdetails, newcourses, updateable, currentUser, null, null);
+                                            ModelTask.UserUpdater(userdetails, newcourses, updateable, currentUser, null, null);
+                                           
                                         }
                                         else if (newContentLibrary != null && updatedOldContentLibrary == null)
                                         {
-                                            UserUpdater(userdetails, newcourses, updateable, currentUser, newContentLibrary, null);
+                                            ModelTask.UserUpdater(userdetails, newcourses, updateable, currentUser, newContentLibrary, null);
                                         }
                                         else if (newContentLibrary != null && updatedOldContentLibrary != null)
                                         {
-                                            UserUpdater(userdetails, newcourses, updateable, currentUser, newContentLibrary, updatedOldContentLibrary);
+                                            ModelTask.UserUpdater(userdetails, newcourses, updateable, currentUser, newContentLibrary, updatedOldContentLibrary);
                                         }
                                     }
                                 }
@@ -619,79 +427,27 @@ namespace BrainShare.Views
                                 List<Library_CategoryObservable> updatedOldContentLibrary = ModelTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
                                 if (newContentLibrary == null && updatedOldContentLibrary != null)
                                 {
-                                    UserUpdater(userdetails, null, null, currentUser, null, updatedOldContentLibrary);
+                                    ModelTask.UserUpdater(userdetails, null, null, currentUser, null, updatedOldContentLibrary);
                                 }
                                 else if (newContentLibrary == null && updatedOldContentLibrary == null)
                                 {
-                                    UserUpdater(userdetails, null, null, currentUser, null, null);
+                                    ModelTask.UserUpdater(userdetails, null, null, currentUser, null, null);
                                 }
                                 else if (newContentLibrary != null && updatedOldContentLibrary == null)
                                 {
-                                    UserUpdater(userdetails, null, null, currentUser, newContentLibrary, null);
+                                    ModelTask.UserUpdater(userdetails, null, null, currentUser, newContentLibrary, null);
                                 }
                                 else if (newContentLibrary != null && updatedOldContentLibrary != null)
                                 {
-                                    UserUpdater(userdetails, null, null, currentUser, newContentLibrary, updatedOldContentLibrary);
+                                    ModelTask.UserUpdater(userdetails, null, null, currentUser, newContentLibrary, updatedOldContentLibrary);
                                 }
                             }
                             else
                             {
-                                List<int> UpdateIds = ModelTask.oldIds(remainedIDs, IDs);
-                                List<SubjectObservable> oldcourses = new List<SubjectObservable>();
-
-                                foreach (var id in UpdateIds)
+                                List<SubjectObservable> oldcourses = await JSONTask.Get_Subjects(username, password, remainedIDs, IDs, subjects);
+                                foreach (var course in oldcourses)
                                 {
-                                    var notes_httpclient = new HttpClient();
-                                    var notes_postData = new List<KeyValuePair<string, string>>();
-                                    notes_postData.Add(new KeyValuePair<string, string>("email", username));
-                                    notes_postData.Add(new KeyValuePair<string, string>("password", password));
-                                    notes_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
-                                    var notes_formContent = new FormUrlEncodedContent(notes_postData);
-                                    var notes_response = await notes_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_notes.json", notes_formContent);
-                                    var notes_result = await notes_response.Content.ReadAsStreamAsync();
-                                    var notes_streamReader = new System.IO.StreamReader(notes_result);
-                                    var notes_responseContent = notes_streamReader.ReadToEnd().Trim().ToString();
-                                    var notes = JsonArray.Parse(notes_responseContent);
-
-                                    var videos_httpclient = new HttpClient();
-                                    var videospostData = new List<KeyValuePair<string, string>>();
-                                    videospostData.Add(new KeyValuePair<string, string>("email", username));
-                                    videospostData.Add(new KeyValuePair<string, string>("password", password));
-                                    videospostData.Add(new KeyValuePair<string, string>("id", id.ToString()));
-                                    var videosformContent = new FormUrlEncodedContent(videospostData);
-                                    var videosresponse = await videos_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_videos.json", videosformContent);
-                                    var videosresult = await videosresponse.Content.ReadAsStreamAsync();
-                                    var videosstreamReader = new System.IO.StreamReader(videosresult);
-                                    var videosresponseContent = videosstreamReader.ReadToEnd().Trim().ToString();
-                                    var videos = JsonArray.Parse(videosresponseContent);
-
-                                    var assgnmt_httpclient = new HttpClient();
-                                    var assgnmt_postData = new List<KeyValuePair<string, string>>();
-                                    assgnmt_postData.Add(new KeyValuePair<string, string>("email", username));
-                                    assgnmt_postData.Add(new KeyValuePair<string, string>("password", password));
-                                    assgnmt_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
-                                    var assgnmt_formContent = new FormUrlEncodedContent(assgnmt_postData);
-                                    var assgnmt_response = await assgnmt_httpclient.PostAsync("http://brainshare.ug/liveapis/assignments.json", assgnmt_formContent);
-                                    var assgnmt_result = await assgnmt_response.Content.ReadAsStreamAsync();
-                                    var assgnmt_streamReader = new System.IO.StreamReader(assgnmt_result);
-                                    var assgnmt_responseContent = assgnmt_streamReader.ReadToEnd().Trim().ToString();
-                                    var assignments = JsonArray.Parse(assgnmt_responseContent);
-
-                                    var file_httpclient = new HttpClient();
-                                    var file_postData = new List<KeyValuePair<string, string>>();
-                                    file_postData.Add(new KeyValuePair<string, string>("email", username));
-                                    file_postData.Add(new KeyValuePair<string, string>("password", password));
-                                    file_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
-                                    var file_formContent = new FormUrlEncodedContent(file_postData);
-                                    var file_response = await file_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_files.json", file_formContent);
-                                    var file_result = await file_response.Content.ReadAsStreamAsync();
-                                    var file_streamReader = new System.IO.StreamReader(file_result);
-                                    var file_responseContent = file_streamReader.ReadToEnd().Trim().ToString();
-                                    var files = JsonArray.Parse(file_responseContent);
-
-                                    subject = JSONTask.GetSubject(subjects, id, notes, videos, assignments, files);
-                                    oldcourses.Add(subject);
-                                    courses.Add(subject);
+                                    courses.Add(course); 
                                 }
                                 List<SubjectObservable> updateable = ModelTask.UpdateableSubjects(InstalledSubjects, oldcourses);
                                 if (updateable == null)
@@ -706,19 +462,19 @@ namespace BrainShare.Views
                                     List<Library_CategoryObservable> updatedOldContentLibrary = ModelTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
                                     if (newContentLibrary == null && updatedOldContentLibrary != null)
                                     {
-                                        UserUpdater(userdetails, null, null, currentUser, null, updatedOldContentLibrary);
+                                        ModelTask.UserUpdater(userdetails, null, null, currentUser, null, updatedOldContentLibrary);
                                     }
                                     else if (newContentLibrary == null && updatedOldContentLibrary == null)
                                     {
-                                        UserUpdater(userdetails, null, null, currentUser, null, null);
+                                        ModelTask.UserUpdater(userdetails, null, null, currentUser, null, null);
                                     }
                                     else if (newContentLibrary != null && updatedOldContentLibrary == null)
                                     {
-                                        UserUpdater(userdetails, null, null, currentUser, newContentLibrary, null);
+                                        ModelTask.UserUpdater(userdetails, null, null, currentUser, newContentLibrary, null);
                                     }
                                     else if (newContentLibrary != null && updatedOldContentLibrary != null)
                                     {
-                                        UserUpdater(userdetails, null, null, currentUser, newContentLibrary, updatedOldContentLibrary);
+                                        ModelTask.UserUpdater(userdetails, null, null, currentUser, newContentLibrary, updatedOldContentLibrary);
                                     }
                                 }
                                 else
@@ -733,23 +489,25 @@ namespace BrainShare.Views
                                     List<Library_CategoryObservable> updatedOldContentLibrary = ModelTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
                                     if (newContentLibrary == null && updatedOldContentLibrary != null)
                                     {
-                                        UserUpdater(userdetails, null, updateable, currentUser, null, updatedOldContentLibrary);
+                                        ModelTask.UserUpdater(userdetails, null, updateable, currentUser, null, updatedOldContentLibrary);
                                     }
                                     else if (newContentLibrary == null && updatedOldContentLibrary == null)
                                     {
-                                        UserUpdater(userdetails, null, updateable, currentUser, null, null);
+                                        ModelTask.UserUpdater(userdetails, null, updateable, currentUser, null, null);
                                     }
                                     else if (newContentLibrary != null && updatedOldContentLibrary == null)
                                     {
-                                        UserUpdater(userdetails, null, updateable, currentUser, newContentLibrary, null);
+                                        ModelTask.UserUpdater(userdetails, null, updateable, currentUser, newContentLibrary, null);
                                     }
                                     else if (newContentLibrary != null && updatedOldContentLibrary != null)
                                     {
-                                        UserUpdater(userdetails, null, updateable, currentUser, newContentLibrary, updatedOldContentLibrary);
+                                        ModelTask.UserUpdater(userdetails, null, updateable, currentUser, newContentLibrary, updatedOldContentLibrary);
                                     }
                                 }
                             }
                         }
+                        currentUser.update_status = Constants.finished_update;
+                        pgBar.Visibility = Visibility.Collapsed;
                     }
 
                     catch (Exception ex)
@@ -764,7 +522,7 @@ namespace BrainShare.Views
                 }
                 else
                 {
-                    var message = new MessageDialog(Message.Wrong_User_details, Message.Login_Header).ShowAsync();
+                   
                 }
             }
             catch (Exception ex)
@@ -777,33 +535,7 @@ namespace BrainShare.Views
                 pgBar.Visibility = Visibility.Collapsed;
             }
         }
-        private async void UserUpdater(UserObservable user, List<SubjectObservable> newsubjects, List<SubjectObservable> updateableSubjects, UserObservable CurrentUser,
-            LibraryObservable newlib, List<Library_CategoryObservable> updatedCategories)
-        {
-            await DatabaseInputTask.UpdateUserAsync(user);
-            DatabaseInputTask.UpdateLibAsync(newlib); //Will be checked later // Could be awaitable
-            if (updateableSubjects == null && newsubjects == null)
-            {
-            }
-            else
-            {
-                if (updateableSubjects == null)
-                {
-                    DatabaseInputTask.InsertSubjectsAsync(newsubjects);
-                }
-                if (newsubjects == null)
-                {
-                    DatabaseInputTask.UpdateSubjectsAsync(updateableSubjects);
-                }
-                if (updateableSubjects != null && newsubjects != null)
-                {
-                    DatabaseInputTask.InsertSubjectsAsync(newsubjects);
-                    DatabaseInputTask.UpdateSubjectsAsync(updateableSubjects);
-                }
-            }
-            CurrentUser.update_status = Constants.finished_update;
-            pgBar.Visibility = Visibility.Collapsed;
-        }
+        
         private void Subject_click(object sender, ItemClickEventArgs e)
         {
             var item = e.ClickedItem;
@@ -817,12 +549,7 @@ namespace BrainShare.Views
             Frame.Navigate(typeof(LibraryCategoryBooks), lib_category);
 
         }
-        private void Log_out(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(LoginPage));
-        }
         #region NavigationHelper registration
-
         /// The methods provided in this section are simply used to allow
         /// NavigationHelper to respond to the page's navigation methods.
         /// 
@@ -845,7 +572,6 @@ namespace BrainShare.Views
         {
             navigationHelper.OnNavigatedFrom(e);
         }
-
         #endregion
     }
 }

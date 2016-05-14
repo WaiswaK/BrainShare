@@ -121,8 +121,8 @@
     <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\LibraryCategoryBooks.xbf">
       <PackagePath>Views\LibraryCategoryBooks.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\LibraryPage.xbf">
-      <PackagePath>Views\LibraryPage.xbf</PackagePath>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\DocumentsPage.xbf">
+      <PackagePath>Views\DocumentsPage.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\x86\Debug\Views\LoginPage.xbf">
       <PackagePath>Views\LoginPage.xbf</PackagePath>

@@ -11,7 +11,7 @@ namespace BrainShare.Views
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class LibraryPage : Page
+    public sealed partial class DocumentsPage : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
@@ -30,7 +30,7 @@ namespace BrainShare.Views
         {
             get { return navigationHelper; }
         }
-        public LibraryPage()
+        public DocumentsPage()
         {
             InitializeComponent();
             navigationHelper = new NavigationHelper(this);

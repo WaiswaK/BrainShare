@@ -73,7 +73,7 @@ namespace BrainShare.Views
             }
             if (_category.categoryName.Equals("Files")) 
             {
-                Frame.Navigate(typeof(LibraryPage), _category);
+                Frame.Navigate(typeof(DocumentsPage), _category);
             }
             if (_category.categoryName.Equals("Assignments")) 
             {

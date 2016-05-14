@@ -60,7 +60,7 @@ Style ="{StaticResource HeaderTextBlockStyle }"
 
             <HubSection>
                 <HubSection.Header>
-                    <TextBlock x:Uid="Section1Header" TextLineBounds="TrimToBaseline" OpticalMarginAlignment ="TrimSideBearings" Text="All Assignments >" Foreground ="Green"/>
+                    <TextBlock x:Uid="Section1Header" TextLineBounds="TrimToBaseline" OpticalMarginAlignment ="TrimSideBearings" Text="Featured Assignments >" Foreground ="Green"/>
                 </HubSection.Header>
                 <DataTemplate>
                     <GridView

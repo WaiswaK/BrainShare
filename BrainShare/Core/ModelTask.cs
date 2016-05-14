@@ -776,7 +776,33 @@ namespace BrainShare.Core
                                    { category_name = grp.ToList().Last().Category_name, book_count = grp.ToList().Count, category_books = grp.ToList(), category_id = grp.Key })
                                    .ToList();
             return BookCategoryList;
-        }   
+        }
         #endregion
+        //Method to Update the Content into database
+        public static async void UserUpdater(UserObservable user, List<SubjectObservable> newsubjects, List<SubjectObservable> updateableSubjects, UserObservable CurrentUser,
+            LibraryObservable newlib, List<Library_CategoryObservable> updatedCategories)
+        {
+            await DatabaseInputTask.UpdateUserAsync(user);
+            DatabaseInputTask.UpdateLibAsync(newlib); //Will be checked later // Could be awaitable
+            if (updateableSubjects == null && newsubjects == null)
+            {
+            }
+            else
+            {
+                if (updateableSubjects == null)
+                {
+                    DatabaseInputTask.InsertSubjectsAsync(newsubjects);
+                }
+                if (newsubjects == null)
+                {
+                    DatabaseInputTask.UpdateSubjectsAsync(updateableSubjects);
+                }
+                if (updateableSubjects != null && newsubjects != null)
+                {
+                    DatabaseInputTask.InsertSubjectsAsync(newsubjects);
+                    DatabaseInputTask.UpdateSubjectsAsync(updateableSubjects);
+                }
+            }           
+        }
     }
 }

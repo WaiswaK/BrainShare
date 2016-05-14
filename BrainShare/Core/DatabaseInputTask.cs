@@ -35,41 +35,20 @@ namespace BrainShare.Core
                     }
                     if (proceed == true)
                     {
-                        try
-                        {
-                            db.Insert(new Subject() { SubjectId = subject.Id, name = subject.name, thumb = subject.thumb });
-                        }
-                        catch
-                        {
-
-                        }
+                      db.Insert(new Subject() { SubjectId = subject.Id, name = subject.name, thumb = subject.thumb });
                         topics = subject.topics;
                         if (topics.Count > 0)
                         {
                             foreach (var topic in topics)
                             {
                                 string Updated_notes = NotesTask.NotesChanger(topic.body); //Update the notes
-                                try
-                                {
-                                    db.Insert(new Topic() { TopicID = topic.TopicID, Notes = topic.body, Updated_Notes = Updated_notes, SubjectId = subject.Id, teacher_full_names = topic.teacher, TopicTitle = topic.TopicTitle, Updated_at = topic.Updated_at, Folder_Id = topic.folder_id, Folder_Name = topic.folder_name });
-                                }
-                                catch
-                                {
-
-                                }
+                                db.Insert(new Topic() { TopicID = topic.TopicID, Notes = topic.body, Updated_Notes = Updated_notes, SubjectId = subject.Id, teacher_full_names = topic.teacher, TopicTitle = topic.TopicTitle, Updated_at = topic.Updated_at, Folder_Id = topic.folder_id, Folder_Name = topic.folder_name });
                                 files = topic.Files;
                                 if (files.Count > 0)
                                 {
                                     foreach (var file in files)
                                     {
-                                        try
-                                        {
-                                            db.Insert(new Attachment() { AttachmentID = file.AttachmentID, FileName = file.FileName, FilePath = file.FilePath, TopicID = topic.TopicID, SubjectId = 0, AssignmentID = 0 });
-                                        }
-                                        catch
-                                        {
-
-                                        }
+                                      db.Insert(new Attachment() { AttachmentID = file.AttachmentID, FileName = file.FileName, FilePath = file.FilePath, TopicID = topic.TopicID, SubjectId = 0, AssignmentID = 0 });
                                     }
                                 }
                             }
@@ -80,14 +59,7 @@ namespace BrainShare.Core
                         {
                             foreach (var video in videos)
                             {
-                                try
-                                {
-                                    db.Insert(new Video() { VideoID = video.VideoID, description = video.description, FileName = video.FileName, FilePath = video.FilePath, teacher_full_names = video.teacher, SubjectId = subject.Id });
-                                }
-                                catch
-                                {
-
-                                }
+                              db.Insert(new Video() { VideoID = video.VideoID, description = video.description, FileName = video.FileName, FilePath = video.FilePath, teacher_full_names = video.teacher, SubjectId = subject.Id });
                             }
                         }
 
@@ -96,14 +68,7 @@ namespace BrainShare.Core
                         {
                             foreach (var file in files)
                             {
-                                try
-                                {
-                                    db.Insert(new Attachment() { AttachmentID = file.AttachmentID, FileName = file.FileName, FilePath = file.FilePath, TopicID = 0, SubjectId = subject.Id, AssignmentID = 0 });
-                                }
-                                catch
-                                {
-
-                                }
+                              db.Insert(new Attachment() { AttachmentID = file.AttachmentID, FileName = file.FileName, FilePath = file.FilePath, TopicID = 0, SubjectId = subject.Id, AssignmentID = 0 });
                             }
                         }
 
@@ -112,27 +77,13 @@ namespace BrainShare.Core
                         {
                             foreach (var assignment in assignments)
                             {
-                                try
-                                {
-                                    db.Insert(new Assignment() { AssignmentID = assignment.id, description = assignment.description, teacher_full_names = assignment.teacher, title = assignment.title, SubjectId = subject.Id });
-                                }
-                                catch
-                                {
-
-                                }
+                                db.Insert(new Assignment() { AssignmentID = assignment.id, description = assignment.description, teacher_full_names = assignment.teacher, title = assignment.title, SubjectId = subject.Id });
                                 files = assignment.Files;
                                 if (files.Count > 0)
                                 {
                                     foreach (var file in files)
                                     {
-                                        try
-                                        {
-                                            db.Insert(new Attachment() { AttachmentID = file.AttachmentID, FileName = file.FileName, FilePath = file.FilePath, TopicID = 0, SubjectId = 0, AssignmentID = assignment.id });
-                                        }
-                                        catch
-                                        {
-
-                                        }
+                                     db.Insert(new Attachment() { AttachmentID = file.AttachmentID, FileName = file.FileName, FilePath = file.FilePath, TopicID = 0, SubjectId = 0, AssignmentID = assignment.id });
                                     }
                                 }
                             }
@@ -148,9 +99,7 @@ namespace BrainShare.Core
         public static void InsertSubjectsUpdateAsync(List<SubjectObservable> subjects)
         {
             List<TopicObservable> topics = new List<TopicObservable>();
-            List<AttachmentObservable> files = new List<AttachmentObservable>();
-            try
-            {
+            List<AttachmentObservable> files = new List<AttachmentObservable>();   
                 var db = new SQLite.SQLiteConnection(Constants.dbPath);
                 foreach (var subject in subjects)
                 {
@@ -159,38 +108,18 @@ namespace BrainShare.Core
                     {
                         foreach (var topic in topics)
                         {
-                            try
-                            {
-                                db.Insert(new Topic() { TopicID = topic.TopicID, Notes = topic.body, Updated_Notes = NotesTask.NotesChanger(topic.body), SubjectId = subject.Id, teacher_full_names = topic.teacher, TopicTitle = topic.TopicTitle, Updated_at = topic.Updated_at, Folder_Id = topic.folder_id, Folder_Name = topic.folder_name });
-                            }
-                            catch
-                            {
-
-                            }
+                            db.Insert(new Topic() { TopicID = topic.TopicID, Notes = topic.body, Updated_Notes = NotesTask.NotesChanger(topic.body), SubjectId = subject.Id, teacher_full_names = topic.teacher, TopicTitle = topic.TopicTitle, Updated_at = topic.Updated_at, Folder_Id = topic.folder_id, Folder_Name = topic.folder_name });
                             files = topic.Files;
                             if (files.Count > 0)
                             {
                                 foreach (var file in files)
                                 {
-                                    try
-                                    {
-                                        db.Insert(new Attachment() { AttachmentID = file.AttachmentID, FileName = file.FileName, FilePath = file.FilePath, TopicID = topic.TopicID, SubjectId = 0, AssignmentID = 0 });
-                                    }
-                                    catch
-                                    {
-
-                                    }
+                                 db.Insert(new Attachment() { AttachmentID = file.AttachmentID, FileName = file.FileName, FilePath = file.FilePath, TopicID = topic.TopicID, SubjectId = 0, AssignmentID = 0 });
                                 }
                             }
                         }
                     }
-                }
-
-            }
-            catch
-            {
-
-            }
+                }           
         }
         //Task to Insert a User into the database
         public static async Task InsertUserAsync(UserObservable user)
@@ -199,13 +128,7 @@ namespace BrainShare.Core
             List<string> subjectsnames = ModelTask.SubjectNames(user.subjects);
             string ConcatSubjects = ModelTask.JoinedSubjects(subjectsnames);
             SchoolObservable school = user.School;
-            try
-            {
-                db.Insert(new User() { e_mail = user.email, password = user.password, School_id = school.SchoolId, subjects = ConcatSubjects, profileName = user.full_names });
-            }
-            catch
-            {
-            }
+            db.Insert(new User() { e_mail = user.email, password = user.password, School_id = school.SchoolId, subjects = ConcatSubjects, profileName = user.full_names });
             try
             {
                 await CommonTask.ImageDownloader(school.ImagePath, school.SchoolName);
@@ -214,17 +137,9 @@ namespace BrainShare.Core
             {
 
             }
-
             string image_extension = ImageTask.imageFormat(school.ImagePath);
             string newPath = ImageTask.imagePath(school.SchoolName + image_extension);
-            try
-            {
-                db.Insert(new School() { SchoolName = school.SchoolName, SchoolBadge = newPath, School_id = school.SchoolId });
-            }
-            catch
-            {
-
-            }
+            db.Insert(new School() { SchoolName = school.SchoolName, SchoolBadge = newPath, School_id = school.SchoolId });
         }
         public static async void InsertLibAsync(LibraryObservable lib)
         {
@@ -301,25 +216,11 @@ namespace BrainShare.Core
             {
                 await CommonTask.ImageDownloader(school.ImagePath, school.SchoolName);
                 School sch = new School(school.SchoolId, school.SchoolName, newPath);
-                try
-                {
-                    db.Update(sch);
-                }
-                catch
-                {
-
-                }
+                db.Update(sch);
             }
 
             User userInfo = new User(user.email, user.password, user.full_names, ConcatSubjects, school.SchoolId);
-            try
-            {
-                db.Update(userInfo);
-            }
-            catch
-            {
-
-            }
+            db.Update(userInfo);
         }
         //Task to Update Subjects
         public static void UpdateSubjectsAsync(List<SubjectObservable> subjects)
@@ -328,9 +229,7 @@ namespace BrainShare.Core
             List<AttachmentObservable> files = new List<AttachmentObservable>();
             List<VideoObservable> videos = new List<VideoObservable>();
             List<AssignmentObservable> assignments = new List<AssignmentObservable>();
-            try
-            {
-                var db = new SQLite.SQLiteConnection(Constants.dbPath);
+            var db = new SQLite.SQLiteConnection(Constants.dbPath);
                 foreach (var subject in subjects)
                 {
                     topics = subject.topics;
@@ -342,14 +241,7 @@ namespace BrainShare.Core
                         foreach (var topic in topics)
                         {
                             Topic newTopic = new Topic(topic.TopicID, subject.Id, topic.TopicTitle, topic.body, NotesTask.NotesChanger(topic.body), topic.Updated_at, topic.teacher, topic.folder_id, topic.folder_name);
-                            try
-                            {
-                                db.Update(newTopic);
-                            }
-                            catch
-                            {
-
-                            }
+                            db.Update(newTopic);
                             List<AttachmentObservable> topicfiles = topic.Files;
                             List<AttachmentObservable> oldfiles = DatabaseOutputTask.OldGetFiles(topic.TopicID, 0);
                             List<AttachmentObservable> newfiles = ModelTask.GetNewFiles(topicfiles, oldfiles);
@@ -358,14 +250,7 @@ namespace BrainShare.Core
                             {
                                 foreach (var file in newfiles)
                                 {
-                                    try
-                                    {
-                                        db.Insert(new Attachment() { AttachmentID = file.AttachmentID, FileName = file.FileName, FilePath = file.FilePath, TopicID = topic.TopicID, SubjectId = 0, AssignmentID = 0 });
-                                    }
-                                    catch
-                                    {
-
-                                    }
+                                  db.Insert(new Attachment() { AttachmentID = file.AttachmentID, FileName = file.FileName, FilePath = file.FilePath, TopicID = topic.TopicID, SubjectId = 0, AssignmentID = 0 }); 
                                 }
                             }
                         }
@@ -374,28 +259,14 @@ namespace BrainShare.Core
                     {
                         foreach (var video in videos)
                         {
-                            try
-                            {
-                                db.Insert(new Video() { VideoID = video.VideoID, description = video.description, FileName = video.FileName, FilePath = video.FilePath, teacher_full_names = video.teacher, SubjectId = subject.Id });
-                            }
-                            catch
-                            {
-
-                            }
+                         db.Insert(new Video() { VideoID = video.VideoID, description = video.description, FileName = video.FileName, FilePath = video.FilePath, teacher_full_names = video.teacher, SubjectId = subject.Id });
                         }
                     }
                     if (files != null)
                     {
                         foreach (var file in files)
                         {
-                            try
-                            {
-                                db.Insert(new Attachment() { AttachmentID = file.AttachmentID, FileName = file.FileName, FilePath = file.FilePath, TopicID = 0, SubjectId = subject.Id, AssignmentID = 0 });
-                            }
-                            catch
-                            {
-
-                            }
+                          db.Insert(new Attachment() { AttachmentID = file.AttachmentID, FileName = file.FileName, FilePath = file.FilePath, TopicID = 0, SubjectId = subject.Id, AssignmentID = 0 });
                         }
                     }
                     if (assignments != null)
@@ -412,25 +283,14 @@ namespace BrainShare.Core
                             {
                                 foreach (var file in newfiles)
                                 {
-                                    try
-                                    {
-                                        db.Insert(new Attachment() { AttachmentID = file.AttachmentID, FileName = file.FileName, FilePath = file.FilePath, TopicID = 0, SubjectId = 0, AssignmentID = assignment.id });
-                                    }
-                                    catch
-                                    {
-
-                                    }
+                                  db.Insert(new Attachment() { AttachmentID = file.AttachmentID, FileName = file.FileName, FilePath = file.FilePath, TopicID = 0, SubjectId = 0, AssignmentID = assignment.id });
                                 }
                             }
                         }
                     }
                 }
             }
-            catch
-            {
-
-            }
-        }    
+           
         public static async void UpdateLibAsync(LibraryObservable lib)
         {
             List<Library_CategoryObservable> categories = lib.categories;
