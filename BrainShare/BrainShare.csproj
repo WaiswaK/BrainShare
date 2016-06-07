@@ -14,10 +14,10 @@
     <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>BrainShare_StoreKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>BrainShare_TemporaryKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
-    <AppxBundlePlatforms>x86</AppxBundlePlatforms>
-    <PackageCertificateThumbprint>6B23F5F1E4B5678A785FCBF671BB93D1683B8049</PackageCertificateThumbprint>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>D8FBAD04F8BB26F97EF296AD637C48E40AC70A61</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -110,7 +110,7 @@
     <SDKReference Include="Microsoft.VCLibs, Version=12.0">
       <Name>Microsoft Visual C++ 2013 Runtime Package for Windows</Name>
     </SDKReference>
-    <SDKReference Include="SQLite.WinRT81, Version=3.12.2">
+    <SDKReference Include="SQLite.WinRT81, Version=3.13.0">
       <Name>SQLite for Windows Runtime %28Windows 8.1%29</Name>
     </SDKReference>
   </ItemGroup>
@@ -139,6 +139,7 @@
     <Compile Include="Database\Book.cs" />
     <Compile Include="Database\DbConnection.cs" />
     <Compile Include="Database\IDbConnection.cs" />
+    <Compile Include="Database\log.cs" />
     <Compile Include="Database\School.cs" />
     <Compile Include="Database\SQLite.cs" />
     <Compile Include="Database\SQLiteAsync.cs" />
@@ -167,6 +168,7 @@
     <Compile Include="ViewModels\AssignmentPageViewModel.cs" />
     <Compile Include="ViewModels\CategoryPageViewModel.cs" />
     <Compile Include="ViewModels\LibraryCategoryBooksViewModel.cs" />
+    <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="ViewModels\PlayPageViewModel.cs" />
     <Compile Include="ViewModels\StudentPageViewModel.cs" />
     <Compile Include="ViewModels\SubjectPageViewModel.cs" />

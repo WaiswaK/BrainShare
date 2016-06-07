@@ -8,8 +8,6 @@ using Windows.UI.Xaml.Navigation;
 using BrainShare.ViewModels;
 using BrainShare.Models;
 using BrainShare.Database;
-using System.Net.Http;
-using Windows.UI.Popups;
 using Windows.Data.Json;
 using BrainShare.Core;
 using Windows.Storage;
@@ -151,7 +149,6 @@ namespace BrainShare.Views
         private async void UpdateUser(string username, string password, List<int> oldIDs, List<SubjectObservable> InstalledSubjects, UserObservable currentUser)
         {
             UserObservable userdetails = new UserObservable();
-            SubjectObservable subject = new SubjectObservable();
             List<SubjectObservable> final = new List<SubjectObservable>();
             LibraryObservable Current_Library = new LibraryObservable();
             LibraryObservable Old_Library = DatabaseOutputTask.GetLibrary(currentUser.School.SchoolId);
@@ -515,7 +512,7 @@ namespace BrainShare.Views
                         Logfile.Error_details = ex.ToString();
                         Logfile.Error_title = "UpdateUser Method";
                         Logfile.Location = "StudentPage";
-                        //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                        ErrorLogTask.LogFileSaveAsync(Logfile);
                         currentUser.update_status = Constants.finished_update;
                         pgBar.Visibility = Visibility.Collapsed;
                     }
@@ -530,12 +527,11 @@ namespace BrainShare.Views
                 Logfile.Error_details = ex.ToString();
                 Logfile.Error_title = "UpdateUser Method";
                 Logfile.Location = "StudentPage";
-                //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                ErrorLogTask.LogFileSaveAsync(Logfile);
                 currentUser.update_status = Constants.finished_update;
                 pgBar.Visibility = Visibility.Collapsed;
             }
-        }
-        
+        }    
         private void Subject_click(object sender, ItemClickEventArgs e)
         {
             var item = e.ClickedItem;
@@ -547,7 +543,6 @@ namespace BrainShare.Views
             var item = e.ClickedItem;
             Library_CategoryObservable lib_category = ((Library_CategoryObservable)item);
             Frame.Navigate(typeof(LibraryCategoryBooks), lib_category);
-
         }
         #region NavigationHelper registration
         /// The methods provided in this section are simply used to allow
@@ -563,9 +558,9 @@ namespace BrainShare.Views
         {
             navigationHelper.OnNavigatedTo(e);
         }
-
         private void logout_btn_click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
+            ErrorLogTask.UploadLogFile();
             Frame.Navigate(typeof(LoginPage));
         }
         protected override void OnNavigatedFrom(NavigationEventArgs e)

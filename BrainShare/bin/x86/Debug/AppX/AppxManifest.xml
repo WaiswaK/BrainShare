@@ -7,7 +7,7 @@
 
     For more information on package manifest files, see http://go.microsoft.com/fwlink/?LinkID=241727
   -->
-  <Identity Name="CodeVisionLtd.BrainShare" Publisher="CN=3B1181DF-D9D3-4BA5-977F-DE693151B3C1" Version="2.1.0.2" ProcessorArchitecture="x86" />
+  <Identity Name="CodeVisionLtd.BrainShare" Publisher="CN=3B1181DF-D9D3-4BA5-977F-DE693151B3C1" Version="2.1.0.3" ProcessorArchitecture="x86" />
   <Properties>
     <DisplayName>BrainShare</DisplayName>
     <PublisherDisplayName>Code Vision Ltd</PublisherDisplayName>
@@ -41,7 +41,7 @@
     <build:Item Name="Microsoft.Build.AppxPackage.dll" Version="14.0.25123.0" />
     <build:Item Name="ProjectGUID" Value="{213F7EF9-6E77-436D-A088-051EB6A1DC00}" />
     <build:Item Name="Microsoft.Windows.UI.Xaml.81.Build.Tasks.dll" Version="14.0.22705.1" />
-    <build:Item Name="SQLite.WinRT81" Version="3.12.2" />
+    <build:Item Name="SQLite.WinRT81" Version="3.13.0" />
     <build:Item Name="MakePri.exe" Version="6.3.9600.17336 (winblue.150226-1500)" />
   </build:Metadata>
 </Package>

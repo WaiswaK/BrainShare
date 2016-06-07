@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BrainShare.Common;
+using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -19,14 +20,13 @@ namespace BrainShare.Views
         }
         private void WebView2_Loaded(object sender, RoutedEventArgs e)
         {
-            Uri uri = new Uri("http://www.brainshare.ug/");
+            Uri uri = new Uri(Constants.FullBaseUri);
             WebView2.Navigate(uri);
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Uri uri = new Uri("http://www.brainshare.ug/");
+            Uri uri = new Uri(Constants.FullBaseUri);
             WebView2.Navigate(uri);
-           // base.OnNavigatedTo(e);
         }
     }   
 }

@@ -53,12 +53,7 @@ namespace BrainShare.Views
             var subject = e.NavigationParameter as SubjectObservable;
             SubjectPageViewModel vm = new SubjectPageViewModel(subject);
             DataContext = vm;  
-
-
-
-        }
-
-       
+        }     
         private void Category_click(object sender, ItemClickEventArgs e)
         {
             var item = e.ClickedItem;
@@ -96,12 +91,9 @@ namespace BrainShare.Views
         /// serializable state.</param>
         private void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
-        }
-       
-         
+        }       
         private void itemGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
         }
         #region NavigationHelper registration
 

@@ -67,7 +67,15 @@ namespace BrainShare.Views
             bool found = false;
             bool download = false;
             bool fullydownloaded = false;
-            await CommonTask.DeleteTemporaryFiles();
+
+            try
+            {
+                await CommonTask.DeleteTemporaryFiles();
+            }
+            catch
+            {
+
+            }
             if (CommonTask.IsInternetConnectionAvailable())
             {
                 found = true;

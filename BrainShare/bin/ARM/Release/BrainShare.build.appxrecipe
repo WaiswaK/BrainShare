@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>K-LAPTOP</Machine>
+    <WindowsUser>Kenneth</WindowsUser>
+    <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
+    <TargetOsVersion>6.3</TargetOsVersion>
+    <TargetOsDescription>Windows 8.1</TargetOsDescription>
+    <SolutionConfiguration>Release|ARM</SolutionConfiguration>
+    <PackageArchitecture>arm</PackageArchitecture>
+    <PackageIdentityName>CodeVisionLtd.BrainShare</PackageIdentityName>
+    <IntermediateOutputPath>C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\obj\ARM\Release\</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\ARM\Release\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\ARM\Release\BrainShare.exe">
+      <PackagePath>BrainShare.exe</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\SQLite.WinRT81\3.12.2\Redist\Retail\ARM\sqlite3.dll">
+      <PackagePath>sqlite3.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\bbgg.jpg">
+      <PackagePath>Assets\bbgg.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\bg.jpg">
+      <PackagePath>Assets\bg.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\bg4.jpg">
+      <PackagePath>Assets\bg4.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\blank.JPG">
+      <PackagePath>Assets\blank.JPG</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\Course\courseSS.jpg">
+      <PackagePath>Assets\Course\courseSS.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\Course\course2.jpg">
+      <PackagePath>Assets\Course\course2.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\Course\course.jpg">
+      <PackagePath>Assets\Course\course.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\Course\courseXXX.jpg">
+      <PackagePath>Assets\Course\courseXXX.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\Course\topic.jpg">
+      <PackagePath>Assets\Course\topic.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\cover.jpg">
+      <PackagePath>Assets\cover.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\icons\assignment.jpg">
+      <PackagePath>Assets\icons\assignment.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\icons\Files.jpg">
+      <PackagePath>Assets\icons\Files.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\icons\notes.jpg">
+      <PackagePath>Assets\icons\notes.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\icons\video-library.jpg">
+      <PackagePath>Assets\icons\video-library.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\notesbbgg.jpg">
+      <PackagePath>Assets\notesbbgg.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\Course\course.png">
+      <PackagePath>Assets\Course\course.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\ebk.png">
+      <PackagePath>Assets\ebk.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\ebooks.png">
+      <PackagePath>Assets\ebooks.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\icons\class_notes.png">
+      <PackagePath>Assets\icons\class_notes.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\icons\notes.png">
+      <PackagePath>Assets\icons\notes.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\icons\notes_icon.png">
+      <PackagePath>Assets\icons\notes_icon.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\icons\Video.png">
+      <PackagePath>Assets\icons\Video.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\Logo.scale-100.png">
+      <PackagePath>Assets\Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\SmallLogo.scale-100.png">
+      <PackagePath>Assets\SmallLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\SplashScreen.scale-100.png">
+      <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\StoreLogo.scale-100.png">
+      <PackagePath>Assets\StoreLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\Assets\icons\pdf.gif">
+      <PackagePath>Assets\icons\pdf.gif</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\ARM\Release\BrainShare.xr.xml">
+      <PackagePath>BrainShare.xr.xml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\ARM\Release\App.xbf">
+      <PackagePath>App.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\ARM\Release\Views\CreateAccountPage.xbf">
+      <PackagePath>Views\CreateAccountPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\ARM\Release\Views\LibraryCategoryBooks.xbf">
+      <PackagePath>Views\LibraryCategoryBooks.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\ARM\Release\Views\DocumentsPage.xbf">
+      <PackagePath>Views\DocumentsPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\ARM\Release\Views\LoginPage.xbf">
+      <PackagePath>Views\LoginPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\ARM\Release\Views\LibraryBookReader.xbf">
+      <PackagePath>Views\LibraryBookReader.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\ARM\Release\Views\PlayPage.xbf">
+      <PackagePath>Views\PlayPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\ARM\Release\Views\PDFViewPage.xbf">
+      <PackagePath>Views\PDFViewPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\ARM\Release\Views\Settings.xbf">
+      <PackagePath>Views\Settings.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\ARM\Release\Views\StudentPage.xbf">
+      <PackagePath>Views\StudentPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\ARM\Release\Views\SubjectPage.xbf">
+      <PackagePath>Views\SubjectPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\ARM\Release\Views\AssignmentPage.xbf">
+      <PackagePath>Views\AssignmentPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\ARM\Release\Views\AssignmentsPage.xbf">
+      <PackagePath>Views\AssignmentsPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\ARM\Release\Views\TopicPage.xbf">
+      <PackagePath>Views\TopicPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\ARM\Release\Views\TopicsPage.xbf">
+      <PackagePath>Views\TopicsPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\ARM\Release\Views\VideosPage.xbf">
+      <PackagePath>Views\VideosPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\bin\ARM\Release\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.VCLibs\12.0\">
+      <Name>Microsoft.VCLibs.120.00</Name>
+      <Version>12.0.21005.1</Version>
+      <Architecture>ARM</Architecture>
+      <FrameworkIdentity>Name = Microsoft.VCLibs.120.00, MinVersion = 12.0.21005.1</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.VCLibs\12.0\.\AppX\Retail\ARM\Microsoft.VCLibs.ARM.12.00.appx</AppxLocation>
+      <MoreInfo></MoreInfo>
+    </ResolvedSDKReference>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.VCLibs\12.0\">
+      <Name>Microsoft.VCLibs.120.00</Name>
+      <Version>12.0.21005.1</Version>
+      <Architecture>x64</Architecture>
+      <FrameworkIdentity>Name = Microsoft.VCLibs.120.00, MinVersion = 12.0.21005.1</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.VCLibs\12.0\.\AppX\Retail\x64\Microsoft.VCLibs.x64.12.00.appx</AppxLocation>
+      <MoreInfo></MoreInfo>
+    </ResolvedSDKReference>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.VCLibs\12.0\">
+      <Name>Microsoft.VCLibs.120.00</Name>
+      <Version>12.0.21005.1</Version>
+      <Architecture>x86</Architecture>
+      <FrameworkIdentity>Name = Microsoft.VCLibs.120.00, MinVersion = 12.0.21005.1</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.VCLibs\12.0\.\AppX\Retail\x86\Microsoft.VCLibs.x86.12.00.appx</AppxLocation>
+      <MoreInfo></MoreInfo>
+    </ResolvedSDKReference>
+  </ItemGroup>
+</Project>

@@ -10,6 +10,7 @@
     <RootPropertyPathName Name="DefaultViewModel" />
     <RootPropertyPathName Name="BookList" />
     <RootPropertyPathName Name="book_title" />
+    <RootPropertyPathName Name="thumb_url" />
     <RootPropertyPathName Name="CategoryName" />
     <RootPropertyPathName Name="FileList" />
     <RootPropertyPathName Name="FileName" />
@@ -121,6 +122,7 @@
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="Opacity" />
       <RootProperty Name="Margin" />
+      <RootProperty Name="Style" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
       <RootProperty Name="Text" />
@@ -184,7 +186,7 @@
       <RootEvent Name="ItemClick" />
     </RootType>
     <RootType FullName="BrainShare.Views.LibraryCategoryBooks" />
-    <RootType FullName="BrainShare.Views.LibraryPage" />
+    <RootType FullName="BrainShare.Views.DocumentsPage" />
     <RootType FullName="System.String" />
     <RootType FullName="Windows.UI.Xaml.Controls.Control">
       <RootProperty Name="Background" />
@@ -275,6 +277,20 @@
     </RootType>
     <RootType FullName="BrainShare.Views.PlayPage" />
     <RootType FullName="BrainShare.Views.PDFViewPage" />
+    <RootType FullName="Windows.UI.Xaml.Controls.SettingsFlyout">
+      <RootProperty Name="IconSource" />
+      <RootProperty Name="Title" />
+      <RootProperty Name="Content" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ToggleSwitch">
+      <RootProperty Name="Name" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Header" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="HorizontalContentAlignment" />
+      <RootEvent Name="Toggled" />
+    </RootType>
+    <RootType FullName="BrainShare.Views.Settings" />
     <RootType FullName="Windows.UI.Xaml.Controls.ProgressBar">
       <RootProperty Name="Name" />
       <RootProperty Name="Margin" />

@@ -54,10 +54,10 @@ FontFamily="Global User Interface" Margin="-3,0"                     ></Button>
             <TextBlock Text="OR" FontSize="20" 
 
 HorizontalAlignment="Center" Foreground="BlueViolet"></TextBlock>
-            <HyperlinkButton NavigateUri="http://brainshare.ug/pages/register" Content="Create an Account" Margin="-3,0"  Padding="0,8" BorderBrush="White"
+            <HyperlinkButton NavigateUri="{Binding RegisterLink }" Content="Create an Account" Margin="-3,0"  Padding="0,8" BorderBrush="White"
 
 HorizontalAlignment="Stretch"></HyperlinkButton>
-            <HyperlinkButton NavigateUri="http://brainshare.ug/users/password/new" Content="Forgot your Password?"
+            <HyperlinkButton NavigateUri="{Binding PasswordLink }" Content="Forgot your Password?"
 
 FontFamily="Global User Interface"></HyperlinkButton>
 

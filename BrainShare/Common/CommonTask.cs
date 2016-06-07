@@ -43,7 +43,7 @@ namespace BrainShare.Common
                 Logfile.Error_details = ex.ToString();
                 Logfile.Error_title = "FileDownloader Method";
                 Logfile.Location = "CommonTask";
-                //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                ErrorLogTask.LogFileSaveAsync(Logfile);
             }
         }
         #region Images download Methods
@@ -123,7 +123,7 @@ namespace BrainShare.Common
                         Logfile.Error_details = ex.ToString();
                         Logfile.Error_title = "ForceImagedownloader Method";
                         Logfile.Location = "CommonTask";
-                        //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                        ErrorLogTask.LogFileSaveAsync(Logfile);
                     }                  
                 }
             }

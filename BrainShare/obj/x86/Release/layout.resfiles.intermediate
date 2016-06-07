@@ -30,12 +30,13 @@ BrainShare.xr.xml
 Views\AssignmentPage.xbf
 Views\AssignmentsPage.xbf
 Views\CreateAccountPage.xbf
+Views\DocumentsPage.xbf
 Views\LibraryBookReader.xbf
 Views\LibraryCategoryBooks.xbf
-Views\LibraryPage.xbf
 Views\LoginPage.xbf
 Views\PDFViewPage.xbf
 Views\PlayPage.xbf
+Views\Settings.xbf
 Views\StudentPage.xbf
 Views\SubjectPage.xbf
 Views\TopicPage.xbf

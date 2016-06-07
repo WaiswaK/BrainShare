@@ -1,1 +1,1 @@
-C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 7.0.0.0\BrainShare\BrainShare.csproj;x86
+C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\BrainShare.csproj;x86

@@ -96,7 +96,7 @@ namespace BrainShare.Core
             postData.Add(new KeyValuePair<string, string>("email", username));
             postData.Add(new KeyValuePair<string, string>("password", password));
             var formContent = new FormUrlEncodedContent(postData);
-            var authresponse = await client.PostAsync("http://brainshare.ug/liveapis/authenticate.json", formContent);
+            var authresponse = await client.PostAsync(Constants.LoginJsonLink, formContent);
             var authresult = await authresponse.Content.ReadAsStreamAsync();
             var authstreamReader = new System.IO.StreamReader(authresult);
             var authresponseContent = authstreamReader.ReadToEnd().Trim().ToString();
@@ -212,7 +212,7 @@ namespace BrainShare.Core
                 notes_postData.Add(new KeyValuePair<string, string>("password", password));
                 notes_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
                 var notes_formContent = new FormUrlEncodedContent(notes_postData);
-                var notes_response = await notes_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_notes.json", notes_formContent);
+                var notes_response = await notes_httpclient.PostAsync(Constants.NotesJsonLink, notes_formContent);
                 var notes_result = await notes_response.Content.ReadAsStreamAsync();
                 var notes_streamReader = new System.IO.StreamReader(notes_result);
                 var notes_responseContent = notes_streamReader.ReadToEnd().Trim().ToString();
@@ -224,7 +224,7 @@ namespace BrainShare.Core
                 videospostData.Add(new KeyValuePair<string, string>("password", password));
                 videospostData.Add(new KeyValuePair<string, string>("id", id.ToString()));
                 var videosformContent = new FormUrlEncodedContent(videospostData);
-                var videosresponse = await videos_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_videos.json", videosformContent);
+                var videosresponse = await videos_httpclient.PostAsync(Constants.VideosJsonLink, videosformContent);
                 var videosresult = await videosresponse.Content.ReadAsStreamAsync();
                 var videosstreamReader = new System.IO.StreamReader(videosresult);
                 var videosresponseContent = videosstreamReader.ReadToEnd().Trim().ToString();
@@ -236,7 +236,7 @@ namespace BrainShare.Core
                 assgnmt_postData.Add(new KeyValuePair<string, string>("password", password));
                 assgnmt_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
                 var assgnmt_formContent = new FormUrlEncodedContent(assgnmt_postData);
-                var assgnmt_response = await assgnmt_httpclient.PostAsync("http://brainshare.ug/liveapis/assignments.json", assgnmt_formContent);
+                var assgnmt_response = await assgnmt_httpclient.PostAsync(Constants.AssignmentJsonLink, assgnmt_formContent);
                 var assgnmt_result = await assgnmt_response.Content.ReadAsStreamAsync();
                 var assgnmt_streamReader = new System.IO.StreamReader(assgnmt_result);
                 var assgnmt_responseContent = assgnmt_streamReader.ReadToEnd().Trim().ToString();
@@ -248,7 +248,7 @@ namespace BrainShare.Core
                 file_postData.Add(new KeyValuePair<string, string>("password", password));
                 file_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
                 var file_formContent = new FormUrlEncodedContent(file_postData);
-                var file_response = await file_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_files.json", file_formContent);
+                var file_response = await file_httpclient.PostAsync(Constants.FilesJsonLink, file_formContent);
                 var file_result = await file_response.Content.ReadAsStreamAsync();
                 var file_streamReader = new System.IO.StreamReader(file_result);
                 var file_responseContent = file_streamReader.ReadToEnd().Trim().ToString();
@@ -270,7 +270,7 @@ namespace BrainShare.Core
                 notes_postData.Add(new KeyValuePair<string, string>("password", password));
                 notes_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
                 var notes_formContent = new FormUrlEncodedContent(notes_postData);
-                var notes_response = await notes_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_notes.json", notes_formContent);
+                var notes_response = await notes_httpclient.PostAsync(Constants.NotesJsonLink, notes_formContent);
                 var notes_result = await notes_response.Content.ReadAsStreamAsync();
                 var notes_streamReader = new System.IO.StreamReader(notes_result);
                 var notes_responseContent = notes_streamReader.ReadToEnd().Trim().ToString();
@@ -282,7 +282,7 @@ namespace BrainShare.Core
                 videospostData.Add(new KeyValuePair<string, string>("password", password));
                 videospostData.Add(new KeyValuePair<string, string>("id", id.ToString()));
                 var videosformContent = new FormUrlEncodedContent(videospostData);
-                var videosresponse = await videos_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_videos.json", videosformContent);
+                var videosresponse = await videos_httpclient.PostAsync(Constants.VideosJsonLink, videosformContent);
                 var videosresult = await videosresponse.Content.ReadAsStreamAsync();
                 var videosstreamReader = new System.IO.StreamReader(videosresult);
                 var videosresponseContent = videosstreamReader.ReadToEnd().Trim().ToString();
@@ -294,7 +294,7 @@ namespace BrainShare.Core
                 assgnmt_postData.Add(new KeyValuePair<string, string>("password", password));
                 assgnmt_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
                 var assgnmt_formContent = new FormUrlEncodedContent(assgnmt_postData);
-                var assgnmt_response = await assgnmt_httpclient.PostAsync("http://brainshare.ug/liveapis/assignments.json", assgnmt_formContent);
+                var assgnmt_response = await assgnmt_httpclient.PostAsync(Constants.AssignmentJsonLink, assgnmt_formContent);
                 var assgnmt_result = await assgnmt_response.Content.ReadAsStreamAsync();
                 var assgnmt_streamReader = new System.IO.StreamReader(assgnmt_result);
                 var assgnmt_responseContent = assgnmt_streamReader.ReadToEnd().Trim().ToString();
@@ -306,7 +306,7 @@ namespace BrainShare.Core
                 file_postData.Add(new KeyValuePair<string, string>("password", password));
                 file_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
                 var file_formContent = new FormUrlEncodedContent(file_postData);
-                var file_response = await file_httpclient.PostAsync("http://brainshare.ug/liveapis/uni_files.json", file_formContent);
+                var file_response = await file_httpclient.PostAsync(Constants.FilesJsonLink, file_formContent);
                 var file_result = await file_response.Content.ReadAsStreamAsync();
                 var file_streamReader = new System.IO.StreamReader(file_result);
                 var file_responseContent = file_streamReader.ReadToEnd().Trim().ToString();
@@ -325,7 +325,7 @@ namespace BrainShare.Core
             units_postData.Add(new KeyValuePair<string, string>("email", username));
             units_postData.Add(new KeyValuePair<string, string>("password", password));
             var units_formContent = new FormUrlEncodedContent(units_postData);
-            var courseresponse = await units_http_client.PostAsync("http://brainshare.ug/liveapis/course_units.json", units_formContent);
+            var courseresponse = await units_http_client.PostAsync(Constants.CourseJsonLink, units_formContent);
             var coursesresult = await courseresponse.Content.ReadAsStreamAsync();
             var coursestreamReader = new System.IO.StreamReader(coursesresult);
             var courseresponseContent = coursestreamReader.ReadToEnd().Trim().ToString();
@@ -609,7 +609,7 @@ namespace BrainShare.Core
                 library_postData.Add(new KeyValuePair<string, string>("password", password));
                 library_postData.Add(new KeyValuePair<string, string>("id", school_id.ToString()));
                 var library_formContent = new FormUrlEncodedContent(library_postData);
-                var library_response = await library_httpclient.PostAsync("http://brainshare.ug/liveapis/books.json", library_formContent);
+                var library_response = await library_httpclient.PostAsync(Constants.BooksJsonLink, library_formContent);
                 var library_result = await library_response.Content.ReadAsStreamAsync();
                 var library_streamReader = new System.IO.StreamReader(library_result);
                 var library_responseContent = library_streamReader.ReadToEnd().Trim().ToString();

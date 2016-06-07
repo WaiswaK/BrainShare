@@ -14,11 +14,11 @@ using BrainShare.Models;
 using BrainShare.Views;
 using Windows.UI.Popups;
 using BrainShare.Database;
-using System.Net.Http;
 using System.Runtime.Serialization;
 using Windows.UI.ApplicationSettings;
 using Windows.System;
 using BrainShare.Core;
+using BrainShare.ViewModels;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -78,7 +78,7 @@ namespace BrainShare
                 
     private async void OpenPrivacyPolicy(IUICommand command)
         {
-            Uri uri = new Uri("http://learn.brainshare.ug/privacy_policy");
+            Uri uri = new Uri(Constants.PrivacyPolicyUri);
             await Launcher.LaunchUriAsync(uri);
         }
         /// <summary>
@@ -94,7 +94,8 @@ namespace BrainShare
         /// session. The state will be null the first time a page is visited.</param>
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-
+            LoginPageViewModel vm = new LoginPageViewModel();
+            DataContext = vm;
         }
         /// <summary>
         /// Preserves state associated with this page in case the application is suspended or the
@@ -142,7 +143,7 @@ namespace BrainShare
                 Logfile.Error_details = ex.ToString();
                 Logfile.Error_title = "Button_Click Method";
                 Logfile.Location = "LoginPage";
-                //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                ErrorLogTask.LogFileSaveAsync(Logfile);
             }
             Login();
         }
@@ -157,7 +158,7 @@ namespace BrainShare
                 Logfile.Error_details = exc.ToString();
                 Logfile.Error_title = "OnNavigatedTo";
                 Logfile.Location = "LoginPage";
-               // //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                ErrorLogTask.LogFileSaveAsync(Logfile);
             }
 
             base.OnNavigatedTo(e); //important to cover this error http://stackoverflow.com/questions/13790344/argumentnullexception-on-changing-frame
@@ -201,7 +202,7 @@ namespace BrainShare
                 Logfile.Error_details = ex.ToString();
                 Logfile.Error_title = "Login Method";
                 Logfile.Location = "LoginPage";
-                ////await ErrorLogTask.LogFileSaveAsync(Logfile);
+                ErrorLogTask.LogFileSaveAsync(Logfile);
             }
              if (CommonTask.IsInternetConnectionAvailable())
              {
@@ -210,8 +211,7 @@ namespace BrainShare
              else
              {
                  OfflineExperience();
-             } 
-            
+             }            
         }
         private void OfflineExperience()
         {
@@ -329,14 +329,13 @@ namespace BrainShare
                 Logfile.Error_details = ex.ToString();
                 Logfile.Error_title = "Online Login Method";
                 Logfile.Location = "LoginPage";
-                ////await ErrorLogTask.LogFileSaveAsync(Logfile);
+                ErrorLogTask.LogFileSaveAsync(Logfile);
             }
         }
         private async void CreateUser(JsonObject loginObject, string username, string password)
         {
             LoginStatus user = JSONTask.Notification(loginObject);
             UserObservable userdetails = new UserObservable();
-            SubjectObservable subject = new SubjectObservable();
             LibraryObservable Library = new LibraryObservable();
             if (user.statusCode.Equals("200") && user.statusDescription.Equals("Authentication was successful"))
             {
@@ -354,7 +353,7 @@ namespace BrainShare
                     Logfile.Error_details = ex.ToString();
                     Logfile.Error_title = "CreateUser Method";
                     Logfile.Location = "LoginPage";
-                    ////await ErrorLogTask.LogFileSaveAsync(Logfile);
+                    ErrorLogTask.LogFileSaveAsync(Logfile);
                 }
                 userdetails.Library = Library;
                 LoadingMsg.Text = Message.Syncronization;
@@ -376,7 +375,7 @@ namespace BrainShare
                     Logfile.Error_details = ex.ToString();
                     Logfile.Error_title = "Create Method";
                     Logfile.Location = "LoginPage";
-                    ////await ErrorLogTask.LogFileSaveAsync(Logfile);
+                    ErrorLogTask.LogFileSaveAsync(Logfile);
                 }
 
             }
@@ -434,7 +433,7 @@ namespace BrainShare
                                         Logfile.Error_details = ex.ToString();
                                         Logfile.Error_title = "AuthenticateUser Method";
                                         Logfile.Location = "LoginPage";
-                                        ////await ErrorLogTask.LogFileSaveAsync(Logfile);
+                                        ErrorLogTask.LogFileSaveAsync(Logfile);
                                     }
                                 }
                             }

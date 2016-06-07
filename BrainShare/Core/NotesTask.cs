@@ -217,7 +217,7 @@ namespace BrainShare.Core
                 Logfile.Error_details = ex.ToString();
                 Logfile.Error_title = "Notes_Loader Method";
                 Logfile.Location = "NotesTask";
-                //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                ErrorLogTask.LogFileSaveAsync(Logfile);
             }
             string _notes = await Offline_Notes(topic.notes, subject_name, topic_name);
             return _notes;
@@ -284,7 +284,7 @@ namespace BrainShare.Core
                     Logfile.Error_details = ex.ToString();
                     Logfile.Error_title = "NotesImagedownloader Method";
                     Logfile.Location = "NotesTask";
-                    //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                    ErrorLogTask.LogFileSaveAsync(Logfile);
                     try
                     {
                         await CommonTask.ForceImageDownloader(_string, imageName, Constants.JPG_extension);
@@ -294,7 +294,7 @@ namespace BrainShare.Core
                         Logfile.Error_details = exc.ToString();
                         Logfile.Error_title = "NotesImagedownloader Method";
                         Logfile.Location = "NotesTask";
-                        //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                        ErrorLogTask.LogFileSaveAsync(Logfile);
                     }
                 }
             }
@@ -313,7 +313,7 @@ namespace BrainShare.Core
                     Logfile.Error_details = ex.ToString();
                     Logfile.Error_title = "NotesImagedownloader Method";
                     Logfile.Location = "NotesTask";
-                    //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                    ErrorLogTask.LogFileSaveAsync(Logfile);
                     try
                     {
                         await CommonTask.ForceImageDownloader(_string, imageName, Constants.PNG_extension);
@@ -323,7 +323,7 @@ namespace BrainShare.Core
                         Logfile.Error_details = exc.ToString();
                         Logfile.Error_title = "NotesImagedownloader Method";
                         Logfile.Location = "NotesTask";
-                        //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                        ErrorLogTask.LogFileSaveAsync(Logfile);
                     }
                 }
             }
@@ -342,7 +342,7 @@ namespace BrainShare.Core
                     Logfile.Error_details = ex.ToString();
                     Logfile.Error_title = "NotesImagedownloader Method";
                     Logfile.Location = "NotesTask";
-                    //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                    ErrorLogTask.LogFileSaveAsync(Logfile);
 
                     try
                     {
@@ -353,7 +353,7 @@ namespace BrainShare.Core
                         Logfile.Error_details = exc.ToString();
                         Logfile.Error_title = "NotesImagedownloader Method";
                         Logfile.Location = "NotesTask";
-                        //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                        ErrorLogTask.LogFileSaveAsync(Logfile);
                     }
                 }
             }
@@ -372,7 +372,7 @@ namespace BrainShare.Core
                     Logfile.Error_details = ex.ToString();
                     Logfile.Error_title = "NotesImagedownloader Method";
                     Logfile.Location = "NotesTask";
-                    //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                    ErrorLogTask.LogFileSaveAsync(Logfile);
                     try
                     {
                         await CommonTask.ForceImageDownloader(_string, imageName, Constants.BMP_extension);
@@ -382,7 +382,7 @@ namespace BrainShare.Core
                         Logfile.Error_details = exc.ToString();
                         Logfile.Error_title = "NotesImagedownloader Method";
                         Logfile.Location = "NotesTask";
-                        //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                        ErrorLogTask.LogFileSaveAsync(Logfile);
                     }
                 }
             }
@@ -401,7 +401,7 @@ namespace BrainShare.Core
                     Logfile.Error_details = ex.ToString();
                     Logfile.Error_title = "NotesImagedownloader Method";
                     Logfile.Location = "NotesTask";
-                    //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                    ErrorLogTask.LogFileSaveAsync(Logfile);
                     try
                     {
                         await CommonTask.ForceImageDownloader(_string, imageName, Constants.TIFF_extension);
@@ -411,7 +411,7 @@ namespace BrainShare.Core
                         Logfile.Error_details = exc.ToString();
                         Logfile.Error_title = "NotesImagedownloader Method";
                         Logfile.Location = "NotesTask";
-                        //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                        ErrorLogTask.LogFileSaveAsync(Logfile);
                     }
                 }
             }
@@ -431,7 +431,7 @@ namespace BrainShare.Core
                     Logfile.Error_details = ex.ToString();
                     Logfile.Error_title = "NotesImagedownloader Method";
                     Logfile.Location = "NotesTask";
-                    //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                    ErrorLogTask.LogFileSaveAsync(Logfile);
                     try
                     {
                         await CommonTask.ForceImageDownloader(_string, imageName, Constants.JPG_extension);
@@ -441,7 +441,7 @@ namespace BrainShare.Core
                         Logfile.Error_details = exc.ToString();
                         Logfile.Error_title = "NotesImagedownloader Method";
                         Logfile.Location = "NotesTask";
-                        //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                        ErrorLogTask.LogFileSaveAsync(Logfile);
                     }
                 }
             }
@@ -460,7 +460,7 @@ namespace BrainShare.Core
                     Logfile.Error_details = ex.ToString();
                     Logfile.Error_title = "NotesImagedownloader Method";
                     Logfile.Location = "NotesTask";
-                    //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                    ErrorLogTask.LogFileSaveAsync(Logfile);
                     try
                     {
                         await CommonTask.ForceImageDownloader(_string, imageName, Constants.PNG_extension);
@@ -470,7 +470,7 @@ namespace BrainShare.Core
                         Logfile.Error_details = exc.ToString();
                         Logfile.Error_title = "NotesImagedownloader Method";
                         Logfile.Location = "NotesTask";
-                        //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                        ErrorLogTask.LogFileSaveAsync(Logfile);
                     }
                 }
             }
@@ -489,7 +489,7 @@ namespace BrainShare.Core
                     Logfile.Error_details = ex.ToString();
                     Logfile.Error_title = "NotesImagedownloader Method";
                     Logfile.Location = "NotesTask";
-                    //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                    ErrorLogTask.LogFileSaveAsync(Logfile);
                     try
                     {
                         await CommonTask.ForceImageDownloader(_string, imageName, Constants.GIF_extension);
@@ -499,7 +499,7 @@ namespace BrainShare.Core
                         Logfile.Error_details = exc.ToString();
                         Logfile.Error_title = "NotesImagedownloader Method";
                         Logfile.Location = "NotesTask";
-                        //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                        ErrorLogTask.LogFileSaveAsync(Logfile);
                     }
                 }
             }
@@ -518,7 +518,7 @@ namespace BrainShare.Core
                     Logfile.Error_details = ex.ToString();
                     Logfile.Error_title = "NotesImagedownloader Method";
                     Logfile.Location = "NotesTask";
-                    //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                    ErrorLogTask.LogFileSaveAsync(Logfile);
                     try
                     {
                         await CommonTask.ForceImageDownloader(_string, imageName, Constants.BMP_extension);
@@ -528,7 +528,7 @@ namespace BrainShare.Core
                         Logfile.Error_details = exc.ToString();
                         Logfile.Error_title = "NotesImagedownloader Method";
                         Logfile.Location = "NotesTask";
-                        //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                        ErrorLogTask.LogFileSaveAsync(Logfile);
                     }
                 }
             }
@@ -547,7 +547,7 @@ namespace BrainShare.Core
                     Logfile.Error_details = ex.ToString();
                     Logfile.Error_title = "NotesImagedownloader Method";
                     Logfile.Location = "NotesTask";
-                    //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                    ErrorLogTask.LogFileSaveAsync(Logfile);
                     try
                     {
                         await CommonTask.ForceImageDownloader(_string, imageName, Constants.TIFF_extension);
@@ -557,7 +557,7 @@ namespace BrainShare.Core
                         Logfile.Error_details = exc.ToString();
                         Logfile.Error_title = "NotesImagedownloader Method";
                         Logfile.Location = "NotesTask";
-                        //await ErrorLogTask.LogFileSaveAsync(Logfile);
+                        ErrorLogTask.LogFileSaveAsync(Logfile);
                     }
                 }
             }

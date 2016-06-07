@@ -35,11 +35,6 @@ namespace BrainShare.Database
 
         public Book()
         {
-
         }
-
-
-
-
     }
 }

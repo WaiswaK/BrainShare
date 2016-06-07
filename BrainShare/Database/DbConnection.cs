@@ -31,6 +31,7 @@ namespace BrainShare.Database
                     db.CreateTable<User>();
                     db.CreateTable<School>();
                     db.CreateTable<Book>();
+                    db.CreateTable<log>();
                 };
             }
             else {
