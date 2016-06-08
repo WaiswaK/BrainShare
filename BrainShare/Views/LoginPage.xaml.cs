@@ -383,7 +383,6 @@ namespace BrainShare
                     Logfile.Location = "LoginPage";
                     ErrorLogTask.LogFileSaveAsync(Logfile);
                 }
-
             }
             else
             {
@@ -395,10 +394,17 @@ namespace BrainShare
         private async void AuthenticateUser(UserObservable user)
         {
             List<SubjectObservable> subs = new List<SubjectObservable>();
-            LibraryObservable lib = new LibraryObservable();
-            List<User> users = DatabaseOutputTask.SelectAllUsers();
+            List<User> users = new List<User>();
+            try
+            {
+                users = DatabaseOutputTask.SelectAllUsers();
+            }
+            catch
+            {
+                users = null;
+            }
             bool found = false;
-            lib = user.Library;
+            LibraryObservable lib = user.Library;
             subs = user.subjects;
             if (subs.Count > 0)
             {
