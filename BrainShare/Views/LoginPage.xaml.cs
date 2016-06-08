@@ -274,7 +274,15 @@ namespace BrainShare
         }
         private void OnlineExperience()
         {
-            List<User> users = DatabaseOutputTask.SelectAllUsers();
+            List<User> users = new List<User>();
+            try
+            {
+                users = DatabaseOutputTask.SelectAllUsers();
+            }
+            catch
+            {
+                users = null;
+            }
             bool found = false;
             List<SubjectObservable> UserSubjects = new List<SubjectObservable>();
             UserObservable loggedIn = new UserObservable();
@@ -361,10 +369,8 @@ namespace BrainShare
                 try
                 {
                     JsonArray subjects = await JSONTask.SubjectsJsonArray(username, password);
-                    List<SubjectObservable> courses = new List<SubjectObservable>();
                     List<int> IDs = JSONTask.SubjectIds(subjects);
-                    courses = await JSONTask.Get_New_Subjects(username, password, IDs, subjects);
-                    userdetails.subjects = courses;
+                    userdetails.subjects = await JSONTask.Get_New_Subjects(username, password, IDs, subjects);
                     DatabaseInputTask.InsertLibAsync(userdetails.Library); //Library add here
                     AuthenticateUser(userdetails);
                 }
