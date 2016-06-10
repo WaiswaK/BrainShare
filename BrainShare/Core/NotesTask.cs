@@ -11,87 +11,6 @@ namespace BrainShare.Core
 {
     class NotesTask
     {
-        public static async Task<string> NotesUpdater(string notes, string subject, string topic)
-        {
-            string start_string_two = "http://";
-            string expression_png = start_string_two + @"\S*" + Constants.PNG_extension;
-            string expression_jpg = start_string_two + @"\S*" + Constants.JPG_extension;
-            string expression_gif = start_string_two + @"\S*" + Constants.GIF_extension;
-            string expression_bmp = start_string_two + @"\S*" + Constants.BMP_extension;
-            string expression_tiff = start_string_two + @"\S*" + Constants.TIFF_extension;
-
-            //Upper Case
-            string expression_PNG = start_string_two + @"\S*" + Constants.PNG_extension.ToUpper();
-            string expression_JPG = start_string_two + @"\S*" + Constants.JPG_extension.ToUpper();
-            string expression_GIF = start_string_two + @"\S*" + Constants.GIF_extension.ToUpper();
-            string expression_BMP = start_string_two + @"\S*" + Constants.BMP_extension.ToUpper();
-            string expression_TIFF = start_string_two + @"\S*" + Constants.TIFF_extension.ToUpper();
-
-            List<string> jpg_links = Links(notes, expression_jpg); //Links with png
-            List<string> png_links = Links(notes, expression_png); //Links with jpg
-            List<string> gif_links = Links(notes, expression_gif); //Links with gif
-            List<string> bmp_links = Links(notes, expression_bmp); //Links with bmp
-            List<string> tiff_links = Links(notes, expression_tiff); //Links with tiff
-
-            //Upper Case
-            List<string> JPG_links = Links(notes, expression_JPG); //Links with png
-            List<string> PNG_links = Links(notes, expression_PNG); //Links with jpg
-            List<string> GIF_links = Links(notes, expression_GIF); //Links with gif
-            List<string> BMP_links = Links(notes, expression_BMP); //Links with bmp
-            List<string> TIFF_links = Links(notes, expression_TIFF); //Links with tiff
-
-            foreach (string _string in JPG_links)
-            {
-                string imageName = "data:image/jpg;base64, " + await ImageTask.Base64(_string);
-                notes.Replace(_string, imageName);
-            }
-            foreach (string _string in PNG_links)
-            {
-                string imageName = "data:image/png;base64, " + await ImageTask.Base64(_string);
-                notes.Replace(_string, imageName);
-            }
-            foreach (string _string in GIF_links)
-            {
-                string imageName = "data:image/gif;base64, " + await ImageTask.Base64(_string);
-                notes.Replace(_string, imageName);
-            }
-            foreach (string _string in BMP_links)
-            {
-                string imageName = "data:image/bmp;base64, " + await ImageTask.Base64(_string);
-                notes.Replace(_string, imageName);
-            }
-            foreach (string _string in TIFF_links)
-            {
-                string imageName = "data:image/tiff;base64, " + await ImageTask.Base64(_string);
-                notes.Replace(_string, imageName);
-            }
-            foreach (string _string in jpg_links)
-            {
-                string imageName = "data:image/jpg;base64, " + await ImageTask.Base64(_string);
-                notes.Replace(_string, imageName);
-            }
-            foreach (string _string in png_links)
-            {
-                string imageName = "data:image/png;base64, " + await ImageTask.Base64(_string);
-                notes.Replace(_string, imageName);
-            }
-            foreach (string _string in gif_links)
-            {
-                string imageName = "data:image/gif;base64, " + await ImageTask.Base64(_string);
-                notes.Replace(_string, imageName);
-            }
-            foreach (string _string in bmp_links)
-            {
-                string imageName = "data:image/bmp;base64, " + await ImageTask.Base64(_string);
-                notes.Replace(_string, imageName);
-            }
-            foreach (string _string in tiff_links)
-            {
-                string imageName = "data:image/tiff;base64, " + await ImageTask.Base64(_string);
-                notes.Replace(_string, imageName);
-            }
-            return notes;
-        }
         //Offline notes
         public static async Task<string> Offline_Notes(string notes, string subject, string topic)
         {
@@ -563,7 +482,7 @@ namespace BrainShare.Core
             }
 
         }
-        public static async void GetNotesImagesSubjectsAsync(List<SubjectObservable> subjects)
+        public static void GetNotesImagesSubjectsAsync(List<SubjectObservable> subjects)
         {
             List<TopicObservable> topics = new List<TopicObservable>();
             try
@@ -580,7 +499,6 @@ namespace BrainShare.Core
                             try
                             {
                                 NotesImageDownloader(new_notes, subject.name, topic.folder_name); 
-                                new_notes = await NotesUpdater(new_notes, subject.name, topic.folder_name); 
 
                                 Topic newTopic = new Topic(topic.TopicID, subject.Id, topic.TopicTitle, topic.body,
                                     new_notes, topic.Updated_at, topic.teacher, topic.folder_id, topic.folder_name);

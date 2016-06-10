@@ -186,23 +186,7 @@ namespace BrainShare.Core
             imagename = linklist.Last();
             return imagename;
         }
-        //Methods to convert Image to Base64 String on while online the other offline
-        public static async Task<string> Base64(string image_path)
-        {
-            StorageFolder appFolder = Constants.appFolder;
-            string image = imageName(image_path);
-            StorageFile file = await appFolder.GetFileAsync(image);
-            string base64 = string.Empty;
-            using (var stream = await file.OpenAsync(FileAccessMode.Read))
-            {
-                var reader = new DataReader(stream.GetInputStreamAt(0));
-                var bytes = new byte[stream.Size];
-                await reader.LoadAsync((uint)stream.Size);
-                reader.ReadBytes(bytes);
-                base64 = Convert.ToBase64String(bytes);
-            }
-            return base64;
-        }
+        //Methods to convert Image to Base64
         public static async Task<string> LocalBase64(string image_path, string fileformat)
         {
             StorageFolder appFolder = Constants.appFolder;

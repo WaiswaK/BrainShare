@@ -35,8 +35,6 @@ namespace BrainShare.Database
                 };
             }
             else {
-
-                int x = 0;
                  }
           }
         public SQLiteAsyncConnection GetAsyncConnection()

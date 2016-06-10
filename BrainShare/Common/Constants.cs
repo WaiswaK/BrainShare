@@ -10,7 +10,7 @@ namespace BrainShare.Common
         public static string dbPath = Path.Combine(appFolder.Path, dbName);
         private static string http = "http://";
         private static string www = "www.";
-        private static string Base = "brainshare.ug";
+        private static string Base = "eshuli.rw";//"brainshare.ug";
         public static string BaseUri = http + Base;    
         public static string PDF_extension = ".pdf";
         public static string JPG_extension = ".jpg";

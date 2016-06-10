@@ -1,5 +1,6 @@
 <XamlCompilerSaveState>
   <ReferenceAssemblyList>
+    <LocalAssembly PathName="c:\users\kenneth\onedrive\documents\visual studio 2015\projects\brainshare 1.0.0.0\brainshare\obj\x86\debug\intermediatexaml\brainshare.exe" HashGuid="74dd610e-8b65-13a9-2b1e-698b38943f4d" />
     <ReferenceAssembly PathName="c:\program files (x86)\microsoft sdks\windows\v8.1\extensionsdks\microsoft.vclibs\12.0\references\commonconfiguration\neutral\platform.winmd" HashGuid="58b6b6d1-928e-9908-9804-eb460e5e101b" />
   </ReferenceAssemblyList>
 </XamlCompilerSaveState>
