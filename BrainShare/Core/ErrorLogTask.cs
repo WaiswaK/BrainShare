@@ -14,7 +14,7 @@ namespace BrainShare.Core
         {
             try
             {
-                using (var db = new SQLite.SQLiteConnection(Constants.dbPath))
+                using (var db = new SQLite.SQLiteConnection(Constant.dbPath))
                 {
                     var query = (db.Table<log>().ToList());
                     List<ErrorLogTask> logs = new List<ErrorLogTask>();
@@ -41,7 +41,7 @@ namespace BrainShare.Core
         {
             try
             {
-                var db = new SQLite.SQLiteConnection(Constants.dbPath);
+                var db = new SQLite.SQLiteConnection(Constant.dbPath);
                 db.Insert(new log() { Error_title = Errorlog.Error_title, Error_details = Errorlog.Error_details, Location = Errorlog.Location });
             }
             catch

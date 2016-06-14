@@ -11,7 +11,7 @@ namespace BrainShare.Core
         #region Subjects Methods
         public static List<string> oldSubjects()
         {
-            List<Subject> subjects = DatabaseOutputTask.SelectAllSubjects();
+            List<Subject> subjects = DBRetrievalTask.SelectAllSubjects();
             List<string> subs = new List<string>();
             List<string> temp = null;
             if (subjects == null)
@@ -28,14 +28,14 @@ namespace BrainShare.Core
                 return subs;
             }
         }
-        public static List<SubjectObservable> new_subjects(List<SubjectObservable> Gotsubjects)
+        public static List<SubjectModel> new_subjects(List<SubjectModel> Gotsubjects)
         {
             List<string> oldsubs = oldSubjects();
             List<string> subjects = new List<string>();
             List<string> newsubs = new List<string>();
             int x = 0;
             int y = 0;
-            List<SubjectObservable> final = new List<SubjectObservable>();
+            List<SubjectModel> final = new List<SubjectModel>();
             foreach (var subject in Gotsubjects)
             {
                 string sub = subject.name;
@@ -77,14 +77,14 @@ namespace BrainShare.Core
                 return final;
             }
         }
-        public static List<SubjectObservable> UpdateableSubjects(List<SubjectObservable> oldSubjects, List<SubjectObservable> newSubjects)
+        public static List<SubjectModel> UpdateableSubjects(List<SubjectModel> oldSubjects, List<SubjectModel> newSubjects)
         {
-            List<SubjectObservable> final = new List<SubjectObservable>();
-            List<TopicObservable> TopicsTemp = new List<TopicObservable>();
-            List<AssignmentObservable> AssignmentsTemp = new List<AssignmentObservable>();
-            List<VideoObservable> VideosTemp = new List<VideoObservable>();
-            List<AttachmentObservable> FileTemp = new List<AttachmentObservable>();
-            SubjectObservable Temp = new SubjectObservable();
+            List<SubjectModel> final = new List<SubjectModel>();
+            List<TopicModel> TopicsTemp = new List<TopicModel>();
+            List<AssignmentModel> AssignmentsTemp = new List<AssignmentModel>();
+            List<VideoModel> VideosTemp = new List<VideoModel>();
+            List<AttachmentModel> FileTemp = new List<AttachmentModel>();
+            SubjectModel Temp = new SubjectModel();
             bool got = false;
             foreach (var oldsubject in oldSubjects)
             {
@@ -102,7 +102,7 @@ namespace BrainShare.Core
                         }
                         else
                         {
-                            Temp = new SubjectObservable(oldsubject.Id, newsubject.name, oldsubject.thumb, TopicsTemp, AssignmentsTemp, VideosTemp, FileTemp);
+                            Temp = new SubjectModel(oldsubject.Id, newsubject.name, oldsubject.thumb, TopicsTemp, AssignmentsTemp, VideosTemp, FileTemp);
                             final.Add(Temp);
                             got = true;
                         }
@@ -119,10 +119,10 @@ namespace BrainShare.Core
                 return final;
             }
         }
-        public static List<SubjectObservable> UpdateableSubjectsTopics(List<SubjectObservable> oldSubjects, List<SubjectObservable> newSubjects)
+        public static List<SubjectModel> UpdateableSubjectsTopics(List<SubjectModel> oldSubjects, List<SubjectModel> newSubjects)
         {
-            List<SubjectObservable> final = new List<SubjectObservable>();
-            SubjectObservable Temp = new SubjectObservable();
+            List<SubjectModel> final = new List<SubjectModel>();
+            SubjectModel Temp = new SubjectModel();
             bool got = false;
             foreach (var oldsubject in oldSubjects)
             {
@@ -133,7 +133,7 @@ namespace BrainShare.Core
                         var newtopics = GetNewTopics(newsubject.topics, oldsubject.topics);
                         if (newtopics != null)
                         {
-                            Temp = new SubjectObservable(oldsubject.Id, newsubject.name, oldsubject.thumb, newtopics, null, null, null);
+                            Temp = new SubjectModel(oldsubject.Id, newsubject.name, oldsubject.thumb, newtopics, null, null, null);
                             final.Add(Temp);
                             got = true;
                         }
@@ -225,7 +225,7 @@ namespace BrainShare.Core
             }
             return numbers;
         }
-        public static List<string> SubjectNames(List<SubjectObservable> subjects)
+        public static List<string> SubjectNames(List<SubjectModel> subjects)
         {
             List<string> subjectnames = new List<string>();
             string sub;
@@ -312,14 +312,14 @@ namespace BrainShare.Core
         }
         #endregion
         #region Topics Methods
-        private static TopicObservable TopicChange(TopicObservable newTopic, TopicObservable oldTopic)
+        private static TopicModel TopicChange(TopicModel newTopic, TopicModel oldTopic)
         {
             string newNotes = newTopic.body;
             string oldNotes = oldTopic.body;
-            List<AttachmentObservable> newFiles = newTopic.Files;
-            List<AttachmentObservable> oldFiles = oldTopic.Files;
-            List<AttachmentObservable> Files = new List<AttachmentObservable>();
-            TopicObservable Topic = new TopicObservable();
+            List<AttachmentModel> newFiles = newTopic.Files;
+            List<AttachmentModel> oldFiles = oldTopic.Files;
+            List<AttachmentModel> Files = new List<AttachmentModel>();
+            TopicModel Topic = new TopicModel();
             if (newNotes.Equals(oldNotes))
             {
                 Files = GetNewFiles(newFiles, oldFiles);
@@ -329,7 +329,7 @@ namespace BrainShare.Core
                 }
                 else
                 {
-                    Topic = new TopicObservable(oldTopic.TopicID, null, null, oldTopic.TopicTitle, Files, oldTopic.teacher, newTopic.Updated_at, oldTopic.folder_id, oldTopic.folder_name);
+                    Topic = new TopicModel(oldTopic.TopicID, null, null, oldTopic.TopicTitle, Files, oldTopic.teacher, newTopic.Updated_at, oldTopic.folder_id, oldTopic.folder_name);
                 }
             }
             else
@@ -337,23 +337,23 @@ namespace BrainShare.Core
                 Files = GetNewFiles(newFiles, oldFiles);
                 if (Files == null)
                 {
-                    Topic = new TopicObservable(oldTopic.TopicID, newTopic.body, NotesTask.NotesChanger(newTopic.body), oldTopic.TopicTitle,
+                    Topic = new TopicModel(oldTopic.TopicID, newTopic.body, NotesTask.NotesChanger(newTopic.body), oldTopic.TopicTitle,
                         null, oldTopic.teacher, newTopic.Updated_at, oldTopic.folder_id, oldTopic.folder_name);
                 }
                 else
                 {
-                    Topic = new TopicObservable(oldTopic.TopicID, newTopic.body, NotesTask.NotesChanger(newTopic.body),
+                    Topic = new TopicModel(oldTopic.TopicID, newTopic.body, NotesTask.NotesChanger(newTopic.body),
                         oldTopic.TopicTitle, Files, oldTopic.teacher, newTopic.Updated_at, oldTopic.folder_id, oldTopic.folder_name);
                 }
             }
             return Topic;
         }
-        private static List<TopicObservable> UpdateableTopics(List<TopicObservable> oldTopics, List<TopicObservable> newTopics)
+        private static List<TopicModel> UpdateableTopics(List<TopicModel> oldTopics, List<TopicModel> newTopics)
         {
-            List<TopicObservable> final = new List<TopicObservable>();
-            List<TopicObservable> ntopics = new List<TopicObservable>();
-            List<TopicObservable> otopics = new List<TopicObservable>();
-            TopicObservable temp = new TopicObservable();
+            List<TopicModel> final = new List<TopicModel>();
+            List<TopicModel> ntopics = new List<TopicModel>();
+            List<TopicModel> otopics = new List<TopicModel>();
+            TopicModel temp = new TopicModel();
             bool found = false;
             foreach (var oldtopic in oldTopics)
             {
@@ -380,12 +380,12 @@ namespace BrainShare.Core
                 return null;
             }
         }
-        private static List<AssignmentObservable> UpdateableAssignments(List<AssignmentObservable> oldAssignments, List<AssignmentObservable> newAssignments)
+        private static List<AssignmentModel> UpdateableAssignments(List<AssignmentModel> oldAssignments, List<AssignmentModel> newAssignments)
         {
-            List<AssignmentObservable> final = new List<AssignmentObservable>();
-            List<AssignmentObservable> nassignments = new List<AssignmentObservable>();
-            List<AssignmentObservable> oassignments = new List<AssignmentObservable>();
-            AssignmentObservable temp = new AssignmentObservable();
+            List<AssignmentModel> final = new List<AssignmentModel>();
+            List<AssignmentModel> nassignments = new List<AssignmentModel>();
+            List<AssignmentModel> oassignments = new List<AssignmentModel>();
+            AssignmentModel temp = new AssignmentModel();
             bool found = false;
             foreach (var oldassignment in oldAssignments)
             {
@@ -412,14 +412,14 @@ namespace BrainShare.Core
                 return null;
             }
         }
-        private static AssignmentObservable AssignmentChange(AssignmentObservable newAssignment, AssignmentObservable oldAssignment)
+        private static AssignmentModel AssignmentChange(AssignmentModel newAssignment, AssignmentModel oldAssignment)
         {
             string newNotes = newAssignment.description;
             string oldNotes = oldAssignment.description;
-            List<AttachmentObservable> newFiles = newAssignment.Files;
-            List<AttachmentObservable> oldFiles = oldAssignment.Files;
-            List<AttachmentObservable> Files = new List<AttachmentObservable>();
-            AssignmentObservable Assignment = new AssignmentObservable();
+            List<AttachmentModel> newFiles = newAssignment.Files;
+            List<AttachmentModel> oldFiles = oldAssignment.Files;
+            List<AttachmentModel> Files = new List<AttachmentModel>();
+            AssignmentModel Assignment = new AssignmentModel();
             if (newNotes.Equals(oldNotes))
             {
                 Files = GetNewFiles(newFiles, oldFiles);
@@ -429,7 +429,7 @@ namespace BrainShare.Core
                 }
                 else
                 {
-                    Assignment = new AssignmentObservable(oldAssignment.id, oldAssignment.title, null, oldAssignment.teacher, Files);
+                    Assignment = new AssignmentModel(oldAssignment.id, oldAssignment.title, null, oldAssignment.teacher, Files);
                 }
             }
             else
@@ -437,19 +437,19 @@ namespace BrainShare.Core
                 Files = GetNewFiles(newFiles, oldFiles);
                 if (Files == null)
                 {
-                    Assignment = new AssignmentObservable(oldAssignment.id, oldAssignment.title, newAssignment.description, oldAssignment.teacher, null);
+                    Assignment = new AssignmentModel(oldAssignment.id, oldAssignment.title, newAssignment.description, oldAssignment.teacher, null);
                 }
                 else
                 {
-                    Assignment = new AssignmentObservable(oldAssignment.id, oldAssignment.title, newAssignment.description, oldAssignment.teacher, Files);
+                    Assignment = new AssignmentModel(oldAssignment.id, oldAssignment.title, newAssignment.description, oldAssignment.teacher, Files);
                 }
             }
             return Assignment;
         }
-        private static List<VideoObservable> GetNewVideos(List<VideoObservable> newVideos, List<VideoObservable> oldVideos)
+        private static List<VideoModel> GetNewVideos(List<VideoModel> newVideos, List<VideoModel> oldVideos)
         {
-            List<VideoObservable> files = new List<VideoObservable>();
-            VideoObservable temp = new VideoObservable();
+            List<VideoModel> files = new List<VideoModel>();
+            VideoModel temp = new VideoModel();
             bool found = false;
             bool something = false;
 
@@ -481,10 +481,10 @@ namespace BrainShare.Core
             }
             return files;
         }
-        private static List<TopicObservable> GetNewTopics(List<TopicObservable> newTopics, List<TopicObservable> oldTopics)
+        private static List<TopicModel> GetNewTopics(List<TopicModel> newTopics, List<TopicModel> oldTopics)
         {
-            List<TopicObservable> files = new List<TopicObservable>();
-            TopicObservable temp = new TopicObservable();
+            List<TopicModel> files = new List<TopicModel>();
+            TopicModel temp = new TopicModel();
             bool found = false;
             bool something = false;
 
@@ -516,10 +516,10 @@ namespace BrainShare.Core
             }
             return files;
         }
-        public static List<AttachmentObservable> GetNewFiles(List<AttachmentObservable> newFiles, List<AttachmentObservable> oldFiles)
+        public static List<AttachmentModel> GetNewFiles(List<AttachmentModel> newFiles, List<AttachmentModel> oldFiles)
         {
-            List<AttachmentObservable> files = new List<AttachmentObservable>();
-            AttachmentObservable temp = new AttachmentObservable();
+            List<AttachmentModel> files = new List<AttachmentModel>();
+            AttachmentModel temp = new AttachmentModel();
             bool found = false;
             bool something = false;
 
@@ -553,13 +553,13 @@ namespace BrainShare.Core
         }
         #endregion        
         #region Library Methods
-        public static Library_CategoryObservable Category_Update(List<BookObservable> oldbooks, List<BookObservable> newbooks)
+        public static LibCategoryModel Category_Update(List<BookModel> oldbooks, List<BookModel> newbooks)
         {
-            Library_CategoryObservable category = new Library_CategoryObservable();
-            List<BookObservable> books = new List<BookObservable>();
+            LibCategoryModel category = new LibCategoryModel();
+            List<BookModel> books = new List<BookModel>();
             bool found = false;
             bool something = false;
-            BookObservable temp = new BookObservable();
+            BookModel temp = new BookModel();
             int x = 0;
             foreach (var newbook in newbooks)
             {
@@ -595,16 +595,16 @@ namespace BrainShare.Core
             }
             return category;
         }
-        public static List<Library_CategoryObservable> Categories_Update(List<Library_CategoryObservable> oldcategories, List<Library_CategoryObservable> newcategories)
+        public static List<LibCategoryModel> Categories_Update(List<LibCategoryModel> oldcategories, List<LibCategoryModel> newcategories)
         {
-            List<Library_CategoryObservable> final = new List<Library_CategoryObservable>();
+            List<LibCategoryModel> final = new List<LibCategoryModel>();
             foreach (var newcategory in newcategories)
             {
                 foreach (var oldcategory in oldcategories)
                 {
                     if (newcategory.category_id == oldcategory.category_id)
                     {
-                        Library_CategoryObservable category = Category_Update(oldcategory.category_books, newcategory.category_books);
+                        LibCategoryModel category = Category_Update(oldcategory.category_books, newcategory.category_books);
                         if (category != null)
                         {
                             final.Add(category);
@@ -614,18 +614,18 @@ namespace BrainShare.Core
             }
             return final;
         }
-        public static LibraryObservable CompareLibraries(LibraryObservable oldlib, LibraryObservable newlib)
+        public static LibraryModel CompareLibraries(LibraryModel oldlib, LibraryModel newlib)
         {
             bool found = false;
             bool something = false;
-            Library_CategoryObservable temp = new Library_CategoryObservable();
-            List<Library_CategoryObservable> final_categories = new List<Library_CategoryObservable>();
-            LibraryObservable lib = new LibraryObservable();
+            LibCategoryModel temp = new LibCategoryModel();
+            List<LibCategoryModel> final_categories = new List<LibCategoryModel>();
+            LibraryModel lib = new LibraryModel();
             lib.library_id = oldlib.library_id;
-            List<Library_CategoryObservable> new_libCategories = new List<Library_CategoryObservable>();
+            List<LibCategoryModel> new_libCategories = new List<LibCategoryModel>();
             new_libCategories = newlib.categories;
 
-            List<Library_CategoryObservable> old_libCategories = new List<Library_CategoryObservable>();
+            List<LibCategoryModel> old_libCategories = new List<LibCategoryModel>();
             old_libCategories = oldlib.categories;
 
             foreach (var new_libCategory in new_libCategories)
@@ -657,13 +657,13 @@ namespace BrainShare.Core
             }
             return lib;
         }
-        public static Library_CategoryObservable Category_Update_Removal(List<BookObservable> oldbooks, List<BookObservable> newbooks)
+        public static LibCategoryModel Category_Update_Removal(List<BookModel> oldbooks, List<BookModel> newbooks)
         {
-            Library_CategoryObservable category = new Library_CategoryObservable();
-            List<BookObservable> books = new List<BookObservable>();
+            LibCategoryModel category = new LibCategoryModel();
+            List<BookModel> books = new List<BookModel>();
             bool found = false;
             bool something = false;
-            BookObservable temp = new BookObservable();
+            BookModel temp = new BookModel();
             int x = 0;
             foreach (var oldbook in oldbooks)
             {
@@ -699,16 +699,16 @@ namespace BrainShare.Core
             }
             return category;
         }
-        public static List<Library_CategoryObservable> Categories_Update_Removal(List<Library_CategoryObservable> oldcategories, List<Library_CategoryObservable> newcategories)
+        public static List<LibCategoryModel> Categories_Update_Removal(List<LibCategoryModel> oldcategories, List<LibCategoryModel> newcategories)
         {
-            List<Library_CategoryObservable> final = new List<Library_CategoryObservable>();
+            List<LibCategoryModel> final = new List<LibCategoryModel>();
             foreach (var newcategory in newcategories)
             {
                 foreach (var oldcategory in oldcategories)
                 {
                     if (newcategory.category_id == oldcategory.category_id)
                     {
-                        Library_CategoryObservable category = Category_Update_Removal(oldcategory.category_books, newcategory.category_books);
+                        LibCategoryModel category = Category_Update_Removal(oldcategory.category_books, newcategory.category_books);
                         if (category != null)
                         {
                             final.Add(category);
@@ -718,18 +718,18 @@ namespace BrainShare.Core
             }
             return final;
         }
-        public static LibraryObservable CompareLibraries_Removal(LibraryObservable oldlib, LibraryObservable newlib)
+        public static LibraryModel CompareLibraries_Removal(LibraryModel oldlib, LibraryModel newlib)
         {
             bool found = false;
             bool something = false;
-            Library_CategoryObservable temp = new Library_CategoryObservable();
-            List<Library_CategoryObservable> final_categories = new List<Library_CategoryObservable>();
-            LibraryObservable lib = new LibraryObservable();
+            LibCategoryModel temp = new LibCategoryModel();
+            List<LibCategoryModel> final_categories = new List<LibCategoryModel>();
+            LibraryModel lib = new LibraryModel();
             lib.library_id = oldlib.library_id;
-            List<Library_CategoryObservable> new_libCategories = new List<Library_CategoryObservable>();
+            List<LibCategoryModel> new_libCategories = new List<LibCategoryModel>();
             new_libCategories = newlib.categories;
 
-            List<Library_CategoryObservable> old_libCategories = new List<Library_CategoryObservable>();
+            List<LibCategoryModel> old_libCategories = new List<LibCategoryModel>();
             old_libCategories = oldlib.categories;
 
             foreach (var new_libCategory in new_libCategories)
@@ -762,28 +762,28 @@ namespace BrainShare.Core
             return lib;
         }
         //Method to sort books by Categories
-        public static List<Library_CategoryObservable> categories(List<Book> books)
+        public static List<LibCategoryModel> categories(List<Book> books)
         {
-            List<BookObservable> BooksObservable = new List<BookObservable>();
+            List<BookModel> BooksObservable = new List<BookModel>();
             foreach (var book in books)
             {
-                BookObservable Observable_Book = new BookObservable(book.Book_id, book.Book_title, book.Book_author, book.Book_description,
+                BookModel Observable_Book = new BookModel(book.Book_id, book.Book_title, book.Book_author, book.Book_description,
                     book.updated_at, book.thumb_url, book.file_url, book.file_size, book.Library_id, book.Category_id, book.Category_name);
                 BooksObservable.Add(Observable_Book);
             }
-            List<Library_CategoryObservable> BookCategoryList = BooksObservable.GroupBy(u => u.Category_id)
-                                   .Select(grp => new Library_CategoryObservable()
+            List<LibCategoryModel> BookCategoryList = BooksObservable.GroupBy(u => u.Category_id)
+                                   .Select(grp => new LibCategoryModel()
                                    { category_name = grp.ToList().Last().Category_name, book_count = grp.ToList().Count, category_books = grp.ToList(), category_id = grp.Key })
                                    .ToList();
             return BookCategoryList;
         }
         #endregion
         //Method to Update the Content into database
-        public static async void UserUpdater(UserObservable user, List<SubjectObservable> newsubjects, List<SubjectObservable> updateableSubjects, UserObservable CurrentUser,
-            LibraryObservable newlib, List<Library_CategoryObservable> updatedCategories)
+        public static async void UserUpdater(UserModel user, List<SubjectModel> newsubjects, List<SubjectModel> updateableSubjects, UserModel CurrentUser,
+            LibraryModel newlib, List<LibCategoryModel> updatedCategories)
         {
-            await DatabaseInputTask.UpdateUserAsync(user);
-            DatabaseInputTask.UpdateLibAsync(newlib); //Will be checked later // Could be awaitable
+            await DBInsertionTask.UpdateUserAsync(user);
+            DBInsertionTask.UpdateLibAsync(newlib); //Will be checked later // Could be awaitable
             if (updateableSubjects == null && newsubjects == null)
             {
             }
@@ -791,16 +791,16 @@ namespace BrainShare.Core
             {
                 if (updateableSubjects == null)
                 {
-                    DatabaseInputTask.InsertSubjectsAsync(newsubjects);
+                    DBInsertionTask.InsertSubjectsAsync(newsubjects);
                 }
                 if (newsubjects == null)
                 {
-                    DatabaseInputTask.UpdateSubjectsAsync(updateableSubjects);
+                    DBInsertionTask.UpdateSubjectsAsync(updateableSubjects);
                 }
                 if (updateableSubjects != null && newsubjects != null)
                 {
-                    DatabaseInputTask.InsertSubjectsAsync(newsubjects);
-                    DatabaseInputTask.UpdateSubjectsAsync(updateableSubjects);
+                    DBInsertionTask.InsertSubjectsAsync(newsubjects);
+                    DBInsertionTask.UpdateSubjectsAsync(updateableSubjects);
                 }
             }           
         }

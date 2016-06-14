@@ -159,7 +159,7 @@
       <RootProperty Name="Margin" />
       <RootProperty Name="Padding" />
     </RootType>
-    <RootType FullName="BrainShare.Views.CreateAccountPage" />
+    <RootType FullName="BrainShare.Views.CreateAccountView" />
     <RootType FullName="Windows.UI.Xaml.Data.RelativeSource">
       <RootProperty Name="Mode" />
     </RootType>
@@ -187,8 +187,8 @@
       <RootEvent Name="SelectionChanged" />
       <RootEvent Name="ItemClick" />
     </RootType>
-    <RootType FullName="BrainShare.Views.LibraryCategoryBooks" />
-    <RootType FullName="BrainShare.Views.DocumentsPage" />
+    <RootType FullName="BrainShare.Views.LibraryCategoryBooksView" />
+    <RootType FullName="BrainShare.Views.DocumentsView" />
     <RootType FullName="System.String" />
     <RootType FullName="Windows.UI.Xaml.Controls.Control">
       <RootProperty Name="Background" />
@@ -219,7 +219,7 @@
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="FontFamily" />
     </RootType>
-    <RootType FullName="BrainShare.LoginPage" />
+    <RootType FullName="BrainShare.LoginView" />
     <RootType FullName="BrainShare.Common.BooleanToVisibilityConverter" />
     <RootType FullName="Windows.UI.Xaml.VisualStateManager">
       <RootMethod Name="GetVisualStateGroups" />
@@ -277,8 +277,8 @@
       <RootProperty Name="AreTransportControlsEnabled" />
       <RootEvent Name="DoubleTapped" />
     </RootType>
-    <RootType FullName="BrainShare.Views.PlayPage" />
-    <RootType FullName="BrainShare.Views.PDFViewPage" />
+    <RootType FullName="BrainShare.Views.PlayView" />
+    <RootType FullName="BrainShare.Views.PDFReader" />
     <RootType FullName="Windows.UI.Xaml.Controls.SettingsFlyout">
       <RootProperty Name="IconSource" />
       <RootProperty Name="Title" />
@@ -301,12 +301,12 @@
       <RootProperty Name="Width" />
       <RootProperty Name="Visibility" />
     </RootType>
-    <RootType FullName="BrainShare.Views.StudentPage" />
-    <RootType FullName="BrainShare.Views.SubjectPage" />
-    <RootType FullName="BrainShare.Views.AssignmentPage" />
-    <RootType FullName="BrainShare.Views.AssignmentsPage" />
-    <RootType FullName="BrainShare.Views.TopicPage" />
-    <RootType FullName="BrainShare.Views.TopicsPage" />
-    <RootType FullName="BrainShare.Views.VideosPage" />
+    <RootType FullName="BrainShare.Views.StudentView" />
+    <RootType FullName="BrainShare.Views.SubjectView" />
+    <RootType FullName="BrainShare.Views.AssignmentView" />
+    <RootType FullName="BrainShare.Views.AssignmentsView" />
+    <RootType FullName="BrainShare.Views.TopicView" />
+    <RootType FullName="BrainShare.Views.TopicsView" />
+    <RootType FullName="BrainShare.Views.VideosView" />
   </Roots.RootTypes>
 </Roots>

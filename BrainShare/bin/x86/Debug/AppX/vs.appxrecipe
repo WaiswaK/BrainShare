@@ -22,13 +22,13 @@
     <AppXManifest Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-06-08T20:00:14.599</Modified>
+      <Modified>2016-06-14T07:42:35.997</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\BrainShare.exe">
       <PackagePath>BrainShare.exe</PackagePath>
-      <Modified>2016-06-10T09:01:24.082</Modified>
+      <Modified>2016-06-14T08:46:03.503</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\SQLite.WinRT81\3.13.0\Redist\Debug\x86\sqlite3.dll">
       <PackagePath>sqlite3.dll</PackagePath>
@@ -148,75 +148,75 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\BrainShare.xr.xml">
       <PackagePath>BrainShare.xr.xml</PackagePath>
-      <Modified>2016-06-07T21:15:44.359</Modified>
+      <Modified>2016-06-14T07:17:44.232</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2016-06-08T20:00:11.613</Modified>
+      <Modified>2016-06-14T07:42:32.642</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\CreateAccountPage.xbf">
-      <PackagePath>Views\CreateAccountPage.xbf</PackagePath>
-      <Modified>2016-06-08T20:00:11.614</Modified>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\CreateAccountView.xbf">
+      <PackagePath>Views\CreateAccountView.xbf</PackagePath>
+      <Modified>2016-06-14T07:42:32.642</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\LibraryCategoryBooks.xbf">
-      <PackagePath>Views\LibraryCategoryBooks.xbf</PackagePath>
-      <Modified>2016-06-08T20:00:11.614</Modified>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\LibraryCategoryBooksView.xbf">
+      <PackagePath>Views\LibraryCategoryBooksView.xbf</PackagePath>
+      <Modified>2016-06-14T07:42:32.643</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\DocumentsPage.xbf">
-      <PackagePath>Views\DocumentsPage.xbf</PackagePath>
-      <Modified>2016-06-08T20:00:11.614</Modified>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\DocumentsView.xbf">
+      <PackagePath>Views\DocumentsView.xbf</PackagePath>
+      <Modified>2016-06-14T07:42:32.643</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\LoginPage.xbf">
-      <PackagePath>Views\LoginPage.xbf</PackagePath>
-      <Modified>2016-06-08T20:00:11.615</Modified>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\LoginView.xbf">
+      <PackagePath>Views\LoginView.xbf</PackagePath>
+      <Modified>2016-06-14T07:42:32.644</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\LibraryBookReader.xbf">
       <PackagePath>Views\LibraryBookReader.xbf</PackagePath>
-      <Modified>2016-06-08T20:00:11.615</Modified>
+      <Modified>2016-06-14T07:42:32.645</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\PlayPage.xbf">
-      <PackagePath>Views\PlayPage.xbf</PackagePath>
-      <Modified>2016-06-08T20:00:11.615</Modified>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\PlayView.xbf">
+      <PackagePath>Views\PlayView.xbf</PackagePath>
+      <Modified>2016-06-14T07:42:32.645</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\PDFViewPage.xbf">
-      <PackagePath>Views\PDFViewPage.xbf</PackagePath>
-      <Modified>2016-06-08T20:00:11.616</Modified>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\PDFReader.xbf">
+      <PackagePath>Views\PDFReader.xbf</PackagePath>
+      <Modified>2016-06-14T07:42:32.645</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\Settings.xbf">
       <PackagePath>Views\Settings.xbf</PackagePath>
-      <Modified>2016-06-08T20:00:11.616</Modified>
+      <Modified>2016-06-14T07:42:32.646</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\StudentPage.xbf">
-      <PackagePath>Views\StudentPage.xbf</PackagePath>
-      <Modified>2016-06-08T20:00:11.617</Modified>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\StudentView.xbf">
+      <PackagePath>Views\StudentView.xbf</PackagePath>
+      <Modified>2016-06-14T07:42:32.648</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\SubjectPage.xbf">
-      <PackagePath>Views\SubjectPage.xbf</PackagePath>
-      <Modified>2016-06-08T20:00:11.617</Modified>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\SubjectView.xbf">
+      <PackagePath>Views\SubjectView.xbf</PackagePath>
+      <Modified>2016-06-14T07:42:32.649</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\AssignmentPage.xbf">
-      <PackagePath>Views\AssignmentPage.xbf</PackagePath>
-      <Modified>2016-06-08T20:00:11.617</Modified>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\AssignmentView.xbf">
+      <PackagePath>Views\AssignmentView.xbf</PackagePath>
+      <Modified>2016-06-14T07:42:32.649</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\AssignmentsPage.xbf">
-      <PackagePath>Views\AssignmentsPage.xbf</PackagePath>
-      <Modified>2016-06-08T20:00:11.618</Modified>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\AssignmentsView.xbf">
+      <PackagePath>Views\AssignmentsView.xbf</PackagePath>
+      <Modified>2016-06-14T07:42:32.650</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\TopicPage.xbf">
-      <PackagePath>Views\TopicPage.xbf</PackagePath>
-      <Modified>2016-06-08T20:00:11.618</Modified>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\TopicView.xbf">
+      <PackagePath>Views\TopicView.xbf</PackagePath>
+      <Modified>2016-06-14T07:42:32.651</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\TopicsPage.xbf">
-      <PackagePath>Views\TopicsPage.xbf</PackagePath>
-      <Modified>2016-06-08T20:00:11.618</Modified>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\TopicsView.xbf">
+      <PackagePath>Views\TopicsView.xbf</PackagePath>
+      <Modified>2016-06-14T07:42:32.651</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\VideosPage.xbf">
-      <PackagePath>Views\VideosPage.xbf</PackagePath>
-      <Modified>2016-06-08T20:00:11.618</Modified>
+    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\VideosView.xbf">
+      <PackagePath>Views\VideosView.xbf</PackagePath>
+      <Modified>2016-06-14T07:42:32.653</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2016-06-08T20:00:14.026</Modified>
+      <Modified>2016-06-14T07:42:35.076</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

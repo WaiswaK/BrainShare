@@ -28,20 +28,20 @@ namespace BrainShare.Core
             string imageformat = string.Empty;
             filepath = filepath.ToLower(); //Changing to lower-case
             int l = filepath.Length;
-            int JPG_extension = Constants.JPG_extension.Length;
-            int PNG_extension = Constants.PNG_extension.Length;
-            int GIF_extension = Constants.GIF_extension.Length;
-            int TIFF_extension = Constants.TIFF_extension.Length;
-            int BMP_extension = Constants.BMP_extension.Length;
+            int JPG_extension = Constant.JPG_extension.Length;
+            int PNG_extension = Constant.PNG_extension.Length;
+            int GIF_extension = Constant.GIF_extension.Length;
+            int TIFF_extension = Constant.TIFF_extension.Length;
+            int BMP_extension = Constant.BMP_extension.Length;
 
             //Search for jpg 
             for (int i = 0; i < l; i++)
             {
-                if (filepath[i] == Constants.JPG_extension[0])
+                if (filepath[i] == Constant.JPG_extension[0])
                 {
                     for (int K = i + 1, j = 1; j < JPG_extension; j++, K++)
                     {
-                        if (filepath[K] == Constants.JPG_extension[j])
+                        if (filepath[K] == Constant.JPG_extension[j])
                         {
                             f++;
                         }
@@ -50,7 +50,7 @@ namespace BrainShare.Core
             }
             if (f == JPG_extension - 1)
             {
-                imageformat = Constants.JPG_extension;
+                imageformat = Constant.JPG_extension;
             }
 
             if (imageformat == string.Empty)
@@ -59,11 +59,11 @@ namespace BrainShare.Core
                 f = 0;
                 for (int i = 0; i < l; i++)
                 {
-                    if (filepath[i] == Constants.PNG_extension[0])
+                    if (filepath[i] == Constant.PNG_extension[0])
                     {
                         for (int K = i + 1, j = 1; j < PNG_extension; j++, K++)
                         {
-                            if (filepath[K] == Constants.PNG_extension[j])
+                            if (filepath[K] == Constant.PNG_extension[j])
                             {
                                 f++;
                             }
@@ -72,7 +72,7 @@ namespace BrainShare.Core
                 }
                 if (f == PNG_extension - 1)
                 {
-                    imageformat = Constants.PNG_extension;
+                    imageformat = Constant.PNG_extension;
                 }
                 if (imageformat == string.Empty)
                 {
@@ -80,11 +80,11 @@ namespace BrainShare.Core
                     f = 0;
                     for (int i = 0; i < l; i++)
                     {
-                        if (filepath[i] == Constants.GIF_extension[0])
+                        if (filepath[i] == Constant.GIF_extension[0])
                         {
                             for (int K = i + 1, j = 1; j < GIF_extension; j++, K++)
                             {
-                                if (filepath[K] == Constants.GIF_extension[j])
+                                if (filepath[K] == Constant.GIF_extension[j])
                                 {
                                     f++;
                                 }
@@ -93,7 +93,7 @@ namespace BrainShare.Core
                     }
                     if (f == GIF_extension - 1)
                     {
-                        imageformat = Constants.GIF_extension;
+                        imageformat = Constant.GIF_extension;
                     }
                     if (imageformat == string.Empty)
                     {
@@ -101,11 +101,11 @@ namespace BrainShare.Core
                         f = 0;
                         for (int i = 0; i < l; i++)
                         {
-                            if (filepath[i] == Constants.BMP_extension[0])
+                            if (filepath[i] == Constant.BMP_extension[0])
                             {
                                 for (int K = i + 1, j = 1; j < BMP_extension; j++, K++)
                                 {
-                                    if (filepath[K] == Constants.BMP_extension[j])
+                                    if (filepath[K] == Constant.BMP_extension[j])
                                     {
                                         f++;
                                     }
@@ -114,7 +114,7 @@ namespace BrainShare.Core
                         }
                         if (f == BMP_extension - 1)
                         {
-                            imageformat = Constants.BMP_extension;
+                            imageformat = Constant.BMP_extension;
                         }
                         if (imageformat == string.Empty)
                         {
@@ -122,11 +122,11 @@ namespace BrainShare.Core
                             f = 0;
                             for (int i = 0; i < l; i++)
                             {
-                                if (filepath[i] == Constants.TIFF_extension[0])
+                                if (filepath[i] == Constant.TIFF_extension[0])
                                 {
                                     for (int K = i + 1, j = 1; j < TIFF_extension; j++, K++)
                                     {
-                                        if (filepath[K] == Constants.TIFF_extension[j])
+                                        if (filepath[K] == Constant.TIFF_extension[j])
                                         {
                                             f++;
                                         }
@@ -135,7 +135,7 @@ namespace BrainShare.Core
                             }
                             if (f == TIFF_extension - 1)
                             {
-                                imageformat = Constants.TIFF_extension;
+                                imageformat = Constant.TIFF_extension;
                             }
                         }
                     }
@@ -172,7 +172,7 @@ namespace BrainShare.Core
             }
             else
             {
-                weblink = Constants.BaseUri + filepath;
+                weblink = Constant.BaseUri + filepath;
             }
             return weblink;
         }
@@ -189,7 +189,7 @@ namespace BrainShare.Core
         //Methods to convert Image to Base64
         public static async Task<string> LocalBase64(string image_path, string fileformat)
         {
-            StorageFolder appFolder = Constants.appFolder;
+            StorageFolder appFolder = Constant.appFolder;
             string image = imageName(image_path + fileformat);
             string base64 = string.Empty;
             try
@@ -213,7 +213,7 @@ namespace BrainShare.Core
         //Function to make image path
         public static string imagePath(string imagename)
         {
-            string path = Path.Combine(Constants.appFolder.Path, imagename);
+            string path = Path.Combine(Constant.appFolder.Path, imagename);
             return path;
         }
     }

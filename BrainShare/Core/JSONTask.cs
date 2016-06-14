@@ -48,9 +48,9 @@ namespace BrainShare.Core
             }
             return user;
         }
-        public static SchoolObservable GetSchool(JsonObject loginObject)
+        public static SchoolModel GetSchool(JsonObject loginObject)
         {
-            SchoolObservable user = new SchoolObservable();
+            SchoolModel user = new SchoolModel();
             foreach (var log in loginObject.Keys)
             {
                 IJsonValue val;
@@ -65,7 +65,7 @@ namespace BrainShare.Core
                         user.SchoolName = val.GetString();
                         break;
                     case "school_logo":
-                        user.ImagePath = Constants.BaseUri + val.GetString();
+                        user.ImagePath = Constant.BaseUri + val.GetString();
                         break;
                 }
             }
@@ -96,7 +96,7 @@ namespace BrainShare.Core
             postData.Add(new KeyValuePair<string, string>("email", username));
             postData.Add(new KeyValuePair<string, string>("password", password));
             var formContent = new FormUrlEncodedContent(postData);
-            var authresponse = await client.PostAsync(Constants.LoginJsonLink, formContent);
+            var authresponse = await client.PostAsync(Constant.LoginJsonLink, formContent);
             var authresult = await authresponse.Content.ReadAsStreamAsync();
             var authstreamReader = new System.IO.StreamReader(authresult);
             var authresponseContent = authstreamReader.ReadToEnd().Trim().ToString();
@@ -105,9 +105,9 @@ namespace BrainShare.Core
         }
         #endregion
         #region Subjects JSON Methods
-        public static SubjectObservable GetSubject(JsonArray SubjectsArray, int Sub_id, JsonArray NotesArray, JsonArray VideosArray, JsonArray AssignmentArray, JsonArray FilesArray)
+        public static SubjectModel GetSubject(JsonArray SubjectsArray, int Sub_id, JsonArray NotesArray, JsonArray VideosArray, JsonArray AssignmentArray, JsonArray FilesArray)
         {
-            SubjectObservable subject = new SubjectObservable();
+            SubjectModel subject = new SubjectModel();
             int temp = 0;
             foreach (var item in SubjectsArray)
             {
@@ -166,19 +166,19 @@ namespace BrainShare.Core
             }
             return ids;
         }
-        private static List<AttachmentObservable> AllFiles(List<JsonObject> AllObjects)
+        private static List<AttachmentModel> AllFiles(List<JsonObject> AllObjects)
         {
-            List<AttachmentObservable> Files = new List<AttachmentObservable>();
+            List<AttachmentModel> Files = new List<AttachmentModel>();
             foreach (var SingleObject in AllObjects)
             {
-                AttachmentObservable file = SingleFile(SingleObject);
+                AttachmentModel file = SingleFile(SingleObject);
                 Files.Add(file);
             }
             return Files;
         }
-        private static AttachmentObservable SingleFile(JsonObject obj)
+        private static AttachmentModel SingleFile(JsonObject obj)
         {
-            AttachmentObservable attachment = new AttachmentObservable();
+            AttachmentModel attachment = new AttachmentModel();
             foreach (var key in obj.Keys)
             {
                 IJsonValue val;
@@ -199,10 +199,10 @@ namespace BrainShare.Core
             }
             return attachment;
         }        
-        public static async Task <List<SubjectObservable>> Get_Subjects(string username, string password,List<int> remainedIDs, List<int> IDs, JsonArray subjects)
+        public static async Task <List<SubjectModel>> Get_Subjects(string username, string password,List<int> remainedIDs, List<int> IDs, JsonArray subjects)
         {
             List<int> UpdateIds = ModelTask.oldIds(remainedIDs, IDs);
-            List<SubjectObservable> oldcourses = new List<SubjectObservable>();
+            List<SubjectModel> oldcourses = new List<SubjectModel>();
 
             foreach (var id in UpdateIds)
             {
@@ -212,7 +212,7 @@ namespace BrainShare.Core
                 notes_postData.Add(new KeyValuePair<string, string>("password", password));
                 notes_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
                 var notes_formContent = new FormUrlEncodedContent(notes_postData);
-                var notes_response = await notes_httpclient.PostAsync(Constants.NotesJsonLink, notes_formContent);
+                var notes_response = await notes_httpclient.PostAsync(Constant.NotesJsonLink, notes_formContent);
                 var notes_result = await notes_response.Content.ReadAsStreamAsync();
                 var notes_streamReader = new System.IO.StreamReader(notes_result);
                 var notes_responseContent = notes_streamReader.ReadToEnd().Trim().ToString();
@@ -224,7 +224,7 @@ namespace BrainShare.Core
                 videospostData.Add(new KeyValuePair<string, string>("password", password));
                 videospostData.Add(new KeyValuePair<string, string>("id", id.ToString()));
                 var videosformContent = new FormUrlEncodedContent(videospostData);
-                var videosresponse = await videos_httpclient.PostAsync(Constants.VideosJsonLink, videosformContent);
+                var videosresponse = await videos_httpclient.PostAsync(Constant.VideosJsonLink, videosformContent);
                 var videosresult = await videosresponse.Content.ReadAsStreamAsync();
                 var videosstreamReader = new System.IO.StreamReader(videosresult);
                 var videosresponseContent = videosstreamReader.ReadToEnd().Trim().ToString();
@@ -236,7 +236,7 @@ namespace BrainShare.Core
                 assgnmt_postData.Add(new KeyValuePair<string, string>("password", password));
                 assgnmt_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
                 var assgnmt_formContent = new FormUrlEncodedContent(assgnmt_postData);
-                var assgnmt_response = await assgnmt_httpclient.PostAsync(Constants.AssignmentJsonLink, assgnmt_formContent);
+                var assgnmt_response = await assgnmt_httpclient.PostAsync(Constant.AssignmentJsonLink, assgnmt_formContent);
                 var assgnmt_result = await assgnmt_response.Content.ReadAsStreamAsync();
                 var assgnmt_streamReader = new System.IO.StreamReader(assgnmt_result);
                 var assgnmt_responseContent = assgnmt_streamReader.ReadToEnd().Trim().ToString();
@@ -248,20 +248,20 @@ namespace BrainShare.Core
                 file_postData.Add(new KeyValuePair<string, string>("password", password));
                 file_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
                 var file_formContent = new FormUrlEncodedContent(file_postData);
-                var file_response = await file_httpclient.PostAsync(Constants.FilesJsonLink, file_formContent);
+                var file_response = await file_httpclient.PostAsync(Constant.FilesJsonLink, file_formContent);
                 var file_result = await file_response.Content.ReadAsStreamAsync();
                 var file_streamReader = new System.IO.StreamReader(file_result);
                 var file_responseContent = file_streamReader.ReadToEnd().Trim().ToString();
                 var files = JsonArray.Parse(file_responseContent);
 
-                SubjectObservable subject = GetSubject(subjects, id, notes, videos, assignments, files);
+                SubjectModel subject = GetSubject(subjects, id, notes, videos, assignments, files);
                 oldcourses.Add(subject);
             }
             return oldcourses;
         }
-        public static async Task<List<SubjectObservable>> Get_New_Subjects(string username, string password, List<int> NewSubjectIds, JsonArray subjects)
+        public static async Task<List<SubjectModel>> Get_New_Subjects(string username, string password, List<int> NewSubjectIds, JsonArray subjects)
         {
-            List<SubjectObservable> CurrentSubjects = new List<SubjectObservable>();
+            List<SubjectModel> CurrentSubjects = new List<SubjectModel>();
             foreach (var id in NewSubjectIds)
             {
                 var notes_httpclient = new HttpClient();
@@ -270,7 +270,7 @@ namespace BrainShare.Core
                 notes_postData.Add(new KeyValuePair<string, string>("password", password));
                 notes_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
                 var notes_formContent = new FormUrlEncodedContent(notes_postData);
-                var notes_response = await notes_httpclient.PostAsync(Constants.NotesJsonLink, notes_formContent);
+                var notes_response = await notes_httpclient.PostAsync(Constant.NotesJsonLink, notes_formContent);
                 var notes_result = await notes_response.Content.ReadAsStreamAsync();
                 var notes_streamReader = new System.IO.StreamReader(notes_result);
                 var notes_responseContent = notes_streamReader.ReadToEnd().Trim().ToString();
@@ -282,7 +282,7 @@ namespace BrainShare.Core
                 videospostData.Add(new KeyValuePair<string, string>("password", password));
                 videospostData.Add(new KeyValuePair<string, string>("id", id.ToString()));
                 var videosformContent = new FormUrlEncodedContent(videospostData);
-                var videosresponse = await videos_httpclient.PostAsync(Constants.VideosJsonLink, videosformContent);
+                var videosresponse = await videos_httpclient.PostAsync(Constant.VideosJsonLink, videosformContent);
                 var videosresult = await videosresponse.Content.ReadAsStreamAsync();
                 var videosstreamReader = new System.IO.StreamReader(videosresult);
                 var videosresponseContent = videosstreamReader.ReadToEnd().Trim().ToString();
@@ -294,7 +294,7 @@ namespace BrainShare.Core
                 assgnmt_postData.Add(new KeyValuePair<string, string>("password", password));
                 assgnmt_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
                 var assgnmt_formContent = new FormUrlEncodedContent(assgnmt_postData);
-                var assgnmt_response = await assgnmt_httpclient.PostAsync(Constants.AssignmentJsonLink, assgnmt_formContent);
+                var assgnmt_response = await assgnmt_httpclient.PostAsync(Constant.AssignmentJsonLink, assgnmt_formContent);
                 var assgnmt_result = await assgnmt_response.Content.ReadAsStreamAsync();
                 var assgnmt_streamReader = new System.IO.StreamReader(assgnmt_result);
                 var assgnmt_responseContent = assgnmt_streamReader.ReadToEnd().Trim().ToString();
@@ -306,13 +306,13 @@ namespace BrainShare.Core
                 file_postData.Add(new KeyValuePair<string, string>("password", password));
                 file_postData.Add(new KeyValuePair<string, string>("id", id.ToString()));
                 var file_formContent = new FormUrlEncodedContent(file_postData);
-                var file_response = await file_httpclient.PostAsync(Constants.FilesJsonLink, file_formContent);
+                var file_response = await file_httpclient.PostAsync(Constant.FilesJsonLink, file_formContent);
                 var file_result = await file_response.Content.ReadAsStreamAsync();
                 var file_streamReader = new System.IO.StreamReader(file_result);
                 var file_responseContent = file_streamReader.ReadToEnd().Trim().ToString();
                 var files = JsonArray.Parse(file_responseContent);
 
-                SubjectObservable subject = GetSubject(subjects, id, notes, videos, assignments, files);
+                SubjectModel subject = GetSubject(subjects, id, notes, videos, assignments, files);
                 CurrentSubjects.Add(subject);
             }
             return CurrentSubjects;
@@ -325,7 +325,7 @@ namespace BrainShare.Core
             units_postData.Add(new KeyValuePair<string, string>("email", username));
             units_postData.Add(new KeyValuePair<string, string>("password", password));
             var units_formContent = new FormUrlEncodedContent(units_postData);
-            var courseresponse = await units_http_client.PostAsync(Constants.CourseJsonLink, units_formContent);
+            var courseresponse = await units_http_client.PostAsync(Constant.CourseJsonLink, units_formContent);
             var coursesresult = await courseresponse.Content.ReadAsStreamAsync();
             var coursestreamReader = new System.IO.StreamReader(coursesresult);
             var courseresponseContent = coursestreamReader.ReadToEnd().Trim().ToString();
@@ -334,19 +334,19 @@ namespace BrainShare.Core
         }
         #endregion
         #region Topics JSON Methods
-        private static List<TopicObservable> GetTopics(List<JsonObject> AllObjects)
+        private static List<TopicModel> GetTopics(List<JsonObject> AllObjects)
         {
-            List<TopicObservable> Topics = new List<TopicObservable>();
+            List<TopicModel> Topics = new List<TopicModel>();
             foreach (var SingleObject in AllObjects)
             {
-                TopicObservable topic = SingleTopic(SingleObject);
+                TopicModel topic = SingleTopic(SingleObject);
                 Topics.Add(topic);
             }
             return Topics;
         }
-        private static TopicObservable SingleTopic(JsonObject obj)
+        private static TopicModel SingleTopic(JsonObject obj)
         {
-            TopicObservable topic = new TopicObservable();
+            TopicModel topic = new TopicModel();
             foreach (var key in obj.Keys)
             {
                 IJsonValue val;
@@ -385,19 +385,19 @@ namespace BrainShare.Core
             }
             return topic;
         }
-        private static List<VideoObservable> GetVideos(List<JsonObject> AllObjects)
+        private static List<VideoModel> GetVideos(List<JsonObject> AllObjects)
         {
-            List<VideoObservable> videos = new List<VideoObservable>();
+            List<VideoModel> videos = new List<VideoModel>();
             foreach (var SingleObject in AllObjects)
             {
-                VideoObservable video = SingleVideo(SingleObject);
+                VideoModel video = SingleVideo(SingleObject);
                 videos.Add(video);
             }
             return videos;
         }
-        private static VideoObservable SingleVideo(JsonObject obj)
+        private static VideoModel SingleVideo(JsonObject obj)
         {
-            VideoObservable video = new VideoObservable();
+            VideoModel video = new VideoModel();
             foreach (var key in obj.Keys)
             {
                 IJsonValue val;
@@ -425,19 +425,19 @@ namespace BrainShare.Core
             }
             return video;
         }
-        private static List<AssignmentObservable> GetAssignments(List<JsonObject> AllObjects)
+        private static List<AssignmentModel> GetAssignments(List<JsonObject> AllObjects)
         {
-            List<AssignmentObservable> Assignments = new List<AssignmentObservable>();
+            List<AssignmentModel> Assignments = new List<AssignmentModel>();
             foreach (var SingleObject in AllObjects)
             {
-                AssignmentObservable Assignment = SingleAssignment(SingleObject);
+                AssignmentModel Assignment = SingleAssignment(SingleObject);
                 Assignments.Add(Assignment);
             }
             return Assignments;
         }
-        private static AssignmentObservable SingleAssignment(JsonObject obj)
+        private static AssignmentModel SingleAssignment(JsonObject obj)
         {
-            AssignmentObservable assignment = new AssignmentObservable();
+            AssignmentModel assignment = new AssignmentModel();
             foreach (var key in obj.Keys)
             {
                 IJsonValue val;
@@ -467,19 +467,19 @@ namespace BrainShare.Core
             }
             return assignment;
         }
-        private static List<AttachmentObservable> GetFiles(List<JsonObject> AllObjects)
+        private static List<AttachmentModel> GetFiles(List<JsonObject> AllObjects)
         {
-            List<AttachmentObservable> files = new List<AttachmentObservable>();
+            List<AttachmentModel> files = new List<AttachmentModel>();
             foreach (var SingleObject in AllObjects)
             {
-                AttachmentObservable file = AFile(SingleObject);
+                AttachmentModel file = AFile(SingleObject);
                 files.Add(file);
             }
             return files;
         }
-        private static AttachmentObservable AFile(JsonObject obj)
+        private static AttachmentModel AFile(JsonObject obj)
         {
-            AttachmentObservable attachment = new AttachmentObservable();
+            AttachmentModel attachment = new AttachmentModel();
             foreach (var key in obj.Keys)
             {
                 IJsonValue val;
@@ -502,20 +502,20 @@ namespace BrainShare.Core
         }
         #endregion
         #region Library JSON Methods
-        private static List<Library_CategoryObservable> GetLibraryCategories(List<JsonObject> AllObjects, int library_id)
+        private static List<LibCategoryModel> GetLibraryCategories(List<JsonObject> AllObjects, int library_id)
         {
-            List<Library_CategoryObservable> categories = new List<Library_CategoryObservable>();
+            List<LibCategoryModel> categories = new List<LibCategoryModel>();
             foreach (var SingleObject in AllObjects)
             {
-                Library_CategoryObservable category = LibraryCategory(SingleObject, library_id);
+                LibCategoryModel category = LibraryCategory(SingleObject, library_id);
                 categories.Add(category);
             }
             return categories;
         }
-        private static Library_CategoryObservable LibraryCategory(JsonObject obj, int Library_id)
+        private static LibCategoryModel LibraryCategory(JsonObject obj, int Library_id)
         {
-            List<BookObservable> tempbooks = new List<BookObservable>();
-            Library_CategoryObservable category = new Library_CategoryObservable();
+            List<BookModel> tempbooks = new List<BookModel>();
+            LibCategoryModel category = new LibCategoryModel();
             foreach (var key in obj.Keys)
             {
                 IJsonValue val;
@@ -542,19 +542,19 @@ namespace BrainShare.Core
             }
             return category;
         }
-        private static List<BookObservable> GetBooks(List<JsonObject> AllObjects, int lib_id, int category_id, string category_name)
+        private static List<BookModel> GetBooks(List<JsonObject> AllObjects, int lib_id, int category_id, string category_name)
         {
-            List<BookObservable> books = new List<BookObservable>();
+            List<BookModel> books = new List<BookModel>();
             foreach (var SingleObject in AllObjects)
             {
-                BookObservable Book = SingleBook(SingleObject, lib_id, category_id, category_name);
+                BookModel Book = SingleBook(SingleObject, lib_id, category_id, category_name);
                 books.Add(Book);
             }
             return books;
         }
-        private static BookObservable SingleBook(JsonObject obj, int lib_id, int category_id, string category_name)
+        private static BookModel SingleBook(JsonObject obj, int lib_id, int category_id, string category_name)
         {
-            BookObservable book = new BookObservable();
+            BookModel book = new BookModel();
             book.Category_id = category_id;
             book.Library_id = lib_id;
             book.Category_name = category_name;
@@ -590,17 +590,17 @@ namespace BrainShare.Core
             }
             return book;
         }
-        public static LibraryObservable GetLibrary(JsonArray LibraryArray, int id)
+        public static LibraryModel GetLibrary(JsonArray LibraryArray, int id)
         {
-            LibraryObservable library = new LibraryObservable();
+            LibraryModel library = new LibraryModel();
             var CategoryList = (from i in LibraryArray select i.GetObject()).ToList();
             library.library_id = id;
             library.categories = GetLibraryCategories(CategoryList, id);
             return library;
         }
-        public static async Task<LibraryObservable> Current_Library(string username, string password, int school_id)
+        public static async Task<LibraryModel> Current_Library(string username, string password, int school_id)
         {
-            LibraryObservable Current = new LibraryObservable();
+            LibraryModel Current = new LibraryModel();
             try
             {
                 var library_httpclient = new HttpClient();
@@ -609,7 +609,7 @@ namespace BrainShare.Core
                 library_postData.Add(new KeyValuePair<string, string>("password", password));
                 library_postData.Add(new KeyValuePair<string, string>("id", school_id.ToString()));
                 var library_formContent = new FormUrlEncodedContent(library_postData);
-                var library_response = await library_httpclient.PostAsync(Constants.BooksJsonLink, library_formContent);
+                var library_response = await library_httpclient.PostAsync(Constant.BooksJsonLink, library_formContent);
                 var library_result = await library_response.Content.ReadAsStreamAsync();
                 var library_streamReader = new System.IO.StreamReader(library_result);
                 var library_responseContent = library_streamReader.ReadToEnd().Trim().ToString();

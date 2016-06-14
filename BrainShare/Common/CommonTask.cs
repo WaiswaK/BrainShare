@@ -28,8 +28,8 @@ namespace BrainShare.Common
         //Method to download Files
         public static async Task FileDownloader(string filepath, string fileName)
         {
-            StorageFile storageFile = await Constants.appFolder.CreateFileAsync(fileName + Constants.PDF_extension, CreationCollisionOption.ReplaceExisting);
-            string newpath = Constants.BaseUri + filepath;
+            StorageFile storageFile = await Constant.appFolder.CreateFileAsync(fileName + Constant.PDF_extension, CreationCollisionOption.ReplaceExisting);
+            string newpath = Constant.BaseUri + filepath;
             try
             {
                 var downloader = new BackgroundDownloader();
@@ -73,7 +73,7 @@ namespace BrainShare.Common
                     bitmapImage.SetSource(stream);
 
                     // write to local pictures
-                    StorageFile storageFile = await Constants.appFolder.CreateFileAsync(fileName + imageformat, 
+                    StorageFile storageFile = await Constant.appFolder.CreateFileAsync(fileName + imageformat, 
                         CreationCollisionOption.FailIfExists);
                     using (var storageStream = await storageFile.OpenAsync(FileAccessMode.ReadWrite))
                     {
@@ -110,7 +110,7 @@ namespace BrainShare.Common
                     StorageFile storageFile;
                     try
                     {
-                        storageFile = await Constants.appFolder.CreateFileAsync(fileName + extension,
+                        storageFile = await Constant.appFolder.CreateFileAsync(fileName + extension,
                             CreationCollisionOption.ReplaceExisting);
                         using (var storageStream = await storageFile.OpenAsync(FileAccessMode.ReadWrite))
                         {

@@ -65,7 +65,7 @@ namespace BrainShare.Views
         /// session.  The state will be null the first time a page is visited.</param>
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            var file = e.NavigationParameter as BookObservable;
+            var file = e.NavigationParameter as BookModel;
             bool found = false;
             bool download = false;
             bool fullydownloaded = false;
@@ -82,7 +82,7 @@ namespace BrainShare.Views
                 found = true;
                 try
                 {
-                    loadedFile = await Constants.appFolder.GetFileAsync(file.file_url);
+                    loadedFile = await Constant.appFolder.GetFileAsync(file.file_url);
                     await CommonTask.LoadPdfFileAsync(loadedFile, DefaultViewModel, ActualWidth);
                 }
                 catch
@@ -122,16 +122,16 @@ namespace BrainShare.Views
                         {
                             loadingRing.IsActive = false;
                             LoadingMsg.Visibility = Visibility.Collapsed;
-                            using (var db = new SQLite.SQLiteConnection(Constants.dbPath))
+                            using (var db = new SQLite.SQLiteConnection(Constant.dbPath))
                             {
                                 var query = (db.Table<Book>().Where(c => c.Book_id == file.book_id)).Single();
-                                string newPath = query.Book_title + Constants.PDF_extension;
+                                string newPath = query.Book_title + Constant.PDF_extension;
                                 Book fileDownloaded = new Book(query.Book_id, query.Book_title, query.Book_author, query.Book_description,
                                     query.updated_at, query.thumb_url, query.file_size, query.Library_id, query.Category_id, query.Category_name, newPath);
                                 db.Update(fileDownloaded);
                                 file.file_url = newPath;
                             }
-                            loadedFile = await Constants.appFolder.GetFileAsync(file.file_url);
+                            loadedFile = await Constant.appFolder.GetFileAsync(file.file_url);
                             await CommonTask.LoadPdfFileAsync(loadedFile, DefaultViewModel, ActualWidth);
                         }
                         else if (fullydownloaded == false)
@@ -146,7 +146,7 @@ namespace BrainShare.Views
                 found = true;
                 try
                 {
-                    loadedFile = await Constants.appFolder.GetFileAsync(file.file_url);
+                    loadedFile = await Constant.appFolder.GetFileAsync(file.file_url);
                     await CommonTask.LoadPdfFileAsync(loadedFile, DefaultViewModel, ActualWidth);
                 }
                 catch

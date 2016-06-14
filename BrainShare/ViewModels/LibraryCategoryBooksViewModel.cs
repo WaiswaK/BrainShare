@@ -3,10 +3,10 @@ using BrainShare.Models;
 
 namespace BrainShare.ViewModels
 {
-    class LibraryCategoryBooksViewModel
+    class LibraryCategoryBooksViewViewModel
     {
-        private List<BookObservable> _books;
-        public List<BookObservable> BookList
+        private List<BookModel> _books;
+        public List<BookModel> BookList
         {
             get { return _books; }           
             set { _books = value; }
@@ -25,7 +25,7 @@ namespace BrainShare.ViewModels
             }
         }
 
-        public LibraryCategoryBooksViewModel(Library_CategoryObservable category)
+        public LibraryCategoryBooksViewViewModel(LibCategoryModel category)
         {
             BookList = category.category_books;
             CategoryName = category.category_name;
