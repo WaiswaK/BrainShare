@@ -12,12 +12,6 @@ namespace BrainShare.ViewModels
             get { return _topicTitle; }
             set { _topicTitle = value; }
         }
-        private List<AttachmentModel> _attachments;
-        public List<AttachmentModel> TopicFiles
-        {
-            get { return _attachments; }
-            set { _attachments = value; }
-        }
         private string _notes;
         public string TopicNotes
         {
@@ -28,7 +22,6 @@ namespace BrainShare.ViewModels
         public TopicViewModel(TopicModel Topic)
         {
             TopicName = Topic.TopicTitle;
-            TopicFiles = Topic.Files;
             TopicNotes = Topic.notes;
         }
 

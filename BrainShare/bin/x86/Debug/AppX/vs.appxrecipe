@@ -2,15 +2,21 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Machine>K-LAPTOP</Machine>
-    <WindowsUser>Kenneth</WindowsUser>
+    <WindowsUser>wswke</WindowsUser>
     <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
     <TargetOsVersion>6.3</TargetOsVersion>
     <TargetOsDescription>Windows 8.1</TargetOsDescription>
     <SolutionConfiguration>Debug|x86</SolutionConfiguration>
     <PackageArchitecture>x86</PackageArchitecture>
     <PackageIdentityName>CodeVisionLtd.BrainShare</PackageIdentityName>
-    <IntermediateOutputPath>C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\</IntermediateOutputPath>
-    <RegisteredManifestChecksum>AB496AD0D1A9ACFA0846FF4EEC0C01FD22599FAFF7C95CF28C4A46F4A5D3BD56</RegisteredManifestChecksum>
+    <PackageIdentityPublisher>CN=3B1181DF-D9D3-4BA5-977F-DE693151B3C1</PackageIdentityPublisher>
+    <IntermediateOutputPath>D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\</IntermediateOutputPath>
+    <RemoteDeploymentType>
+    </RemoteDeploymentType>
+    <PackageRegistrationPath>
+    </PackageRegistrationPath>
+    <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
+    <RegisteredManifestChecksum>C950938DBDE547DB6979004D648199157A43D25333FEA68CFABF7D8E65C65EB0</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>CodeVisionLtd.BrainShare_2.1.0.3_x86__fd97ja0290hr0</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>CodeVisionLtd.BrainShare_fd97ja0290hr0!App</RegisteredUserModeAppID>
     <RegisteredPackageID>CodeVisionLtd.BrainShare</RegisteredPackageID>
@@ -19,204 +25,204 @@
     <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\AppxManifest.xml">
+    <AppXManifest Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-06-14T07:42:35.997</Modified>
+      <Modified>2016-07-26T14:50:23.360</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\BrainShare.exe">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\BrainShare.exe">
       <PackagePath>BrainShare.exe</PackagePath>
-      <Modified>2016-06-14T08:46:03.503</Modified>
+      <Modified>2016-07-26T14:50:19.622</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\SQLite.WinRT81\3.13.0\Redist\Debug\x86\sqlite3.dll">
       <PackagePath>sqlite3.dll</PackagePath>
-      <Modified>2016-05-20T16:14:53.100</Modified>
+      <Modified>2016-07-15T14:30:54.766</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\bbgg.jpg">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\bbgg.jpg">
       <PackagePath>Assets\bbgg.jpg</PackagePath>
       <Modified>2014-12-04T18:48:52.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\bg.jpg">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\bg.jpg">
       <PackagePath>Assets\bg.jpg</PackagePath>
       <Modified>2013-11-22T07:33:00.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\bg4.jpg">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\bg4.jpg">
       <PackagePath>Assets\bg4.jpg</PackagePath>
       <Modified>2014-09-17T12:34:56.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\blank.JPG">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\blank.JPG">
       <PackagePath>Assets\blank.JPG</PackagePath>
       <Modified>2014-09-05T08:45:38.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\Course\courseSS.jpg">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\Course\courseSS.jpg">
       <PackagePath>Assets\Course\courseSS.jpg</PackagePath>
       <Modified>2014-12-05T12:14:22.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\Course\course2.jpg">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\Course\course2.jpg">
       <PackagePath>Assets\Course\course2.jpg</PackagePath>
       <Modified>2014-12-05T12:08:56.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\Course\course.jpg">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\Course\course.jpg">
       <PackagePath>Assets\Course\course.jpg</PackagePath>
       <Modified>2014-12-05T00:00:16.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\Course\courseXXX.jpg">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\Course\courseXXX.jpg">
       <PackagePath>Assets\Course\courseXXX.jpg</PackagePath>
       <Modified>2014-11-06T09:03:46.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\Course\topic.jpg">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\Course\topic.jpg">
       <PackagePath>Assets\Course\topic.jpg</PackagePath>
       <Modified>2014-11-06T09:02:58.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\cover.jpg">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\cover.jpg">
       <PackagePath>Assets\cover.jpg</PackagePath>
       <Modified>2014-01-29T12:38:54.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\assignment.jpg">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\assignment.jpg">
       <PackagePath>Assets\icons\assignment.jpg</PackagePath>
       <Modified>2014-11-06T09:02:58.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\Files.jpg">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\Files.jpg">
       <PackagePath>Assets\icons\Files.jpg</PackagePath>
       <Modified>2014-11-06T09:04:44.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\notes.jpg">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\notes.jpg">
       <PackagePath>Assets\icons\notes.jpg</PackagePath>
       <Modified>2014-12-05T00:13:32.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\video-library.jpg">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\video-library.jpg">
       <PackagePath>Assets\icons\video-library.jpg</PackagePath>
       <Modified>2014-11-06T09:06:18.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\notesbbgg.jpg">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\notesbbgg.jpg">
       <PackagePath>Assets\notesbbgg.jpg</PackagePath>
       <Modified>2015-01-18T19:02:34.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\Course\course.png">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\Course\course.png">
       <PackagePath>Assets\Course\course.png</PackagePath>
       <Modified>2014-12-06T19:56:58.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\ebk.png">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\ebk.png">
       <PackagePath>Assets\ebk.png</PackagePath>
       <Modified>2015-01-18T20:10:12.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\ebooks.png">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\ebooks.png">
       <PackagePath>Assets\ebooks.png</PackagePath>
       <Modified>2015-01-18T19:59:26.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\class_notes.png">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\class_notes.png">
       <PackagePath>Assets\icons\class_notes.png</PackagePath>
       <Modified>2014-12-08T12:59:00.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\notes.png">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\notes.png">
       <PackagePath>Assets\icons\notes.png</PackagePath>
       <Modified>2014-12-08T12:48:08.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\notes_icon.png">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\notes_icon.png">
       <PackagePath>Assets\icons\notes_icon.png</PackagePath>
       <Modified>2014-12-08T12:21:52.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\Video.png">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\Video.png">
       <PackagePath>Assets\icons\Video.png</PackagePath>
       <Modified>2014-11-06T08:48:42.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\Logo.scale-100.png">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\Logo.scale-100.png">
       <PackagePath>Assets\Logo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2015-01-08T21:44:50.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\SmallLogo.scale-100.png">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\SmallLogo.scale-100.png">
       <PackagePath>Assets\SmallLogo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2013-11-19T13:34:22.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\SplashScreen.scale-100.png">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\SplashScreen.scale-100.png">
       <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2013-11-19T13:48:04.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\StoreLogo.scale-100.png">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\StoreLogo.scale-100.png">
       <PackagePath>Assets\StoreLogo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2013-11-19T13:49:48.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\pdf.gif">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\pdf.gif">
       <PackagePath>Assets\icons\pdf.gif</PackagePath>
       <Modified>2014-11-06T08:48:42.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\BrainShare.xr.xml">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\BrainShare.xr.xml">
       <PackagePath>BrainShare.xr.xml</PackagePath>
-      <Modified>2016-06-14T07:17:44.232</Modified>
+      <Modified>2016-07-26T14:50:17.161</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\App.xbf">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.642</Modified>
+      <Modified>2016-06-14T07:42:32.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\CreateAccountView.xbf">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\CreateAccountView.xbf">
       <PackagePath>Views\CreateAccountView.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.642</Modified>
+      <Modified>2016-06-14T07:42:32.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\LibraryCategoryBooksView.xbf">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\LibraryCategoryBooksView.xbf">
       <PackagePath>Views\LibraryCategoryBooksView.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.643</Modified>
+      <Modified>2016-06-14T07:42:32.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\DocumentsView.xbf">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\DocumentsView.xbf">
       <PackagePath>Views\DocumentsView.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.643</Modified>
+      <Modified>2016-06-14T07:42:32.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\LoginView.xbf">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\LoginView.xbf">
       <PackagePath>Views\LoginView.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.644</Modified>
+      <Modified>2016-06-14T07:42:32.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\LibraryBookReader.xbf">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\LibraryBookReader.xbf">
       <PackagePath>Views\LibraryBookReader.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.645</Modified>
+      <Modified>2016-06-14T07:42:32.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\PlayView.xbf">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\PlayView.xbf">
       <PackagePath>Views\PlayView.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.645</Modified>
+      <Modified>2016-06-14T07:42:32.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\PDFReader.xbf">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\PDFReader.xbf">
       <PackagePath>Views\PDFReader.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.645</Modified>
+      <Modified>2016-06-14T07:42:32.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\Settings.xbf">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\Settings.xbf">
       <PackagePath>Views\Settings.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.646</Modified>
+      <Modified>2016-06-14T07:42:32.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\StudentView.xbf">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\StudentView.xbf">
       <PackagePath>Views\StudentView.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.648</Modified>
+      <Modified>2016-06-14T07:42:32.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\SubjectView.xbf">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\SubjectView.xbf">
       <PackagePath>Views\SubjectView.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.649</Modified>
+      <Modified>2016-06-14T07:42:32.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\AssignmentView.xbf">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\AssignmentView.xbf">
       <PackagePath>Views\AssignmentView.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.649</Modified>
+      <Modified>2016-06-14T07:42:32.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\AssignmentsView.xbf">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\AssignmentsView.xbf">
       <PackagePath>Views\AssignmentsView.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.650</Modified>
+      <Modified>2016-06-14T07:42:32.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\TopicView.xbf">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\TopicView.xbf">
       <PackagePath>Views\TopicView.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.651</Modified>
+      <Modified>2016-07-26T14:50:18.234</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\TopicsView.xbf">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\TopicsView.xbf">
       <PackagePath>Views\TopicsView.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.651</Modified>
+      <Modified>2016-07-26T14:50:18.235</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\VideosView.xbf">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\VideosView.xbf">
       <PackagePath>Views\VideosView.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.653</Modified>
+      <Modified>2016-06-14T07:42:32.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\resources.pri">
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2016-06-14T07:42:35.076</Modified>
+      <Modified>2016-07-26T14:50:21.866</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

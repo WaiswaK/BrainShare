@@ -76,6 +76,7 @@ namespace BrainShare.Views
         {
             var user = e.NavigationParameter as UserModel;
             UserModel initial = user;
+            List<SubjectModel> all_subjects = new List<SubjectModel>();
 
             //Notes and Notes Module Settings Check
             if (ApplicationData.Current.LocalSettings.Values.ContainsKey(_noteskey))
@@ -96,6 +97,8 @@ namespace BrainShare.Views
                     subjectsNew.Add(subject);
                 }
                 user.subjects = subjectsNew;
+                all_subjects = user.subjects;
+                user.subjects = ModelTask.DisplayableSubjects(user.subjects);
             }
             else
             {
@@ -122,11 +125,11 @@ namespace BrainShare.Views
             {
                 if (CommonTask.IsInternetConnectionAvailable())
                 {
-                    UpdateUser(initial.email, initial.password, DBRetrievalTask.SubjectIdsForUser(initial.email), user.subjects, user);
+                    UpdateUser(initial.email, initial.password, DBRetrievalTask.SubjectIdsForUser(initial.email), all_subjects, user);
                     if (user.NotesImagesDownloading == false)
                     {
                         user.NotesImagesDownloading = true;
-                        NotesTask.GetNotesImagesSubjectsAsync(user.subjects);
+                        NotesTask.GetNotesImagesSubjectsAsync(all_subjects);
                     }
                 }
             }

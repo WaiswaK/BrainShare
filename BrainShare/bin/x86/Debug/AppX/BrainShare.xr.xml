@@ -38,6 +38,7 @@
     <RootPropertyPathName Name="teacher" />
     <RootPropertyPathName Name="title" />
     <RootPropertyPathName Name="TopicName" />
+    <RootPropertyPathName Name="AttachmentList" />
     <RootPropertyPathName Name="TopicTitle" />
     <RootPropertyPathName Name="FolderName" />
     <RootPropertyPathName Name="VideosList" />

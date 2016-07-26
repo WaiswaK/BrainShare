@@ -64,12 +64,16 @@ namespace BrainShare.Views
             TopicsViewModel vm = new TopicsViewModel(topics);
             DataContext = vm;  
         }
-
+        private void File_click(object sender, ItemClickEventArgs e)
+        {
+            var item = e.ClickedItem;
+            AttachmentModel _file = ((AttachmentModel)item);
+            Frame.Navigate(typeof(PDFReader), _file);
+        }
         private void itemGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
-
         private void Topic_click(object sender, ItemClickEventArgs e){
             var item = e.ClickedItem;
             TopicModel _topic = ((TopicModel)item);
