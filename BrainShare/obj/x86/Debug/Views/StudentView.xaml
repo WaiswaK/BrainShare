@@ -21,6 +21,7 @@
             
             />
     </Page.Resources>
+
     <Grid Background ="{ThemeResource ApplicationPageBackgroundThemeBrush }">
         <Grid.ChildrenTransitions>
 
@@ -30,14 +31,9 @@
             <RowDefinition Height ="*"/>
         </Grid.RowDefinitions>
 
-
         <Image Source ="ms-appx:///Assets/bg.jpg" Stretch="UniformToFill"
-
-HorizontalAlignment ="Center" VerticalAlignment ="Center"
-
- Opacity ="0.9" Grid.RowSpan ="2"></Image>
-
-
+               HorizontalAlignment ="Center" VerticalAlignment ="Center"
+               Opacity ="0.9" Grid.RowSpan ="2"></Image>
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -50,12 +46,7 @@ HorizontalAlignment ="Center" VerticalAlignment ="Center"
                     <ColumnDefinition Width ="160"/>
                     <ColumnDefinition Width ="160"/>
                 </Grid.ColumnDefinitions>
-                <!--
-                <StackPanel Grid.Column ="0" Margin="30">
-                    <Button Background ="Purple" HorizontalAlignment="Right" >Live Class</Button>
 
-                </StackPanel>
-                -->
                 <StackPanel Grid.Column ="1" Margin="0,10,10,0">
                     <Button x:ConnectionId='3' Name ="logoutbtn"                          Background="Purple" HorizontalAlignment ="Right">Logout</Button>
 
@@ -63,22 +54,19 @@ HorizontalAlignment ="Center" VerticalAlignment ="Center"
             </Grid>
 
             <Image Source ="{Binding SchoolBadge }"   Grid.Row ="0"
+                   Grid.Column ="0" Height ="70"></Image>
 
-Grid.Column ="0" Height ="70"></Image>
-            <ProgressBar Grid.Column ="1" Margin ="0,0,0,80" IsIndeterminate="True" Height="10" Width="1000" Name="pgBar" Visibility="Collapsed"/>
+            <ProgressBar Grid.Column ="1" Margin ="0,0,0,80" IsIndeterminate="True" Height="10" 
+                         Width="1000" Name="pgBar" Visibility="Collapsed"/>
+
             <TextBlock x:Name="pageTitle" Text ="{Binding SchoolName }" Foreground="#3530A2" 
-
-Style ="{StaticResource HeaderTextBlockStyle }" Grid.Column ="1"
+                       Style ="{StaticResource HeaderTextBlockStyle }" Grid.Column ="1"
                         IsHitTestVisible ="false" TextWrapping ="NoWrap"
-
-VerticalAlignment ="Bottom" Margin ="0,0,30,20"/>
-
-
+                       VerticalAlignment ="Bottom" Margin ="0,0,30,20"/>
 
         </Grid>
 
         <Hub Grid.Column ="1" Grid.Row="1" Margin="30,-60,0,0">
-
 
             <HubSection>
                 <HubSection.Header>
@@ -119,24 +107,16 @@ VerticalAlignment ="Bottom" Margin ="0,0,30,20"/>
 
                                     <Image Source ="ms-appx:///Assets/Course/course.png" Stretch="Fill"
                                     Grid.Row ="0" Grid.Column ="0"  HorizontalAlignment="Center"
-
-VerticalAlignment ="Center"
+                                           VerticalAlignment ="Center"
                                     Grid.RowSpan ="2"></Image >
 
+                                    <StackPanel Grid.Row ="1" Grid.Column="0" Background ="#3530A2">
 
-
-                                    <StackPanel Grid.Row ="1" Grid.Column="0"
-
-Background ="#3530A2">
-                                        <TextBlock Text ="{Binding name }" Margin="5,0,0,0" TextWrapping="WrapWholeWords" FontSize="16"
-
-Foreground ="White"></TextBlock >
-                                        <!--
-                                        <TextBlock Text ="{ Binding TopicCount }" Margin="5,0,0,0"
-
-Foreground ="White"></TextBlock >
-                                        -->
-
+                                        <TextBlock Text ="{Binding name }" 
+                                                   Margin="5,0,0,0" 
+                                                   TextWrapping="WrapWholeWords" FontSize="16"
+                                                   Foreground ="White">
+                                        </TextBlock >
 
                                     </StackPanel>
 
@@ -148,13 +128,6 @@ Foreground ="White"></TextBlock >
                     </GridView>
                 </DataTemplate>
             </HubSection>
-
-
-
-
-
-
-
 
             <HubSection>
                 <HubSection.Header>
@@ -193,22 +166,16 @@ Foreground ="White"></TextBlock >
 
                                     </Grid.ColumnDefinitions>
 
-                                    <Image Source ="ms-appx:///Assets/ebooks.png" Stretch="Fill"
+                                    <Image Source ="{ Binding category_image }" Stretch="Fill"
                                     Grid.Row ="0" Grid.Column ="0"  HorizontalAlignment="Center"
-
-VerticalAlignment ="Center"
+                                           VerticalAlignment ="Center"
                                     Grid.RowSpan ="2"></Image >
 
+                                    <StackPanel Grid.Row ="1" Grid.Column="0" Background ="#3530A2">
 
-
-                                    <StackPanel Grid.Row ="1" Grid.Column="0"
-
-Background ="#3530A2">
-                                        <TextBlock Text ="{Binding category_name }" Margin="5,0,0,0" TextWrapping="WrapWholeWords" FontSize="16"
-
-Foreground ="White"></TextBlock >
-
-
+                                        <TextBlock Text ="{Binding category_name }" Margin="5,0,0,0" 
+                                                   TextWrapping="WrapWholeWords" FontSize="16"
+                                                   Foreground ="White"></TextBlock >
 
                                     </StackPanel>
 
@@ -221,16 +188,9 @@ Foreground ="White"></TextBlock >
                 </DataTemplate>
             </HubSection>
 
-
-
-
-
-
-
-
-
         </Hub>
 
     </Grid >
+
 </Page>
 

@@ -20,11 +20,14 @@
         <CollectionViewSource             
              x:Name="topics" 
                Source="{Binding TopicList}"  
-            />           
+            />
+
+        <CollectionViewSource x:Name ="books" Source ="{Binding FileList }" />
+        
     </Page.Resources>
 
     <Grid Background ="{ThemeResource ApplicationPageBackgroundThemeBrush }">
-       
+
         <Grid.RowDefinitions>
             <RowDefinition Height ="120"/>
             <RowDefinition Height ="*"/>
@@ -34,37 +37,142 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="170"/>
         </Grid.ColumnDefinitions>
-    
 
-        <Image Source ="ms-appx:///Assets/bbgg.jpg" Stretch="UniformToFill"
+        <Image Source ="ms-appx:///Assets/bbgg.jpg" Stretch="UniformToFill" 
+               HorizontalAlignment ="Center" VerticalAlignment ="Center"
+               Opacity ="0.9" Grid.RowSpan ="2" Grid.ColumnSpan="3"></Image>
 
-HorizontalAlignment ="Center" VerticalAlignment ="Center"
-
- Opacity ="0.9" Grid.RowSpan ="2" Grid.ColumnSpan="3"></Image>
-
-       
-
-            <Button x:Name="backButton" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+        <Button x:Name="backButton" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
                         Grid.Row="0"
                         Grid.Column="0"
-                     Margin="20,38"
+                        Margin="20,38"
                         VerticalAlignment="Top"
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>
 
-            <TextBlock Grid.Row="0"  Grid.Column="1" x:Name="pageTitle" Text ="{ Binding SubjectName }" Foreground="#3530A2" Margin="0,38,0,0"
-
-Style ="{StaticResource HeaderTextBlockStyle }" 
+        <TextBlock Grid.Row="0"  Grid.Column="1" x:Name="pageTitle" Text ="{ Binding SubjectName }" 
+                       Foreground="#3530A2" Margin="0,38,0,0"
+                       Style ="{StaticResource HeaderTextBlockStyle }" 
                         IsHitTestVisible ="false" TextWrapping ="NoWrap" />
-
-
-        <!--      <Button Name ="logoutbtn" Click="logout_btn_click" Grid.Row="0" Grid.Column ="2" Margin="0,0,40,0" Background="Purple" HorizontalAlignment ="Right">Logout</Button>   -->
-
 
         <Hub Grid.Row="1" Grid.Column ="1" Grid.ColumnSpan="2" Margin="-50,-80,0,0">
 
+            <HubSection>
+                <HubSection.Header>
+                    <TextBlock x:Uid="Section1Header" TextLineBounds="TrimToBaseline" OpticalMarginAlignment ="TrimSideBearings" Text="Notes >" Foreground ="Green"/>
+                </HubSection.Header>
+                <DataTemplate>
+                    <GridView
+                    x:Name ="TopicsGridView"        
+                    AutomationProperties.AutomationId ="ItemGridView"
+                    AutomationProperties.Name ="Items In Group"
+                    ItemsSource ="{Binding Source ={StaticResource topics }}" 
+                  
+                    SelectionMode ="None"
+                    IsSwipeEnabled ="false"
+                    IsItemClickEnabled ="True"
+                    Margin ="0,20,0,0"
+                    CanDragItems ="True"
+                    CanReorderItems ="True"
+                    SelectionChanged ="itemGridView_SelectionChanged" ItemClick="Topic_click"
+                    AllowDrop ="True"
+        
+                        >
+
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+
+                                        <RowDefinition Height ="100" />
+
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width ="130" />
+                                        <ColumnDefinition Width ="200" />
+                                        <ColumnDefinition Width ="10" />
+
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="ms-appx:///Assets/Course/course.png" Stretch="Fill"
+                                    Grid.Row ="0" Grid.Column ="0"  HorizontalAlignment="Center" VerticalAlignment ="Center">
+                                    </Image >
+
+                                    <StackPanel Grid.Row ="0" Grid.Column="1" VerticalAlignment="Center">
+
+                                        <TextBlock Text ="{ Binding folder_name }" Margin="5,0,0,0" 
+                                                   TextWrapping="WrapWholeWords" FontSize="16"
+                                                   Foreground ="Black"></TextBlock >
+
+                                    </StackPanel>
+
+                                </Grid>
+
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+
+                    </GridView>
+                </DataTemplate>
+            </HubSection>
+
+            <HubSection>
+                <HubSection.Header>
+                    <TextBlock x:Uid="Section1Header" TextLineBounds="TrimToBaseline" OpticalMarginAlignment ="TrimSideBearings" Text="Featured Files >" Foreground ="Green"/>
+                </HubSection.Header>
+                <DataTemplate>
+                    <GridView
+                    x:Name ="TopicsGridView"        
+                    AutomationProperties.AutomationId ="ItemGridView"
+                    AutomationProperties.Name ="Items In Group"
+                    ItemsSource ="{Binding Source ={StaticResource books }}"                   
+                    SelectionMode ="None"
+                    IsSwipeEnabled ="false"
+                    IsItemClickEnabled ="True"
+                    Margin ="0,20,0,0"
+                    CanDragItems ="True"
+                    CanReorderItems ="True"
+                    SelectionChanged ="itemGridView_SelectionChanged" ItemClick="Book_click"
+                    AllowDrop ="True" 
+                        >
+
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+
+                                        <RowDefinition Height ="100" />
+
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width ="130" />
+                                        <ColumnDefinition Width ="200" />
+                                        <ColumnDefinition Width ="10" />
+
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="ms-appx:///Assets/icons/pdf.gif" Stretch="Fill"
+                                    Grid.Row ="0" Grid.Column ="0"  HorizontalAlignment="Center" VerticalAlignment ="Center">
+                                    </Image >
+
+                                    <StackPanel Grid.Row ="0" Grid.Column="1" VerticalAlignment="Center">
+
+                                        <TextBlock Text ="{Binding FileName }" Margin="5,0,0,0" TextWrapping="WrapWholeWords" FontSize="16"
+                                                   Foreground ="Black"></TextBlock >
+
+                                    </StackPanel>
+
+                                </Grid>
+
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+
+                    </GridView>
+                </DataTemplate>
+            </HubSection>
 
             <HubSection>
                 <HubSection.Header>
@@ -105,24 +213,13 @@ Style ="{StaticResource HeaderTextBlockStyle }"
 
                                     <Image Source ="{ Binding categoryImage }" Stretch="Fill"
                                     Grid.Row ="0" Grid.Column ="0"  HorizontalAlignment="Center"
-
-VerticalAlignment ="Center"
+                                           VerticalAlignment ="Center"
                                     Grid.RowSpan ="2"></Image >
 
+                                    <StackPanel Grid.Row ="1" Grid.Column="0" Background ="#3530A2">
 
-
-                                    <StackPanel Grid.Row ="1" Grid.Column="0"
-
-Background ="#3530A2">
                                         <TextBlock Text ="{ Binding categoryName }" Margin="5,0,0,0" TextWrapping="WrapWholeWords" FontSize="16"
-
-Foreground ="White"></TextBlock >
-                                        <!--
-                                        <TextBlock Text ="{ Binding TopicCount }" Margin="5,0,0,0"
-
-Foreground ="White"></TextBlock >
-                                        -->
-
+                                                   Foreground ="White"></TextBlock >
 
                                     </StackPanel>
 
@@ -134,85 +231,9 @@ Foreground ="White"></TextBlock >
                     </GridView>
                 </DataTemplate>
             </HubSection>
-
-
-
-
-            <HubSection>
-                <HubSection.Header>
-                    <TextBlock x:Uid="Section1Header" TextLineBounds="TrimToBaseline" OpticalMarginAlignment ="TrimSideBearings" Text="Notes >" Foreground ="Green"/>
-                </HubSection.Header>
-                <DataTemplate>
-                    <GridView
-                    x:Name ="TopicsGridView"        
-                    AutomationProperties.AutomationId ="ItemGridView"
-                    AutomationProperties.Name ="Items In Group"
-                    ItemsSource ="{Binding Source ={StaticResource topics }}" 
-                  
-                    SelectionMode ="None"
-                    IsSwipeEnabled ="false"
-                    IsItemClickEnabled ="True"
-                    Margin ="0,20,0,0"
-                    CanDragItems ="True"
-                    CanReorderItems ="True"
-                    SelectionChanged ="itemGridView_SelectionChanged" ItemClick="Topic_click"
-                    AllowDrop ="True"
-        
-                        >
-
-                        <GridView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-
-                                        <RowDefinition Height ="100" />
-                                       
-                                    </Grid.RowDefinitions>
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width ="130" />
-                                        <ColumnDefinition Width ="200" />
-                                        <ColumnDefinition Width ="10" />
-
-                                    </Grid.ColumnDefinitions>
-
-                                    <Image Source="ms-appx:///Assets/Course/course.png" Stretch="Fill"
-                                    Grid.Row ="0" Grid.Column ="0"  HorizontalAlignment="Center" VerticalAlignment ="Center">                                          
-                                    </Image >
-
-
-
-                                    <StackPanel Grid.Row ="0" Grid.Column="1" VerticalAlignment="Center">
-                                        <TextBlock Text ="{ Binding folder_name }" Margin="5,0,0,0" TextWrapping="WrapWholeWords" FontSize="16"
-
-Foreground ="Black"></TextBlock >
-                                        <!--
-                                        <TextBlock Text ="{ Binding TopicCount }" Margin="5,0,0,0"
-
-Foreground ="White"></TextBlock >
-                                        -->
-
-
-                                    </StackPanel>
-
-                                </Grid>
-
-                            </DataTemplate>
-                        </GridView.ItemTemplate>
-
-                    </GridView>
-                </DataTemplate>
-            </HubSection>
-
-
-
-
 
         </Hub>
 
     </Grid >
-
-
-
 
 </Page>

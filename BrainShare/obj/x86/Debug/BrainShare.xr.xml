@@ -12,8 +12,6 @@
     <RootPropertyPathName Name="book_title" />
     <RootPropertyPathName Name="thumb_url" />
     <RootPropertyPathName Name="CategoryName" />
-    <RootPropertyPathName Name="FileList" />
-    <RootPropertyPathName Name="FileName" />
     <RootPropertyPathName Name="PasswordLink" />
     <RootPropertyPathName Name="RegisterLink" />
     <RootPropertyPathName Name="userName" />
@@ -24,21 +22,24 @@
     <RootPropertyPathName Name="CategoryList" />
     <RootPropertyPathName Name="CourseList" />
     <RootPropertyPathName Name="category_name" />
+    <RootPropertyPathName Name="category_image" />
     <RootPropertyPathName Name="name" />
     <RootPropertyPathName Name="SchoolName" />
     <RootPropertyPathName Name="SchoolBadge" />
+    <RootPropertyPathName Name="FileList" />
     <RootPropertyPathName Name="TopicList" />
-    <RootPropertyPathName Name="folder_name" />
     <RootPropertyPathName Name="categoryName" />
     <RootPropertyPathName Name="categoryImage" />
+    <RootPropertyPathName Name="FileName" />
+    <RootPropertyPathName Name="folder_name" />
     <RootPropertyPathName Name="SubjectName" />
     <RootPropertyPathName Name="AssignmentFiles" />
     <RootPropertyPathName Name="AssignmentTitle" />
     <RootPropertyPathName Name="AssignmentList" />
     <RootPropertyPathName Name="teacher" />
     <RootPropertyPathName Name="title" />
-    <RootPropertyPathName Name="TopicName" />
     <RootPropertyPathName Name="AttachmentList" />
+    <RootPropertyPathName Name="TopicName" />
     <RootPropertyPathName Name="TopicTitle" />
     <RootPropertyPathName Name="FolderName" />
     <RootPropertyPathName Name="VideosList" />
@@ -189,7 +190,6 @@
       <RootEvent Name="ItemClick" />
     </RootType>
     <RootType FullName="BrainShare.Views.LibraryCategoryBooksView" />
-    <RootType FullName="BrainShare.Views.DocumentsView" />
     <RootType FullName="System.String" />
     <RootType FullName="Windows.UI.Xaml.Controls.Control">
       <RootProperty Name="Background" />

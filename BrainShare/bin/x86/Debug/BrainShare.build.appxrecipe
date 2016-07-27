@@ -125,9 +125,6 @@
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\LibraryCategoryBooksView.xbf">
       <PackagePath>Views\LibraryCategoryBooksView.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\DocumentsView.xbf">
-      <PackagePath>Views\DocumentsView.xbf</PackagePath>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\LoginView.xbf">
       <PackagePath>Views\LoginView.xbf</PackagePath>
     </AppxPackagedFile>

@@ -18,13 +18,21 @@ namespace BrainShare.ViewModels
             get { return _category; }
             set { _category = value; }
         }
+        #region attachments
+        private List<AttachmentModel> _bookList;
+        public List<AttachmentModel> FileList
+        {
+            get { return _bookList; }
+            set { _bookList = value; }
+        }
+        #endregion
         private List<FolderModel> topics;
         public List<FolderModel> TopicList
         {
             get { return topics; }
             set { topics = value; }
         }
-        public List<FolderModel> GetFolders(List<TopicModel> topics) 
+        private List<FolderModel> GetFolders(List<TopicModel> topics) 
         {
             List<FolderModel> folders = new List<FolderModel>();
             foreach (var topic in topics)
@@ -97,18 +105,29 @@ namespace BrainShare.ViewModels
             }
             return folders;
         }
-        public SubjectViewModel(SubjectModel subject)
+        private List<CategoryModel> SortedCategories(SubjectModel subject)
         {
             List<CategoryModel> categories = new List<CategoryModel>();
             CategoryModel videos = new CategoryModel("Videos", "ms-appx:///Assets/icons/video-library.jpg", subject.videos.Count, subject.videos);
-            CategoryModel files = new CategoryModel("Files", "ms-appx:///Assets/icons/Files.jpg", subject.files.Count, subject.files);
             CategoryModel assignments = new CategoryModel("Assignments", "ms-appx:///Assets/icons/assignment.jpg", subject.assignments.Count, subject.assignments);
             categories.Add(videos);
-            categories.Add(files);
             categories.Add(assignments);
+            if (subject.assignments.Count == 0)
+            {
+                categories.Remove(assignments);
+            }
+            if (subject.videos.Count == 0)
+            {
+                categories.Remove(videos);
+            }
+            return categories;
+        }
+        public SubjectViewModel(SubjectModel subject)
+        {        
             SubjectName = subject.name;
-            CategoryList = categories;
+            CategoryList = SortedCategories(subject);
             TopicList = GetFolders(subject.topics);
+            FileList = subject.files;
         }
     }
 }

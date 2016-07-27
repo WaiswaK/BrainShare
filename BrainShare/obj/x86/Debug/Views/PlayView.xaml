@@ -24,12 +24,8 @@
 
 
         <Image Source ="ms-appx:///Assets/bbgg.jpg" Stretch="UniformToFill"
-
-HorizontalAlignment ="Center" VerticalAlignment ="Center"
-
- Opacity ="0.9" Grid.RowSpan ="2" Grid.ColumnSpan="3"></Image>
-
-
+               HorizontalAlignment ="Center" VerticalAlignment ="Center"
+               Opacity ="0.9" Grid.RowSpan ="2" Grid.ColumnSpan="3"></Image>
 
         <Button x:Name="backButton" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
@@ -42,24 +38,19 @@ HorizontalAlignment ="Center" VerticalAlignment ="Center"
                         AutomationProperties.ItemType="Navigation Button"/>
 
         <TextBlock Grid.Row="0"  Grid.Column="1" x:Name="pageTitle" Text ="{Binding VideoTitle }" Foreground="#3530A2" Margin="0,38,0,0"
-
-Style ="{StaticResource HeaderTextBlockStyle }" 
+                   Style ="{StaticResource HeaderTextBlockStyle }" 
                         IsHitTestVisible ="false" TextWrapping ="NoWrap" />
-
-
-        <!--   Margin="-50,-80,0,0"   <Button Name ="logoutbtn" Click="logout_btn_click" Grid.Row="0" Grid.Column ="2" Margin="0,0,40,0" Background="Purple" HorizontalAlignment ="Right">Logout</Button>   -->
 
         <Grid Grid.Row="1" Grid.Column ="1" Grid.ColumnSpan="2" >
 
+            <StackPanel>
+                <Grid x:Name="Online" HorizontalAlignment ="Left" VerticalAlignment ="Top" Visibility="Collapsed">
+                    <WebView x:Name="webView" Width ="1100" Height ="500" />
+                </Grid>
 
-                    <StackPanel>
-                    <Grid x:Name="Online" HorizontalAlignment ="Left" VerticalAlignment ="Top" Visibility="Collapsed">
-                            <WebView x:Name="webView" Width ="1100" Height ="500" />
-                    </Grid>
-
-                    <Grid x:Name="Offline" HorizontalAlignment ="Left" VerticalAlignment ="Top" Visibility="Collapsed">
-                        <!-- A MediaElement control with default transport controls enabled -->
-                            <MediaElement x:ConnectionId='1' x:Name="MediaElement"
+                <Grid x:Name="Offline" HorizontalAlignment ="Left" VerticalAlignment ="Top" Visibility="Collapsed">
+                    <!-- A MediaElement control with default transport controls enabled -->
+                    <MediaElement x:ConnectionId='1' x:Name="MediaElement"
                 Width ="1100"
                 Height ="500"                 
                 AreTransportControlsEnabled ="True"
@@ -67,23 +58,22 @@ Style ="{StaticResource HeaderTextBlockStyle }"
                
                 />
 
-                        <!-- Add Storyboards to the visual states below as necessary for supporting the various layouts for the output section -->
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup>
-                                <VisualState x:Name="OutputFullScreenLandscape"/>
-                                <VisualState x:Name="OutputFilled"/>
-                                <VisualState x:Name="OutputFullScreenPortrait"/>
-                                <VisualState x:Name="OutputSnapped" />
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                    </Grid>
+                    <!-- Add Storyboards to the visual states below as necessary for supporting the various layouts for the output section -->
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup>
+                            <VisualState x:Name="OutputFullScreenLandscape"/>
+                            <VisualState x:Name="OutputFilled"/>
+                            <VisualState x:Name="OutputFullScreenPortrait"/>
+                            <VisualState x:Name="OutputSnapped" />
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </Grid>
 
-                    </StackPanel>
-               
+            </StackPanel>
+
         </Grid>
 
     </Grid>
-
 
 </Page>
 

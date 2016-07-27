@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BrainShare.Models;
+using System.Linq;
 
 
 
@@ -45,7 +46,18 @@ namespace BrainShare.ViewModels
             get { return _libCategory; }
             set { _libCategory = value; }
         }
+        private List<LibCategoryModel> LibraryCategories(UserModel user)
+        {
+            List<LibCategoryModel> categories = new List<LibCategoryModel>();
+            List<BookModel> books = new List<BookModel>();
+            foreach (var category in user.Library.categories)
+            {
+                category.category_image = category.category_books.First().thumb_url;
+                categories.Add(category);
+            }
 
+            return categories;
+        }
 
         public StudentViewModel(UserModel user)
         {
@@ -53,8 +65,7 @@ namespace BrainShare.ViewModels
             SchoolName = School.SchoolName;
             SchoolBadge = School.ImagePath;
             CourseList = user.subjects;
-            CategoryList = user.Library.categories;
-
+            CategoryList = LibraryCategories(user);
         }
     }
 }

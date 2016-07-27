@@ -66,10 +66,6 @@ namespace BrainShare.Views
             {
                 Frame.Navigate(typeof(VideosView), _category);
             }
-            if (_category.categoryName.Equals("Files")) 
-            {
-                Frame.Navigate(typeof(DocumentsView), _category);
-            }
             if (_category.categoryName.Equals("Assignments")) 
             {
                 Frame.Navigate(typeof(AssignmentsView), _category);
@@ -80,6 +76,12 @@ namespace BrainShare.Views
             var item = e.ClickedItem;
             FolderModel _folder = ((FolderModel)item);
             Frame.Navigate(typeof(TopicsView), _folder); 
+        }
+        private void Book_click(object sender, ItemClickEventArgs e)
+        {
+            var item = e.ClickedItem;
+            AttachmentModel _file = ((AttachmentModel)item);
+            Frame.Navigate(typeof(PDFReader), _file);
         }
         /// <summary>
         /// Preserves state associated with this page in case the application is suspended or the

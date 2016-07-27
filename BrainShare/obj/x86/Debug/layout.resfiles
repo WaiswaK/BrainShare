@@ -30,7 +30,6 @@ BrainShare.xr.xml
 Views\AssignmentsView.xbf
 Views\AssignmentView.xbf
 Views\CreateAccountView.xbf
-Views\DocumentsView.xbf
 Views\LibraryBookReader.xbf
 Views\LibraryCategoryBooksView.xbf
 Views\LoginView.xbf

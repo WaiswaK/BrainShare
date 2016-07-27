@@ -28,13 +28,13 @@
     <AppXManifest Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2016-07-26T14:50:23.360</Modified>
+      <Modified>2016-07-27T08:25:25.656</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\BrainShare.exe">
       <PackagePath>BrainShare.exe</PackagePath>
-      <Modified>2016-07-26T14:50:19.622</Modified>
+      <Modified>2016-07-27T09:20:44.062</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\SQLite.WinRT81\3.13.0\Redist\Debug\x86\sqlite3.dll">
       <PackagePath>sqlite3.dll</PackagePath>
@@ -154,75 +154,71 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\BrainShare.xr.xml">
       <PackagePath>BrainShare.xr.xml</PackagePath>
-      <Modified>2016-07-26T14:50:17.161</Modified>
+      <Modified>2016-07-27T09:11:53.982</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.000</Modified>
+      <Modified>2016-07-27T07:34:00.484</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\CreateAccountView.xbf">
       <PackagePath>Views\CreateAccountView.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.000</Modified>
+      <Modified>2016-07-27T07:34:00.484</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\LibraryCategoryBooksView.xbf">
       <PackagePath>Views\LibraryCategoryBooksView.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\DocumentsView.xbf">
-      <PackagePath>Views\DocumentsView.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.000</Modified>
+      <Modified>2016-07-27T07:34:00.484</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\LoginView.xbf">
       <PackagePath>Views\LoginView.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.000</Modified>
+      <Modified>2016-07-27T07:34:00.485</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\LibraryBookReader.xbf">
       <PackagePath>Views\LibraryBookReader.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.000</Modified>
+      <Modified>2016-07-27T07:34:00.485</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\PlayView.xbf">
       <PackagePath>Views\PlayView.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.000</Modified>
+      <Modified>2016-07-27T07:34:00.485</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\PDFReader.xbf">
       <PackagePath>Views\PDFReader.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.000</Modified>
+      <Modified>2016-07-27T07:34:00.485</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\Settings.xbf">
       <PackagePath>Views\Settings.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.000</Modified>
+      <Modified>2016-07-27T07:34:00.485</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\StudentView.xbf">
       <PackagePath>Views\StudentView.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.000</Modified>
+      <Modified>2016-07-27T09:11:54.336</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\SubjectView.xbf">
       <PackagePath>Views\SubjectView.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.000</Modified>
+      <Modified>2016-07-27T08:38:06.112</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\AssignmentView.xbf">
       <PackagePath>Views\AssignmentView.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.000</Modified>
+      <Modified>2016-07-27T07:34:00.486</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\AssignmentsView.xbf">
       <PackagePath>Views\AssignmentsView.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.000</Modified>
+      <Modified>2016-07-27T07:34:00.486</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\TopicView.xbf">
       <PackagePath>Views\TopicView.xbf</PackagePath>
-      <Modified>2016-07-26T14:50:18.234</Modified>
+      <Modified>2016-07-27T08:43:17.978</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\TopicsView.xbf">
       <PackagePath>Views\TopicsView.xbf</PackagePath>
-      <Modified>2016-07-26T14:50:18.235</Modified>
+      <Modified>2016-07-27T08:43:17.978</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\VideosView.xbf">
       <PackagePath>Views\VideosView.xbf</PackagePath>
-      <Modified>2016-06-14T07:42:32.000</Modified>
+      <Modified>2016-07-27T07:34:00.489</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2016-07-26T14:50:21.866</Modified>
+      <Modified>2016-07-27T08:25:25.255</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

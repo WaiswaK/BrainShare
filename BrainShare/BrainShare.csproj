@@ -178,9 +178,6 @@
     <Compile Include="Views\LibraryCategoryBooksView.xaml.cs">
       <DependentUpon>LibraryCategoryBooksView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DocumentsView.xaml.cs">
-      <DependentUpon>DocumentsView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -269,10 +266,6 @@
     <Page Include="Views\LibraryCategoryBooksView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\DocumentsView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\LoginView.xaml">
       <Generator>MSBuild:Compile</Generator>

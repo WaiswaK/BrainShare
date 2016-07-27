@@ -9,6 +9,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    
     <Page.Resources>
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
         <x:String x:Key="AppName">BrainShare</x:String>
@@ -32,57 +33,46 @@
         </Grid.RowDefinitions>
 
         <Image Source="ms-appx:///Assets/bg4.jpg" Stretch="UniformToFill" 
-
-Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" 
-
-Grid.RowSpan="3"></Image>
+               Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" 
+               Grid.RowSpan="3"></Image>
+        
         <StackPanel Grid.Row="1" Grid.Column="2">
-            <TextBlock Text="Login" HorizontalAlignment="Left" 
-
-FontSize="22" Margin="10"></TextBlock>
-            <TextBox Name="email_tb" PlaceholderText="Email" Padding="10" Text="{Binding userName}"
-
-Margin="0,0,0,10" ></TextBox>
-            <PasswordBox Name="password_tb" PlaceholderText="Password" Padding="10" 
-
-Margin="0,0,0,10"></PasswordBox>
+            <TextBlock Text="Login" HorizontalAlignment="Left" FontSize="22" Margin="10"></TextBlock>
             
-                        
+            <TextBox Name="email_tb" PlaceholderText="Email" Padding="10" Text="{Binding userName}"
+                     Margin="0,0,0,10" ></TextBox>
+            
+            <PasswordBox Name="password_tb" PlaceholderText="Password" Padding="10" Margin="0,0,0,10"></PasswordBox>
+                                   
             <Button x:ConnectionId='1' Content="Sign In" HorizontalAlignment="Stretch" Padding="0,8"
-
-FontFamily="Global User Interface" Margin="-3,0"                     ></Button>
-            <TextBlock Text="OR" FontSize="20" 
-
-HorizontalAlignment="Center" Foreground="BlueViolet"></TextBlock>
-            <HyperlinkButton NavigateUri="{Binding RegisterLink }" Content="Create an Account" Margin="-3,0"  Padding="0,8" BorderBrush="White"
-
-HorizontalAlignment="Stretch"></HyperlinkButton>
+                    FontFamily="Global User Interface" Margin="-3,0"                     ></Button>
+            
+            <TextBlock Text="OR" FontSize="20" HorizontalAlignment="Center" Foreground="BlueViolet"></TextBlock>
+            
+            <HyperlinkButton NavigateUri="{Binding RegisterLink }" Content="Create an Account" Margin="-3,0"  
+                             Padding="0,8" BorderBrush="White"
+                             HorizontalAlignment="Stretch">
+            </HyperlinkButton>
+            
             <HyperlinkButton NavigateUri="{Binding PasswordLink }" Content="Forgot your Password?"
+                             FontFamily="Global User Interface"></HyperlinkButton>
 
-FontFamily="Global User Interface"></HyperlinkButton>
-
-            <ProgressRing IsActive="False" Grid.Row="1" Width="60" Height="60" x:Name="loadingRing" Margin="-3.0" Padding="0,8"/>
+            <ProgressRing IsActive="False" Grid.Row="1" Width="60" Height="60" x:Name="loadingRing" Margin="-3.0" 
+                          Padding="0,8"/>
 
             <TextBlock Name="LoadingMsg" Visibility="Collapsed" Margin="-3.0" Padding="0,8" FontSize="20"/>
 
-
         </StackPanel>
-        <Image HorizontalAlignment="Left" Height="61" Margin="10,10,0,0" 
+        
+        <Image HorizontalAlignment="Left" Height="61" Margin="10,10,0,0" VerticalAlignment="Top" 
+               Width="60" Source="ms-appx:///Assets/Logo.png" Stretch="Fill"/>
+        
+        <TextBlock HorizontalAlignment="Left" Margin="75,13,0,0" TextWrapping="Wrap" Text="BrainShare" 
+                   Foreground="BlueViolet" VerticalAlignment="Top" 
+                   FontFamily="Segoe UI Semilight" FontSize="48" FontWeight="Light"/>
 
-VerticalAlignment="Top" Width="60" Source="ms-appx:///Assets/Logo.png" 
-
-Stretch="Fill"/>
-        <TextBlock HorizontalAlignment="Left" Margin="75,13,0,0" 
-
-TextWrapping="Wrap" Text="BrainShare" Foreground="BlueViolet" VerticalAlignment="Top" 
-
-FontFamily="Segoe UI Semilight" FontSize="48" FontWeight="Light"/>
-        <StackPanel  HorizontalAlignment="Left" Grid.Row="2" 
-
-Grid.Column="0" VerticalAlignment="Bottom" Background="Black" 
-
-Opacity="0.8">
-
+        <StackPanel  HorizontalAlignment="Left" Grid.Row="2" Grid.Column="0" 
+                     VerticalAlignment="Bottom" Background="Black" Opacity="0.8">
         </StackPanel>
 
     </Grid>

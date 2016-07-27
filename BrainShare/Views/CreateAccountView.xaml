@@ -28,12 +28,8 @@
 
 
         <Image Source ="ms-appx:///Assets/bbgg.jpg" Stretch="UniformToFill"
-
-HorizontalAlignment ="Center" VerticalAlignment ="Center"
-
- Opacity ="0.9" Grid.RowSpan ="2" Grid.ColumnSpan="3"></Image>
-
-
+               HorizontalAlignment ="Center" VerticalAlignment ="Center"
+               Opacity ="0.9" Grid.RowSpan ="2" Grid.ColumnSpan="3"></Image>
 
         <Button x:Name="backButton" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
@@ -44,8 +40,8 @@ HorizontalAlignment ="Center" VerticalAlignment ="Center"
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>
-        
-        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" > 
+
+        <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" >
 
             <ProgressRing IsActive="True" Grid.Row="1" Width="60" Height="60" x:Name="loadingRing" Margin="-3.0" Padding="0,8"/>
 
@@ -53,12 +49,9 @@ HorizontalAlignment ="Center" VerticalAlignment ="Center"
         </StackPanel>
 
         <TextBlock Grid.Row="0"  Grid.Column="1" x:Name="pageTitle" Text ="Create Account" Foreground="#3530A2" Margin="0,38,0,0"
-
-Style ="{StaticResource HeaderTextBlockStyle }" 
+                   Style ="{StaticResource HeaderTextBlockStyle }" 
                         IsHitTestVisible ="false" TextWrapping ="NoWrap" />
 
-
-        <!--      <Button Name ="logoutbtn" Click="logout_btn_click" Grid.Row="0" Grid.Column ="2" Margin="0,0,40,0" Background="Purple" HorizontalAlignment ="Right">Logout</Button>   -->
         <WebView Grid.Row="1" Grid.Column ="1" Width ="1200" Margin="-50,-80,0,0" Grid.ColumnSpan="2" Height="600" Name ="WebView2" Loaded="WebView2_Loaded"/>
 
     </Grid >

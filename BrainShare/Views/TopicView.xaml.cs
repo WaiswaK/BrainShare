@@ -80,7 +80,16 @@ namespace BrainShare.Views
             string content = WebViewContentHelper.WrapHtml(new_notes, WebView.ActualWidth, WebView.ActualHeight);
             WebView.NavigateToString(content);
         }
+        private void File_click(object sender, ItemClickEventArgs e)
+        {
+            var item = e.ClickedItem;
+            AttachmentModel _file = ((AttachmentModel)item);
+            Frame.Navigate(typeof(PDFReader), _file);
+        }
+        private void itemGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
+        }
         /// <summary>
         /// Preserves state associated with this page in case the application is suspended or the
         /// page is discarded from the navigation cache.  Values must conform to the serialization

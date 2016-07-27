@@ -11,12 +11,12 @@ namespace BrainShare.ViewModels
             get { return _categoryName; }
             set { _categoryName = value; }
         }
-        private List<AttachmentModel> _bookList;
+        /*private List<AttachmentModel> _bookList;
         public List<AttachmentModel> FileList
         {
             get { return _bookList; }
             set { _bookList = value; }
-        }
+        }*/
         private List<VideoModel> _videosList;
         public List<VideoModel> VideosList
         {
@@ -31,7 +31,7 @@ namespace BrainShare.ViewModels
         }
         public CategoryViewModel(CategoryModel category)
         {
-            FileList = category.files;
+            //FileList = category.files;
             VideosList = category.videos;
             AssignmentList = category.assignments;
             CategoryName = category.categoryName;

@@ -26,28 +26,22 @@
             <ColumnDefinition Width="170"/>
         </Grid.ColumnDefinitions>
 
-
         <Image Source ="ms-appx:///Assets/bbgg.jpg" Stretch="UniformToFill"
-
-HorizontalAlignment ="Center" VerticalAlignment ="Center"
-
- Opacity ="0.9" Grid.RowSpan ="2" Grid.ColumnSpan="3"></Image>
-
-
+               HorizontalAlignment ="Center" VerticalAlignment ="Center"
+               Opacity ="0.9" Grid.RowSpan ="2" Grid.ColumnSpan="3"></Image>
 
         <Button x:Name="backButton" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
                         Grid.Row="0"
                         Grid.Column="0"
-                     Margin="20,38"
+                        Margin="20,38"
                         VerticalAlignment="Top"
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>
 
         <TextBlock Grid.Row="0"  Grid.Column="1" x:Name="pageTitle" Text = "{Binding CategoryName}" Foreground="#3530A2" Margin="0,38,0,0"
-
-Style ="{StaticResource HeaderTextBlockStyle }" 
+                   Style ="{StaticResource HeaderTextBlockStyle }" 
                         IsHitTestVisible ="false" TextWrapping ="NoWrap" />
 
         <Hub Grid.Row="1" Grid.Column ="1" Grid.ColumnSpan="2" Margin="-50,-80,0,0">
@@ -85,14 +79,14 @@ Style ="{StaticResource HeaderTextBlockStyle }"
                                     </Grid.ColumnDefinitions>
                                     <Image Source ="{Binding thumb_url }" Stretch="Fill"
                                     Grid.Row ="0" Grid.Column ="0"  HorizontalAlignment="Center"
-VerticalAlignment ="Center"
+                                           VerticalAlignment ="Center"
                                     Grid.RowSpan ="2"></Image >
-                                    <StackPanel Grid.Row ="1" Grid.Column="0"
+                                    <StackPanel Grid.Row ="1" Grid.Column="0" Background ="#3530A2">
 
-Background ="#3530A2">
-                                        <TextBlock Text ="{Binding book_title }" Margin="5,0,0,0" TextWrapping="WrapWholeWords" FontSize="16"
+                                        <TextBlock Text ="{Binding book_title }" Margin="5,0,0,0" 
+                                                   TextWrapping="WrapWholeWords" FontSize="16"
+                                                   Foreground ="White"></TextBlock >
 
-Foreground ="White"></TextBlock >
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>
@@ -102,4 +96,5 @@ Foreground ="White"></TextBlock >
             </HubSection>
         </Hub>
     </Grid >
+
 </Page>
