@@ -37,62 +37,20 @@
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\bg4.jpg">
       <PackagePath>Assets\bg4.jpg</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\blank.JPG">
-      <PackagePath>Assets\blank.JPG</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\Course\courseSS.jpg">
-      <PackagePath>Assets\Course\courseSS.jpg</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\Course\course2.jpg">
-      <PackagePath>Assets\Course\course2.jpg</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\Course\course.jpg">
-      <PackagePath>Assets\Course\course.jpg</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\Course\courseXXX.jpg">
-      <PackagePath>Assets\Course\courseXXX.jpg</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\Course\topic.jpg">
-      <PackagePath>Assets\Course\topic.jpg</PackagePath>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\cover.jpg">
       <PackagePath>Assets\cover.jpg</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\assignment.jpg">
-      <PackagePath>Assets\icons\assignment.jpg</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\Files.jpg">
-      <PackagePath>Assets\icons\Files.jpg</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\notes.jpg">
-      <PackagePath>Assets\icons\notes.jpg</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\video-library.jpg">
-      <PackagePath>Assets\icons\video-library.jpg</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\notesbbgg.jpg">
       <PackagePath>Assets\notesbbgg.jpg</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\Course\course.png">
-      <PackagePath>Assets\Course\course.png</PackagePath>
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\course.png">
+      <PackagePath>Assets\course.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\ebk.png">
-      <PackagePath>Assets\ebk.png</PackagePath>
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\class_notes.png">
+      <PackagePath>Assets\class_notes.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\ebooks.png">
-      <PackagePath>Assets\ebooks.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\class_notes.png">
-      <PackagePath>Assets\icons\class_notes.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\notes.png">
-      <PackagePath>Assets\icons\notes.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\notes_icon.png">
-      <PackagePath>Assets\icons\notes_icon.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\Video.png">
-      <PackagePath>Assets\icons\Video.png</PackagePath>
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\Video.png">
+      <PackagePath>Assets\Video.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\Logo.scale-100.png">
       <PackagePath>Assets\Logo.scale-100.png</PackagePath>
@@ -110,8 +68,8 @@
       <PackagePath>Assets\StoreLogo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\icons\pdf.gif">
-      <PackagePath>Assets\icons\pdf.gif</PackagePath>
+    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\Assets\pdf.gif">
+      <PackagePath>Assets\pdf.gif</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\BrainShare.xr.xml">
       <PackagePath>BrainShare.xr.xml</PackagePath>
@@ -149,17 +107,11 @@
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\AssignmentView.xbf">
       <PackagePath>Views\AssignmentView.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\AssignmentsView.xbf">
-      <PackagePath>Views\AssignmentsView.xbf</PackagePath>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\TopicView.xbf">
       <PackagePath>Views\TopicView.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\TopicsView.xbf">
       <PackagePath>Views\TopicsView.xbf</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\VideosView.xbf">
-      <PackagePath>Views\VideosView.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>

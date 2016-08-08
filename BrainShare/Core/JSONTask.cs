@@ -127,7 +127,7 @@ namespace BrainShare.Core
                             {
                                 subject.Id = Sub_id;
                                 subject.name = val.GetString();
-                                subject.thumb = "ms-appx:///Assets/Course/course.jpg";
+                                subject.thumb = "ms-appx:///Assets/course.jpg";
                                 var noteslist = (from i in NotesArray select i.GetObject()).ToList();
                                 subject.topics = GetTopics(noteslist);
                                 var videoslist = (from i in VideosArray select i.GetObject()).ToList();

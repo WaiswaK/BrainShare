@@ -24,13 +24,11 @@ namespace BrainShare.ViewModels
             get { return _notes; }
             set { _notes = value; }
         }
-
         public AssignmentViewModel(AssignmentModel assignment)
         {
             AssignmentTitle = assignment.title;
             AssignmentFiles = assignment.Files;
             AssignmentNotes = assignment.description;
         }
-
     }
 }

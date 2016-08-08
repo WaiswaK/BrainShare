@@ -11,19 +11,16 @@
     mc:Ignorable ="d">
 
 
-    <Page.Resources>          
-        <CollectionViewSource
-               x:Name="categories" 
-               Source="{Binding CategoryList}"              
-            />
+    <Page.Resources>     
 
-        <CollectionViewSource             
-             x:Name="topics" 
-               Source="{Binding TopicList}"  
-            />
+        <CollectionViewSource x:Name="topics" Source="{Binding TopicList}"/>
 
         <CollectionViewSource x:Name ="books" Source ="{Binding FileList }" />
-        
+
+        <CollectionViewSource x:Name="assignments" Source="{Binding AssignmentList}"/>
+
+        <CollectionViewSource x:Name ="videos" Source ="{Binding VideosList }" />
+
     </Page.Resources>
 
     <Grid Background ="{ThemeResource ApplicationPageBackgroundThemeBrush }">
@@ -59,7 +56,7 @@
 
         <Hub Grid.Row="1" Grid.Column ="1" Grid.ColumnSpan="2" Margin="-50,-80,0,0">
 
-            <HubSection>
+            <HubSection Name="Folders">
                 <HubSection.Header>
                     <TextBlock x:Uid="Section1Header" TextLineBounds="TrimToBaseline" OpticalMarginAlignment ="TrimSideBearings" Text="Notes >" Foreground ="Green"/>
                 </HubSection.Header>
@@ -97,7 +94,7 @@
 
                                     </Grid.ColumnDefinitions>
 
-                                    <Image Source="ms-appx:///Assets/Course/course.png" Stretch="Fill"
+                                    <Image Source="ms-appx:///Assets/course.png" Stretch="Fill"
                                     Grid.Row ="0" Grid.Column ="0"  HorizontalAlignment="Center" VerticalAlignment ="Center">
                                     </Image >
 
@@ -118,7 +115,7 @@
                 </DataTemplate>
             </HubSection>
 
-            <HubSection>
+            <HubSection Name="Files">
                 <HubSection.Header>
                     <TextBlock x:Uid="Section1Header" TextLineBounds="TrimToBaseline" OpticalMarginAlignment ="TrimSideBearings" Text="Featured Files >" Foreground ="Green"/>
                 </HubSection.Header>
@@ -154,7 +151,7 @@
 
                                     </Grid.ColumnDefinitions>
 
-                                    <Image Source="ms-appx:///Assets/icons/pdf.gif" Stretch="Fill"
+                                    <Image Source="ms-appx:///Assets/pdf.gif" Stretch="Fill"
                                     Grid.Row ="0" Grid.Column ="0"  HorizontalAlignment="Center" VerticalAlignment ="Center">
                                     </Image >
 
@@ -174,25 +171,24 @@
                 </DataTemplate>
             </HubSection>
 
-            <HubSection>
+            <HubSection Name="Assignments">
                 <HubSection.Header>
-                    <TextBlock x:Uid="Section1Header" TextLineBounds="TrimToBaseline" OpticalMarginAlignment ="TrimSideBearings" Text="Categories >" Foreground ="Green"/>
+                    <TextBlock x:Uid="Section1Header" TextLineBounds="TrimToBaseline" OpticalMarginAlignment ="TrimSideBearings" Text="Featured Assignments >" Foreground ="Green"/>
                 </HubSection.Header>
                 <DataTemplate>
                     <GridView
                     x:Name ="TopicsGridView"        
                     AutomationProperties.AutomationId ="ItemGridView"
                     AutomationProperties.Name ="Items In Group"
-                    ItemsSource ="{Binding Source ={StaticResource categories }}" 
-                  
+                    ItemsSource ="{Binding Source ={StaticResource assignments }}"                   
                     SelectionMode ="None"
                     IsSwipeEnabled ="false"
                     IsItemClickEnabled ="True"
                     Margin ="0,20,0,0"
                     CanDragItems ="True"
                     CanReorderItems ="True"
-                    SelectionChanged ="itemGridView_SelectionChanged" ItemClick="Category_click"
-                    AllowDrop ="True"              
+                    SelectionChanged ="itemGridView_SelectionChanged" ItemClick="Assignment_click"
+                    AllowDrop ="True" 
                         >
 
                         <GridView.ItemTemplate>
@@ -200,26 +196,86 @@
                                 <Grid>
                                     <Grid.RowDefinitions>
 
-                                        <RowDefinition Height ="87" />
-                                        <RowDefinition Height ="50" />
+                                        <RowDefinition Height ="100" />
 
                                     </Grid.RowDefinitions>
 
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width ="210" />
+                                        <ColumnDefinition Width ="130" />
+                                        <ColumnDefinition Width ="200" />
                                         <ColumnDefinition Width ="10" />
 
                                     </Grid.ColumnDefinitions>
 
-                                    <Image Source ="{ Binding categoryImage }" Stretch="Fill"
-                                    Grid.Row ="0" Grid.Column ="0"  HorizontalAlignment="Center"
-                                           VerticalAlignment ="Center"
-                                    Grid.RowSpan ="2"></Image >
+                                    <Image Source="ms-appx:///Assets/class_notes.png" Stretch="Fill"
+                                    Grid.Row ="0" Grid.Column ="0"  HorizontalAlignment="Center" VerticalAlignment ="Center">
+                                    </Image >
 
-                                    <StackPanel Grid.Row ="1" Grid.Column="0" Background ="#3530A2">
+                                    <StackPanel Grid.Row ="0" Grid.Column="1" VerticalAlignment="Center">
+                                        <TextBlock Text ="{Binding title }" FontWeight ="Bold" Margin="5,0,0,0" TextWrapping="WrapWholeWords" FontSize="16"
+                                                   Foreground ="Black"></TextBlock >
+                                        <TextBlock Text ="BY: " Margin="5,0,0,0" TextWrapping="WrapWholeWords" FontSize="10"
+                                                   Foreground ="Black"></TextBlock >
+                                        <TextBlock Text ="{Binding teacher }" Margin="5,0,0,0" TextWrapping="WrapWholeWords" FontSize="10"
+                                                   Foreground ="Black"></TextBlock >
+                                    </StackPanel>
 
-                                        <TextBlock Text ="{ Binding categoryName }" Margin="5,0,0,0" TextWrapping="WrapWholeWords" FontSize="16"
-                                                   Foreground ="White"></TextBlock >
+                                </Grid>
+
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+
+                    </GridView>
+                </DataTemplate>
+            </HubSection>
+
+            <HubSection Name="Videos">
+                <HubSection.Header>
+                    <TextBlock x:Uid="Section1Header" TextLineBounds="TrimToBaseline" OpticalMarginAlignment ="TrimSideBearings" Text="Featured Videos >" Foreground ="Green"/>
+                </HubSection.Header>
+                <DataTemplate>
+                    <GridView
+                    x:Name ="TopicsGridView"        
+                    AutomationProperties.AutomationId ="ItemGridView"
+                    AutomationProperties.Name ="Items In Group"
+                    ItemsSource ="{Binding Source ={StaticResource videos }}" 
+                  
+                    SelectionMode ="None"
+                    IsSwipeEnabled ="false"
+                    IsItemClickEnabled ="True"
+                    Margin ="0,20,0,0"
+                    CanDragItems ="True"
+                    CanReorderItems ="True"
+                    SelectionChanged ="itemGridView_SelectionChanged" ItemClick="Video_click"
+                    AllowDrop ="True"
+                        >
+
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+
+                                        <RowDefinition Height ="100" />
+
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width ="130" />
+                                        <ColumnDefinition Width ="200" />
+                                        <ColumnDefinition Width ="10" />
+
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="ms-appx:///Assets/Video.png" Stretch="Fill"
+                                    Grid.Row ="0" Grid.Column ="0"  HorizontalAlignment="Center" VerticalAlignment ="Center">
+                                    </Image >
+
+                                    <StackPanel Grid.Row ="0" Grid.Column="1" VerticalAlignment="Center">
+
+                                        <TextBlock Text ="{Binding FileName }" Margin="5,0,0,0" 
+                                                   TextWrapping="WrapWholeWords" FontSize="16"
+                                                   Foreground ="Black">
+                                        </TextBlock >
 
                                     </StackPanel>
 

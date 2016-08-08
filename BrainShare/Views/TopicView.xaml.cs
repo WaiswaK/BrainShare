@@ -48,8 +48,7 @@ namespace BrainShare.Views
             InitializeComponent();
             navigationHelper = new NavigationHelper(this);
             navigationHelper.LoadState += navigationHelper_LoadState;
-            navigationHelper.SaveState += navigationHelper_SaveState;
-            
+            navigationHelper.SaveState += navigationHelper_SaveState;          
         }
 
         /// <summary>
@@ -76,7 +75,6 @@ namespace BrainShare.Views
         {
             string new_notes = await Core.NotesTask.Notes_loader(Current_Topic);
             var WebView = (WebView)sender;
-            //string content = WebViewContentHelper.WrapHtml(all_notes, WebView.ActualWidth, WebView.ActualHeight);
             string content = WebViewContentHelper.WrapHtml(new_notes, WebView.ActualWidth, WebView.ActualHeight);
             WebView.NavigateToString(content);
         }

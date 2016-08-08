@@ -12,7 +12,6 @@
 
     <Page.Resources>
         <CollectionViewSource x:Name="topics" Source="{Binding TopicList}"/>
-        <CollectionViewSource x:Name="attachments" Source="{Binding AttachmentList}"/>        
     </Page.Resources>
 
     <Grid Background ="{ThemeResource ApplicationPageBackgroundThemeBrush }">
@@ -85,7 +84,7 @@
 
                                     </Grid.ColumnDefinitions>
 
-                                    <Image Source="ms-appx:///Assets/icons/class_notes.png" Stretch="Fill"
+                                    <Image Source="ms-appx:///Assets/class_notes.png" Stretch="Fill"
                                     Grid.Row ="0" Grid.Column ="0"  HorizontalAlignment="Center" VerticalAlignment ="Center">
                                     </Image >
 

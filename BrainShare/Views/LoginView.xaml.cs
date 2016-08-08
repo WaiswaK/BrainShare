@@ -29,14 +29,7 @@ namespace BrainShare
     /// </summary>
     public sealed partial class LoginView : Page
     {
-        UserDetail Stats = new UserDetail();
         ErrorLogTask Logfile = new ErrorLogTask();
-
-    public class UserDetail
-        {
-            public string email { get; set; }
-            public string password { get; set; }
-        }
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
         /// <summary>
@@ -123,74 +116,18 @@ namespace BrainShare
             //SettingsPane.GetForCurrentView().CommandsRequested -= onCommandsRequested; // Added here
         }
         #endregion
-        public async void Button_Click(object sender, RoutedEventArgs e)
+        public void Button_Click(object sender, RoutedEventArgs e)
         {
             loadingRing.IsActive = true;
             LoadingMsg.Text = Message.User_Validation;
             LoadingMsg.Visibility = Visibility.Visible;
-
-            //Write remember data to file
-            //capture and store user data
-            Stats.email = email_tb.Text;
-
-            Stats.password = password_tb.Password;
-            try
-            {
-                await SaveAsync();
-            }
-            catch (Exception ex)
-            {
-                Logfile.Error_details = ex.ToString();
-                Logfile.Error_title = "Button_Click Method";
-                Logfile.Location = "LoginView";
-                ErrorLogTask.LogFileSaveAsync(Logfile);
-            }
             Login();
         }
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            try
-            {
-                await RestoreAsync();
-            }
-            catch (Exception exc)
-            {
-                Logfile.Error_details = exc.ToString();
-                Logfile.Error_title = "OnNavigatedTo";
-                Logfile.Location = "LoginView";
-                ErrorLogTask.LogFileSaveAsync(Logfile);
-            }
-
-            base.OnNavigatedTo(e); //important to cover this error http://stackoverflow.com/questions/13790344/argumentnullexception-on-changing-frame
+            base.OnNavigatedTo(e); 
             navigationHelper.OnNavigatedTo(e);
-
-            //SettingsPane.GetForCurrentView().CommandsRequested += onCommandsRequested; // Added here
-
         }
-        private async Task RestoreAsync()
-        {
-            StorageFile file = await Constant.appFolder.GetFileAsync("UserDetails");
-            if (file == null) return;
-            IRandomAccessStream inStream = await file.OpenReadAsync();
-            // Deserialize the Session State.
-            DataContractSerializer serializer = new DataContractSerializer(typeof(UserDetail));
-            var StatsDetails = (UserDetail)serializer.ReadObject(inStream.AsStreamForRead());
-            inStream.Dispose();
-            email_tb.Text = StatsDetails.email;
-            password_tb.Password = StatsDetails.password;
-        }
-        private async Task SaveAsync()
-        {
-            StorageFile userdetailsfile = await Constant.appFolder.CreateFileAsync("UserDetails", CreationCollisionOption.ReplaceExisting);
-            IRandomAccessStream raStream = await userdetailsfile.OpenAsync(FileAccessMode.ReadWrite);
-            using (IOutputStream outStream = raStream.GetOutputStreamAt(0))
-            {
-                // Serialize the Session State.
-                DataContractSerializer serializer = new DataContractSerializer(typeof(UserDetail));
-                serializer.WriteObject(outStream.AsStreamForWrite(), Stats);
-                await outStream.FlushAsync();
-            }
-        }  
         public async void Login()
         {
              try

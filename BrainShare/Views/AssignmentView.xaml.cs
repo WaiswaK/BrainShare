@@ -53,17 +53,10 @@ namespace BrainShare.Views
         /// session. The state will be null the first time a page is visited.</param>
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            try
-            {
-                var assignment = e.NavigationParameter as AssignmentModel;
-                AssignmentViewModel vm = new AssignmentViewModel(assignment);
-                DataContext = vm;
-                all_notes = assignment.description;
-            }
-            catch
-            {
-
-            }          
+            var assignment = e.NavigationParameter as AssignmentModel;
+            AssignmentViewModel vm = new AssignmentViewModel(assignment);
+            DataContext = vm;
+            all_notes = assignment.description;
         }
         private void WebView2_Loaded(object sender, RoutedEventArgs e)
         {
@@ -73,16 +66,9 @@ namespace BrainShare.Views
         }
         private void File_click(object sender, ItemClickEventArgs e)
         {
-            try
-            {
-                var item = e.ClickedItem;
-                AttachmentModel _file = ((AttachmentModel)item);
-                Frame.Navigate(typeof(PDFReader), _file);
-            }
-            catch
-            {
-
-            }
+            var item = e.ClickedItem;
+            AttachmentModel _file = ((AttachmentModel)item);
+            Frame.Navigate(typeof(PDFReader), _file);
         }
         private void itemGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -111,25 +97,11 @@ namespace BrainShare.Views
         /// in addition to page state preserved during an earlier session.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            try
-            {
-                navigationHelper.OnNavigatedTo(e);
-            }
-            catch
-            {
-
-            }
+            navigationHelper.OnNavigatedTo(e);
         }
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            try
-            {
-                navigationHelper.OnNavigatedFrom(e);
-            }
-            catch
-            {
-
-            }
+            navigationHelper.OnNavigatedFrom(e);
         }
         #endregion
     }

@@ -36,23 +36,15 @@ namespace BrainShare.Views
             navigationHelper = new NavigationHelper(this);
             navigationHelper.LoadState += navigationHelper_LoadState;
             navigationHelper.SaveState += navigationHelper_SaveState;
-        }     
+        }
         private void book_click(object sender, ItemClickEventArgs e)
         {
-            try
-            {
-                var item = e.ClickedItem;
-                BookModel _topic = ((BookModel)item);
-                Frame.Navigate(typeof(LibraryBookReader), _topic);
-            }
-            catch
-            {
-
-            }
+            var item = e.ClickedItem;
+            BookModel _topic = ((BookModel)item);
+            Frame.Navigate(typeof(LibraryBookReader), _topic);
         }
         private void itemGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
         }
         /// <summary>
         /// Populates the page with content passed during navigation. Any saved state is also
@@ -67,16 +59,9 @@ namespace BrainShare.Views
         /// session. The state will be null the first time a page is visited.</param>
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            try
-            {
-                var category = e.NavigationParameter as LibCategoryModel;
-                LibraryCategoryBooksViewViewModel vm = new LibraryCategoryBooksViewViewModel(category);
-                DataContext = vm;
-            }
-            catch
-            {
-
-            }
+            var category = e.NavigationParameter as LibCategoryModel;
+            LibraryCategoryBooksViewViewModel vm = new LibraryCategoryBooksViewViewModel(category);
+            DataContext = vm;
         }
         /// <summary>
         /// Preserves state associated with this page in case the application is suspended or the
@@ -100,25 +85,11 @@ namespace BrainShare.Views
         /// in addition to page state preserved during an earlier session.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            try
-            {
-                navigationHelper.OnNavigatedTo(e);
-            }
-            catch
-            {
-
-            }
+            navigationHelper.OnNavigatedTo(e);
         }
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            try
-            {
-                navigationHelper.OnNavigatedFrom(e);
-            }
-            catch
-            {
-
-            }
+            navigationHelper.OnNavigatedFrom(e);
         }
         #endregion
     }

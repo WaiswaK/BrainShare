@@ -26,23 +26,21 @@
     <RootPropertyPathName Name="name" />
     <RootPropertyPathName Name="SchoolName" />
     <RootPropertyPathName Name="SchoolBadge" />
+    <RootPropertyPathName Name="VideosList" />
+    <RootPropertyPathName Name="AssignmentList" />
     <RootPropertyPathName Name="FileList" />
     <RootPropertyPathName Name="TopicList" />
-    <RootPropertyPathName Name="categoryName" />
-    <RootPropertyPathName Name="categoryImage" />
     <RootPropertyPathName Name="FileName" />
+    <RootPropertyPathName Name="teacher" />
+    <RootPropertyPathName Name="title" />
     <RootPropertyPathName Name="folder_name" />
     <RootPropertyPathName Name="SubjectName" />
     <RootPropertyPathName Name="AssignmentFiles" />
     <RootPropertyPathName Name="AssignmentTitle" />
-    <RootPropertyPathName Name="AssignmentList" />
-    <RootPropertyPathName Name="teacher" />
-    <RootPropertyPathName Name="title" />
     <RootPropertyPathName Name="AttachmentList" />
     <RootPropertyPathName Name="TopicName" />
     <RootPropertyPathName Name="TopicTitle" />
     <RootPropertyPathName Name="FolderName" />
-    <RootPropertyPathName Name="VideosList" />
   </Roots.PropertyPathNames>
   <Roots.RootTypes>
     <RootType FullName="Windows.UI.Xaml.Application" />
@@ -172,6 +170,7 @@
     <RootType FullName="Windows.UI.Xaml.Controls.HubSection">
       <RootProperty Name="Header" />
       <RootProperty Name="ContentTemplate" />
+      <RootProperty Name="Name" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.DataTemplate">
       <RootProperty Name="Template" />
@@ -305,9 +304,7 @@
     <RootType FullName="BrainShare.Views.StudentView" />
     <RootType FullName="BrainShare.Views.SubjectView" />
     <RootType FullName="BrainShare.Views.AssignmentView" />
-    <RootType FullName="BrainShare.Views.AssignmentsView" />
     <RootType FullName="BrainShare.Views.TopicView" />
     <RootType FullName="BrainShare.Views.TopicsView" />
-    <RootType FullName="BrainShare.Views.VideosView" />
   </Roots.RootTypes>
 </Roots>

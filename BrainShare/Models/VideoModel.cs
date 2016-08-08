@@ -7,7 +7,6 @@
         public int VideoID { get; set; }
         public string description { get; set; }
         public string teacher { get; set; }
-
         public VideoModel(int _videoID, string _filePath, string _fileName, string _description, string _teacher)
         {
             FilePath = _filePath;
@@ -16,7 +15,6 @@
             description = _description;
             teacher = _teacher;
         }
-
         public VideoModel() { }
     }
 }

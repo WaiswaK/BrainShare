@@ -3,6 +3,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using BrainShare.Models;
 using BrainShare.ViewModels;
+using Windows.UI.Xaml;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -51,26 +52,17 @@ namespace BrainShare.Views
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             var subject = e.NavigationParameter as SubjectModel;
+            if (subject.videos.Count == 0)
+                Videos.Visibility = Visibility.Collapsed;
+            if (subject.topics.Count == 0)
+                Folders.Visibility = Visibility.Collapsed;
+            if (subject.assignments.Count == 0)
+                Assignments.Visibility = Visibility.Collapsed;
+            if (subject.files.Count == 0)
+                Files.Visibility = Visibility.Collapsed;
             SubjectViewModel vm = new SubjectViewModel(subject);
             DataContext = vm;  
-        }     
-        private void Category_click(object sender, ItemClickEventArgs e)
-        {
-            var item = e.ClickedItem;
-            CategoryModel _category = ((CategoryModel)item);
-            if (_category.categoryName.Equals("Quiz")) 
-            {
-                Frame.Navigate(typeof(TopicsView), _category);
-            }
-            if (_category.categoryName.Equals("Videos")) 
-            {
-                Frame.Navigate(typeof(VideosView), _category);
-            }
-            if (_category.categoryName.Equals("Assignments")) 
-            {
-                Frame.Navigate(typeof(AssignmentsView), _category);
-            }
-        }
+        }        
         private void Topic_click(object sender, ItemClickEventArgs e)
         {
             var item = e.ClickedItem;
@@ -82,6 +74,18 @@ namespace BrainShare.Views
             var item = e.ClickedItem;
             AttachmentModel _file = ((AttachmentModel)item);
             Frame.Navigate(typeof(PDFReader), _file);
+        }
+        private void Video_click(object sender, ItemClickEventArgs e)
+        {
+            var item = e.ClickedItem;
+            VideoModel _file = ((VideoModel)item);
+            Frame.Navigate(typeof(PlayView), _file);
+        }
+        private void Assignment_click(object sender, ItemClickEventArgs e)
+        {
+            var item = e.ClickedItem;
+            AssignmentModel _assignment = ((AssignmentModel)item);
+            Frame.Navigate(typeof(AssignmentView), _assignment);
         }
         /// <summary>
         /// Preserves state associated with this page in case the application is suspended or the

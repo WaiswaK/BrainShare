@@ -150,7 +150,6 @@
     <Compile Include="Models\AssignmentModel.cs" />
     <Compile Include="Models\AttachmentModel.cs" />
     <Compile Include="Models\BookModel.cs" />
-    <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\FolderModel.cs" />
     <Compile Include="Models\LibraryModel.cs" />
     <Compile Include="Models\LibCategoryModel.cs" />
@@ -163,7 +162,6 @@
     <Compile Include="Models\VideoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AssignmentViewModel.cs" />
-    <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\LibraryCategoryBooksViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\PlayViewModel.cs" />
@@ -171,7 +169,6 @@
     <Compile Include="ViewModels\SubjectViewModel.cs" />
     <Compile Include="ViewModels\TopicViewModel.cs" />
     <Compile Include="ViewModels\TopicsViewModel.cs" />
-    <Compile Include="ViewModels\VideosViewModel.cs" />
     <Compile Include="Views\CreateAccountView.xaml.cs">
       <DependentUpon>CreateAccountView.xaml</DependentUpon>
     </Compile>
@@ -202,17 +199,11 @@
     <Compile Include="Views\AssignmentView.xaml.cs">
       <DependentUpon>AssignmentView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AssignmentsView.xaml.cs">
-      <DependentUpon>AssignmentsView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\TopicView.xaml.cs">
       <DependentUpon>TopicView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TopicsView.xaml.cs">
       <DependentUpon>TopicsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\VideosView.xaml.cs">
-      <DependentUpon>VideosView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -226,25 +217,11 @@
     <Content Include="Assets\bbgg.jpg" />
     <Content Include="Assets\bg.jpg" />
     <Content Include="Assets\bg4.jpg" />
-    <Content Include="Assets\blank.JPG" />
-    <Content Include="Assets\Course\course.png" />
-    <Content Include="Assets\Course\courseSS.jpg" />
-    <Content Include="Assets\Course\course2.jpg" />
-    <Content Include="Assets\Course\course.jpg" />
-    <Content Include="Assets\Course\courseXXX.jpg" />
-    <Content Include="Assets\Course\topic.jpg" />
+    <Content Include="Assets\course.png" />
     <Content Include="Assets\cover.jpg" />
-    <Content Include="Assets\ebk.png" />
-    <Content Include="Assets\ebooks.png" />
-    <Content Include="Assets\icons\assignment.jpg" />
-    <Content Include="Assets\icons\class_notes.png" />
-    <Content Include="Assets\icons\Files.jpg" />
-    <Content Include="Assets\icons\notes.jpg" />
-    <Content Include="Assets\icons\notes.png" />
-    <Content Include="Assets\icons\notes_icon.png" />
-    <Content Include="Assets\icons\pdf.gif" />
-    <Content Include="Assets\icons\video-library.jpg" />
-    <Content Include="Assets\icons\Video.png" />
+    <Content Include="Assets\class_notes.png" />
+    <Content Include="Assets\pdf.gif" />
+    <Content Include="Assets\Video.png" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\notesbbgg.jpg" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
@@ -299,10 +276,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AssignmentsView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\TopicView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -311,13 +284,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\VideosView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

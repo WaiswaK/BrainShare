@@ -85,7 +85,7 @@
                                         <RowDefinition Height ="*"></RowDefinition>
                                         <RowDefinition Height="10"></RowDefinition >
                                     </Grid.RowDefinitions>
-                                    <Image Source="ms-appx:///Assets/icons/pdf.gif" Stretch ="Fill"  Grid.RowSpan ="2" />
+                                    <Image Source="ms-appx:///Assets/pdf.gif" Stretch ="Fill"  Grid.RowSpan ="2" />
                                     <StackPanel Grid.Row ="0" Opacity="0.9">
                                         <TextBlock Text ="{ Binding FileName }" Foreground="Black"
                                            Style ="{StaticResource SubheaderTextBlockStyle}"

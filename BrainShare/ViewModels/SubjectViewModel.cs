@@ -12,12 +12,6 @@ namespace BrainShare.ViewModels
             get { return _subjectName; }
             set { _subjectName = value; }
         }
-        private List<CategoryModel> _category;
-        public List<CategoryModel> CategoryList
-        {
-            get { return _category; }
-            set { _category = value; }
-        }
         #region attachments
         private List<AttachmentModel> _bookList;
         public List<AttachmentModel> FileList
@@ -105,29 +99,25 @@ namespace BrainShare.ViewModels
             }
             return folders;
         }
-        private List<CategoryModel> SortedCategories(SubjectModel subject)
+        private List<VideoModel> _videosList;
+        public List<VideoModel> VideosList
         {
-            List<CategoryModel> categories = new List<CategoryModel>();
-            CategoryModel videos = new CategoryModel("Videos", "ms-appx:///Assets/icons/video-library.jpg", subject.videos.Count, subject.videos);
-            CategoryModel assignments = new CategoryModel("Assignments", "ms-appx:///Assets/icons/assignment.jpg", subject.assignments.Count, subject.assignments);
-            categories.Add(videos);
-            categories.Add(assignments);
-            if (subject.assignments.Count == 0)
-            {
-                categories.Remove(assignments);
-            }
-            if (subject.videos.Count == 0)
-            {
-                categories.Remove(videos);
-            }
-            return categories;
+            get { return _videosList; }
+            set { _videosList = value; }
+        }
+        private List<AssignmentModel> _assignment;
+        public List<AssignmentModel> AssignmentList
+        {
+            get { return _assignment; }
+            set { _assignment = value; }
         }
         public SubjectViewModel(SubjectModel subject)
         {        
             SubjectName = subject.name;
-            CategoryList = SortedCategories(subject);
             TopicList = GetFolders(subject.topics);
             FileList = subject.files;
+            VideosList = subject.videos;
+            AssignmentList = subject.assignments;
         }
     }
 }

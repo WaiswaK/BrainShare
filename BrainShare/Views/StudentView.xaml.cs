@@ -272,17 +272,6 @@ namespace BrainShare.Views
                                     LibraryModel newContentLibrary = ModelTask.CompareLibraries(Old_Library, Current_Library);
                                     List<LibCategoryModel> updatedOldContentLibrary = ModelTask.Categories_Update(Old_Library.categories, newContentLibrary.categories);
 
-
-                                    //Have this script everywhere you see the above decleration
-
-                                    // List<Library_CategoryObservable> removeOldContentLibrary = CommonTask.Category_Update_Removal(Old_Library.categories, newContentLibrary.categories);
-
-                                    //Then modify the method below to contain it's value
-                                    //Can't do that cause i only have 2 files and so i can't see everywhere they are
-                                    //Methods are ready in CommonTask only need to bne called
-
-
-
                                     if (newContentLibrary == null && updatedOldContentLibrary != null)
                                     {
                                         ModelTask.UserUpdater(userdetails, courses, null, currentUser, null, updatedOldContentLibrary);

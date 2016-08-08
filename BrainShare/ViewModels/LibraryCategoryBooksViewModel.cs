@@ -11,7 +11,6 @@ namespace BrainShare.ViewModels
             get { return _books; }           
             set { _books = value; }
         }
-
         private string _categoryname;
         public string CategoryName
         {
@@ -24,7 +23,6 @@ namespace BrainShare.ViewModels
                 _categoryname = value;
             }
         }
-
         public LibraryCategoryBooksViewViewModel(LibCategoryModel category)
         {
             BookList = category.category_books;
