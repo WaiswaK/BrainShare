@@ -18,6 +18,7 @@ namespace BrainShare.Views
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
         string all_notes = null;
+        AssignmentModel Current_Assignment = null;
         /// <summary>
         /// This can be changed to a strongly typed view model.
         /// </summary>
@@ -56,12 +57,14 @@ namespace BrainShare.Views
             var assignment = e.NavigationParameter as AssignmentModel;
             AssignmentViewModel vm = new AssignmentViewModel(assignment);
             DataContext = vm;
+            Current_Assignment = assignment;
             all_notes = assignment.description;
         }
-        private void WebView2_Loaded(object sender, RoutedEventArgs e)
+        private async void WebView2_Loaded(object sender, RoutedEventArgs e)
         {
+            string new_notes = await Core.NotesTask.Notes_loader(Current_Assignment);
             var WebView = (WebView)sender;
-            string content = WebViewContentHelper.WrapHtml(all_notes, WebView.ActualWidth, WebView.ActualHeight);
+            string content = WebViewContentHelper.WrapHtml(new_notes, WebView.ActualWidth, WebView.ActualHeight);
             WebView.NavigateToString(content);
         }
         private void File_click(object sender, ItemClickEventArgs e)

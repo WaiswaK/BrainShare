@@ -952,6 +952,25 @@ C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0
 C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\qualifiers.txt.intermediate
 C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\MultipleQualifiersPerDimensionFound.txt
 C:\Users\Kenneth\OneDrive\Documents\Visual Studio 2015\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\ProjectArchitectures.txt
+D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\App.xbf
+D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\CreateAccountView.xbf
+D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\LibraryCategoryBooksView.xbf
+D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\LoginView.xbf
+D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\LibraryBookReader.xbf
+D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\PlayView.xbf
+D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\PDFReader.xbf
+D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\Settings.xbf
+D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\StudentView.xbf
+D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\SubjectView.xbf
+D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\AssignmentView.xbf
+D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\TopicView.xbf
+D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\TopicsView.xbf
+D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\BrainShare.xr.xml
+D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\BrainShare.exe
+D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\BrainShare.pdb
+D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\resources.pri
+D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\AppxManifest.xml
+D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\BrainShare.build.appxrecipe
 D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\App.g.i.cs
 D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\App.g.cs
 D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\Views\CreateAccountView.g.i.cs
@@ -988,6 +1007,7 @@ D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\Views\PlayView.
 D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\Views\PDFReader.xaml
 D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\Views\Settings.xaml
 D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\Views\StudentView.xaml
+D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\Views\SubjectView.xaml
 D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\Views\AssignmentView.xaml
 D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\Views\TopicView.xaml
 D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\Views\TopicsView.xaml
@@ -1000,31 +1020,11 @@ D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\Views\PlayView.
 D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\Views\PDFReader.xbf
 D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\Views\Settings.xbf
 D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\Views\StudentView.xbf
+D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\Views\SubjectView.xbf
 D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\Views\AssignmentView.xbf
 D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\Views\TopicView.xbf
 D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\Views\TopicsView.xbf
 D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\XamlSaveStateFile.xml
-D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\Views\SubjectView.xaml
-D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\Views\SubjectView.xbf
-D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\App.xbf
-D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\CreateAccountView.xbf
-D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\LibraryCategoryBooksView.xbf
-D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\LoginView.xbf
-D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\LibraryBookReader.xbf
-D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\PlayView.xbf
-D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\PDFReader.xbf
-D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\Settings.xbf
-D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\StudentView.xbf
-D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\SubjectView.xbf
-D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\AssignmentView.xbf
-D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\TopicView.xbf
-D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\Views\TopicsView.xbf
-D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\BrainShare.xr.xml
-D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\BrainShare.exe
-D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\BrainShare.pdb
-D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\resources.pri
-D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\AppxManifest.xml
-D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\bin\x86\Debug\BrainShare.build.appxrecipe
 D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\BrainShare.exe
 D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\BrainShare.pdb
 D:\OneDrive\Projects\BrainShare 1.0.0.0\BrainShare\obj\x86\Debug\BrainShare.csproj.GenerateResource.Cache

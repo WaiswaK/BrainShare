@@ -51,8 +51,6 @@ namespace BrainShare.Views
         {
             get { return navigationHelper; }
         }
-
-
         public StudentView()
         {
             InitializeComponent();
@@ -60,7 +58,6 @@ namespace BrainShare.Views
             navigationHelper.LoadState += navigationHelper_LoadState;
             navigationHelper.SaveState += navigationHelper_SaveState;
         }
-
         /// <summary>
         /// Populates the page with content passed during navigation. Any saved state is also
         /// provided when recreating a page from a prior session.
@@ -134,7 +131,6 @@ namespace BrainShare.Views
                 }
             }
         }
-
         /// <summary>
         /// Preserves state associated with this page in case the application is suspended or the
         /// page is discarded from the navigation cache.  Values must conform to the serialization
